@@ -222,3 +222,17 @@ console.log('-----------------')
 
 const addSecondToThird = accPartial(add, 1, 3);
 addSecondToThird(1, 2, 4, 8) // [ 1, 6, 8 ]
+
+// Write a function addf that adds from two invocations.
+
+const addf = a => b => a + b
+
+console.log(addf(3)(4));
+console.log('-----------------');
+
+
+
+
+
+
+

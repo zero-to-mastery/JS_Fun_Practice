@@ -1,9 +1,12 @@
 // Write a function identity that takes an argument and returns that argument
-const identity = function identity(x) {
-    return x
-}
-console.log(identity('Hello Slavo'))
-console.log('---------------------')
+
+        // const identity = function identity(x) {
+        //     return x
+        // }
+        //OR
+const identity = (x) => x;
+console.log(identity('Hello Slavo'));
+console.log('---------------------');
 
 // Write a binary function addb that takes two numbers and returns their sum
 

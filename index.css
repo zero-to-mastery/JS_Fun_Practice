@@ -1,0 +1,15 @@
+/* setting all spacing in the body to an equal starting point*/
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+h1 {
+  color: orange;
+  box-shadow: 5px 10px;
+}
+
+.center {
+  text-align: center;
+}

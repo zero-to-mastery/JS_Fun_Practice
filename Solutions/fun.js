@@ -233,7 +233,10 @@ const addf = a => b => a + b
 console.log(addf(3)(4));
 console.log('-----------------');
 
-
+// Write a function to find sum of all elements of an array;
+const arraySum=[5,10,8,7,11,13];
+const sum=arraySum.reduce((acc,item)=>acc+item,0);
+console.log(sum);
 
 
 

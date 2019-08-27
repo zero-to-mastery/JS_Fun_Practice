@@ -6,10 +6,19 @@ body {
 }
 
 h1 {
-  color: orange;
+  color:#585a28;
   box-shadow: 5px 10px;
 }
 
 .center {
   text-align: center;
 }
+
+.description{
+	margin: 10% 30px;
+	box-shadow: 1px 1px 10px grey;
+	padding: 10px;
+	border-radius: 10px;
+	background-color:#585a28;
+	color: #fff;
+}    

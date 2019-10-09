@@ -1,17 +1,28 @@
-/* setting all spacing in the body to an equal starting point*/
+
+*,
+*::before,
+*::after {
+	margin: 0;
+	padding: 0;	
+	box-sizing: inherit;
+}
+:root {
+	--color-primary: #356F13;
+}
+html {
+	font-size: 62.5%; /*1rem = 10px*/
+}
 
 body {
-  margin: 0;
-  padding: 0;
+	box-sizing: border-box;
+	font-family: 'Arimo', sans-serif;
 }
 
-h1 {
-  color:#585a28;
-  box-shadow: 5px 10px;
-}
 
-.center {
-  text-align: center;
+.header {
+	color: var(--color-primary);
+	font-size: 2rem;
+  	text-align: center;
 }
 
 .description{
@@ -19,6 +30,6 @@ h1 {
 	box-shadow: 1px 1px 10px red;
 	padding: 10px;
 	border-radius: 10px;
-	background-color:#585a28;
+	background-color: var(--color-primary);
 	color: #fff;
 }    

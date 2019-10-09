@@ -18,18 +18,93 @@ body {
 	font-family: 'Arimo', sans-serif;
 }
 
-
 .header {
-	color: var(--color-primary);
-	font-size: 2rem;
-  	text-align: center;
+	height: 100vh;
+	position: relative;
+	padding-top: 2rem;
+	padding-bottom: 15rem;
+	display: flex;
+	flex-flow: column;
+	justify-content: space-between;
+	align-items: center;
+
 }
 
-.description{
-	margin: 10% 30px;
-	box-shadow: 1px 1px 10px red;
-	padding: 10px;
-	border-radius: 10px;
+.header::after {
+	content: "";
+	background-image: url("https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80");
+	background-size: cover;
+	background-position: top;
+	opacity: 0.2;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	z-index: -1;
+}
+.header__heading {
+	color: var(--color-primary);
+	font-size: 2rem;
+	text-align: center;
+	padding: 2rem;
+	animation: .4s ease-out slideInFromLeft;
+}
+@keyframes slideInFromLeft {
+	0% {
+        opacity: 0;
+        transform: translateX(-10rem);
+    }
+
+    80% {
+        transform: translateX(1rem);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translate(0);
+    }
+  }
+.header__box {
+	color: #555;
+	font-size: 1.8rem;
+	
+}
+
+.header__box-text {
+	padding-bottom: 2rem;
+}
+
+.header__heading-2 {
+	padding-bottom: 1.5rem;
+}
+
+.btn,
+.btn:link,
+.btn:visited {
+	border-radius: 100px;
+	border: none;
+	padding: 1.5rem;
 	background-color: var(--color-primary);
+	cursor: pointer;
+	transition: all .2s;
+	font-size: 1.8rem;
 	color: #fff;
-}    
+	outline: none;
+}
+
+.btn:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 1rem 2rem rgba(0,0,0, .5);
+}
+
+.btn:active {
+	transform: translateY(-1px);
+	box-shadow: 0 .5rem 1rem rgba(0,0,0, .2);
+}
+
+.header__link {
+	text-decoration: none;
+}
+
+  

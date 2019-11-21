@@ -238,6 +238,8 @@ const arraySum=[5,10,8,7,11,13];
 const sum=arraySum.reduce((acc,item)=>acc+item,0);
 console.log(sum);
 
+// Use the code to create the square function
+const square = (x) => {
 
 
 

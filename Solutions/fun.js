@@ -241,6 +241,25 @@ console.log(sum);
 // Use the code to create the square function
 const square = (x) => {
 
+// Use the code to create the square function
+const square = (x) => {
+    console.log(x**2);
+}
+square();
+//OR
+const square = (x) => x**2;
+    square()
+
+// Use the code to create the cube function
+const cube = (y) => {
+    console.log(y**3);
+}
+cube();
+//OR
+const cube= (y) => y**3;
+    cube()
+
+
 
 
 

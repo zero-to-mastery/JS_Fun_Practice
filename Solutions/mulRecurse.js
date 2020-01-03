@@ -11,8 +11,8 @@ const mul = (...nums) => {
 
 mul(1, 2, 3);
 
-//mulRecurse 
-const mulRecurse = (...nums) => {
+//mulRecurse 1 
+const mulRecurse1 = (...nums) => {
     const multiplyTwoIntegers = (a, b) => {
         if (b === 0 || a === 0) {
             return 0;
@@ -28,4 +28,13 @@ const mulRecurse = (...nums) => {
     return answer;
 }
 
-mulRecurse(1, 2, 3);
+//mulRecurse 2
+const mulRecurse2 = (...nums) => {
+    if (nums.length < 1) {
+        return 'enter values to be multiplied'
+    }
+    else if (nums.length === 1) {
+        return nums[0];
+    }
+    return nums[0] * mulRecurse2(...nums.slice(1));
+}

@@ -56,3 +56,25 @@ function mul() {
     return x;
 }
 console.log(mul(1, 2, 4));
+
+// 10. Write a function min that is generalized for any amount of arguments
+function min() {
+    let min = arguments[0];
+
+    for (let i = 1; i < arguments.length; i++) {
+        min > arguments[i]? min = arguments[i]: min ;
+    }
+    return min;
+}
+console.log(min(1, 2, 4));
+
+// 11. Write a function max that is generalized for any amount of arguments
+function max() {
+    let max = arguments[0];
+
+    for (let i = 1; i < arguments.length; i++) {
+        max < arguments[i]? max = arguments[i]: max ;
+    }
+    return max;
+}
+console.log(max(1, 2, 4));

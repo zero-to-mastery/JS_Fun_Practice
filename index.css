@@ -18,6 +18,10 @@ body {
 	font-family: 'Arimo', sans-serif;
 }
 
+p {
+	color: #356F13;
+}
+
 .header {
 	height: 100vh;
 	position: relative;

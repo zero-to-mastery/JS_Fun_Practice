@@ -185,6 +185,86 @@
 					</code>
 				</dt>
 				</li>
+					<li>
+					<dd>
+						<p>Write a function addRecurse that is the generalized add function but uses recursion</p>
+					</dd>
+					<dt>
+						<code>
+							const addRecurse = (...nums) => {
+							    let sum = 0
+							    for (i=0; i < nums.length; i++) {
+							        sum = sum + nums[i];
+							    }
+							    return sum;
+							}
+							console.log(addRecurse(7, 2, 100, 35, -1, -9, 44, 67));
+							console.log('---------------------');
+						</code>
+					</dt>
+				</li>
+				<li>
+					<dd>
+						<p>Write a function mulRecurse that is the generalized mul function but uses recursion</p>
+					</dd>
+					<dt>
+						<code>
+							const mulRecurse = (...nums) => {
+							    let sum = 1
+							    for (i=0; i < nums.length; i++) {
+							        sum = sum * nums[i];
+							    }
+							    return sum;
+							}
+							console.log(mulRecurse(7, 2, 100, 35, -1, -9, 44, 67));
+							console.log('---------------------');
+						</code>
+					</dt>
+				</li>
+				<li>
+					<dd>
+						<p>Write a function minRecurse that is the generalized min function but uses recursion</p>
+					</dd>
+					<dt>
+						<code>
+							const minRecurse = (...nums) => {
+							    let min = nums[0]
+							    for (i=1; i < nums.length; i++) {
+							        if (min > nums[i]) {
+                                        min = nums[i];
+                                    }else {
+                                        min = min;
+                                    }
+							    }
+							    return min;
+							}
+							console.log(minRecurse(7, 2, 100, 35, -1, -9, 44, 67));
+							console.log('---------------------');
+						</code>
+					</dt>
+				</li>
+				<li>
+					<dd>
+						<p>Write a function maxRecurse that is the generalized max function but uses recursion</p>
+					</dd>
+					<dt>
+						<code>
+							const maxRecurse = (...nums) => {
+							    let max = nums[0]
+							    for (i=1; i < nums.length; i++) {
+							        if (max < nums[i]) {
+                                        max = nums[i];
+                                    }else {
+                                        max = max;
+                                    }
+							    }
+							    return max;
+							}
+							console.log(maxRecurse(7, 2, 100, 35, -1, -9, 44, 67));
+							console.log('---------------------');
+						</code>
+					</dt>
+				</li>
 			</ol>
 		</dl>
 	</div>

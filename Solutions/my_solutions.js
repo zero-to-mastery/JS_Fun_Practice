@@ -53,3 +53,50 @@ console.log(min(2,3,4));
 
 const max = (...nums) => nums.reduce((a, b) => a > b ? a:b);
 console.log(max(2,35,43));
+
+// Write a function addRecurse that is the generalized add function but uses recursion
+
+const addRecurse = (...nums) => {
+	if(nums.length < 1)
+		return 0
+	return nums[0] + addRecurse(...nums.slice(1))
+}
+console.log(addRecurse(1,-2,3,4));
+
+// Write a function mulRecurse that is the generalized mul function but uses recursion
+
+const mulRecurse = (...nums) => {
+	if(nums.length < 1)
+		return 1
+	return nums[0] * mulRecurse(...nums.slice(1))
+}
+console.log(mulRecurse(1,-2,3,4));
+
+// Write a function minRecurse that is the generalized min function but uses recursion
+
+const minRecurse = (...nums) => {
+	if(nums.length < 1)
+		return 1
+	return nums[0] <  minRecurse(...nums.slice(1)) ? nums[0]:minRecurse(...nums.slice(1))
+}
+console.log(minRecurse(1,33,2,3,-1));
+
+// Write a function maxRecurse that is the generalized max function but uses recursion
+
+const maxRecurse = (...nums) => {
+	if(nums.length < 1)
+		return 1
+	return nums[0] <  maxRecurse(...nums.slice(1)) ? nums[0]:maxRecurse(...nums.slice(1))
+}
+console.log(maxRecurse(1,33,2,3,-1));
+
+// Write a function not that takes a function and returns the negation of its result
+
+const not = (fun) => {
+	return function (...args) {
+		return !fun(...args);
+	};
+}
+const isOdd = (a) => a % 2 !== 0;
+const isEven = not(isOdd);
+console.log(isEven(7));

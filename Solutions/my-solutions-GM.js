@@ -12,3 +12,12 @@ const addRecurse = (...nums) => {
 	return nums[0] + addRecurse(...nums.slice(1))
 }
 console.log(addRecurse(1,2,3,5))
+
+// Write a function mulRecurse that is the generalized mul function but uses recursion
+
+const mulRecurse = (...nums) => {
+	if (nums.length < 1)
+		return 1;
+	return nums[0] * (mulRecurse(...nums.slice(1)))
+}
+console.log(mulRecurse(1,2,3,4)) //should equal 24

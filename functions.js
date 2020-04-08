@@ -322,7 +322,10 @@ const vector = () =>
         store : (x,i) => {array[i]=x;}
     } ;
 } 
-const exploitVector
+const exploitVector = (v) =>
+{
+    v.res = 
+}
 const vectorSafe
 const pubsub = () => {
     subs = [];
@@ -361,12 +364,3 @@ const filterRecurse = (arr , predicate) => {
     else 
         return array;
 }
-
-
-
-
-
-
-
-
-

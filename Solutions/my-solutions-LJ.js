@@ -21,4 +21,4 @@ const minb = (a ,b) => {
 	}
 }
 console.log(minb(3, 4));
-
+///

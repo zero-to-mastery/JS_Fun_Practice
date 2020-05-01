@@ -130,9 +130,56 @@ console.log('accRecurse => ' + acc(add, 1)(1, 4, -3));
 // equal to the given number
 const fill = (n) => Array.apply(null, {length: n}).map((e) => n);
 
-console.log(fill(5));
+console.log('fill => ' + fill(5));
 
 // Write a function fillRecurse that does what fill does but uses recursion
 const fillRecurse = (n) => {
-
+    function recurse(n, times) {
+        if (times === 1) {
+            return [n];
+        }
+        return [n].concat(recurse(n, times - 1));
+    }
+    return recurse(n, n);
 }
+console.log('fillRecurse => ' + fillRecurse(5));
+
+// Write a function set that is given a list of arguments and returns an array with all duplicates removed
+const set = (...list) => {
+    return list.filter((e, i) => list.indexOf(e) === i);
+}
+console.log('set => ' + set(1, 1, 1, 2, 2, 2));
+
+// Write a function identityf that takes an argument and returns a function that returns that argument
+const identityf = (x) => () => x;
+console.log('identityf => ' + identityf(5)());
+
+// Write a function addf that adds from two invocations
+const addf = (x) => (y) => x + y;
+console.log('addf => ' + addf(5)(4));
+
+// Write a function liftf that takes a binary function, and makes it callable with two invocations
+const liftf = (func) => {
+    return (x) => (y) => func(x, y);
+}
+console.log('liftf => ' + liftf(add)(3)(4));
+
+// Write a pure function pure that is a wrapper arround the impure function impure
+const pure = (x, y) => {
+    function impure(x) {
+        y++;
+        return x * y;
+    }
+    const z = impure(x);
+    return [y, z];
+}
+console.log('pure => ' + pure(20, 5));
+
+// Write a function curryb that takes a binary function and an argument, and returns a function 
+// that can take a second argument
+const curryb = (func, x) => (y) => func(x, y);
+console.log('curryb => ' + curryb(mul, 5)(6));
+
+// Write a function curry that is generalized for any amount of arguments
+const curry = (func, ...nums) => (...outers) => func(...nums, ...outers);
+console.log('curry => ' + curry(add, 1, 2, 4)(4, 2, 1));

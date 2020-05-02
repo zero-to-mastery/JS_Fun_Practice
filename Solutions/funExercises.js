@@ -129,11 +129,7 @@ const addRecurse = (...nums) => {
 
 //write a function that takes a function and returns the negation of it's result
 const isOdd = (num) => {
-    if ((num % 2) != 0 ) {
-        return true
-    } else {
-        return false
-    }
+    return (num%2!=0?true:false);
 }
 const not = (func) => {
     return !func;

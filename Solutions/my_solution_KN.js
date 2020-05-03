@@ -183,3 +183,12 @@ console.log('curryb => ' + curryb(mul, 5)(6));
 // Write a function curry that is generalized for any amount of arguments
 const curry = (func, ...nums) => (...outers) => func(...nums, ...outers);
 console.log('curry => ' + curry(add, 1, 2, 4)(4, 2, 1));
+
+// Without writting any new functions, show multiple ways to create the inc function
+const inc = (x) => x+=1;
+console.log('inc => ' + inc(inc(5)));
+
+// Write a function twiceUnary that takes a binary function and returns a unary function that passes 
+// its argument to the binary function twice
+let twiceUnary = (binary) => (x) => binary(x, x);
+console.log('twiceUnary => ' + twiceUnary(mulb)(12));

@@ -310,8 +310,127 @@ const filter = (gen, predicate) => () => {
     let val = gen();
     if (val === undefined) {
         return undefined;
+    } else if (predicate(val)) {
+        return val;
     }
-    return predicate(val) ? val : filter(gen, predicate)();
+    return filter(gen, predicate)();
 }
 let fil = filter(genFromTo(0, 5), val => val % 3 === 0);
-console.log('filter => ', fil(), fil(), fil())
+console.log('filter => ', fil(), fil(), fil());
+
+// Write a function filterTail that uses tail-recursion to perform the filtering
+// PS.: My filter function yet does tail recursion, I guess;
+fil = filter(genFromTo(0, 5), val => val % 3 === 0);
+console.log('filter => ', fil(), fil(), fil());
+
+// Write a function concatTwo that takes two generators and produces a generator that combines the sequences
+const concatTwo = (gen1, gen2) => () => {
+    let val;
+    if ((val = gen1()) !== undefined) {
+        return val;
+    }
+    return gen2();
+}
+let con = concatTwo(genFromTo(0, 2), genFromTo(0, 1));
+console.log('concatTwo =>', con(), con(), con(), con());
+
+// Write a function concat that is generalized for any amount of arguments
+const concat = (...gens) => {
+    let current = gens[0];
+    return () => {
+        let val = current();
+        if (val === undefined && gens.length > 1) {
+            gens.splice(0, 1);
+            current = gens[0];
+            return current();
+        }
+        return val;
+    }
+}
+con = concat(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7));
+console.log('concat =>', con(), con(), con(), con(), con(), con(), con(), con());
+
+// Write a function concatTail that uses tail-recursion to perform the concating
+const concatTail = (...gens) => () => {
+    let val = gens[0]();
+    if (gens.length === 1) {
+        return val;
+    }
+    return val !== undefined ? val : concatTail(...gens.slice(1))();
+}
+con = concatTail(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7));
+console.log('concatTail =>', con(), con(), con(), con(), con(), con(), con(), con());
+
+// Write a function gensymf that makes a function that generates unique symbols
+const gensymf = (symbol) => {
+    let counter = 1;
+    return () => symbol + counter++;
+}
+let genH = gensymf('H');
+console.log('gemsymf =>', genH(), genH());
+
+// Write a function gensymff that takes a unary function and a seed and returns a gensymf
+const gensymff = (unary, seed) => (symbol) => {
+    return () => {
+        seed = unary(seed);
+        return symbol + seed;
+    }
+};
+let gensym = gensymff(inc, 0);
+let genG = gensym('G');
+console.log('gemsymff =>', genG(), genG());
+
+// Write a function fibonaccif that returns a generator that will return the next fibonacci number
+const fibonaccif = (first, second) => {
+    let index = 0;
+    return () => {
+        if (index++ === 0) {
+            return first;
+        } else if (index++ === 1) {
+            return second;
+        }
+        let aux = first;
+        first = second;
+        second += aux;
+        return second;
+    }
+}
+let fib = fibonaccif(0, 1);
+console.log('fibonnacif =>', fib(), fib(), fib());
+
+// Write a function counter that returns an object containing two functions that implement an up/down 
+// counter, hiding the counter
+const counter = (value) => {
+    return {
+        up: () => ++value,
+        down: () => --value,
+    }
+}
+let obj = counter(10);
+let { up, down } = obj;
+console.log('counter =>', up(), down());
+
+// Write a function revocableb that takes a binary function, and returns an object containing an invoke 
+// function that can invoke a function and a revoke function that disables the invoke function
+const revocableb = (binary) => {
+    return {
+        invoke: (x, y) => binary(x, y),
+        revoke: function() { 
+            this.invoke = () => undefined; 
+        },
+    }
+}
+let rev = revocableb(addb);
+console.log('revocableb =>', rev.invoke(1, 2), rev.revoke(), rev.invoke(2, 3));
+
+// Write a function revocable that is generalized for any amount of arguments
+const revocable = (func) => {
+    return {
+        invoke: (...args) => func(...args),
+        revoke: function() { 
+            this.invoke = () => undefined; 
+        },
+    }
+}
+rev = revocable(mul);
+console.log('revocable =>', rev.invoke(1, 2, 4), rev.revoke(), rev.invoke(2, 3));

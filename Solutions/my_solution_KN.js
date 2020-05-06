@@ -76,7 +76,7 @@ console.log('maxRecurse => ' + maxRecurse(10, -44, 2));
 
 // Write a function not that takes a function and returns the negation of its result
 const not = (func) => {
-    return (...args) => !func(...args); 
+    return (...args) => !func(...args);
 };
 // is even
 console.log('not => ' + not((x) => x % 2 !== 0)(5));
@@ -128,7 +128,7 @@ console.log('accRecurse => ' + acc(add, 1)(1, 4, -3));
 
 // Write a function fill that takes a number and returns an array with that many numbers
 // equal to the given number
-const fill = (n) => Array.apply(null, {length: n}).map((e) => n);
+const fill = (n) => Array.apply(null, { length: n }).map((e) => n);
 
 console.log('fill => ' + fill(5));
 
@@ -185,7 +185,7 @@ const curry = (func, ...nums) => (...outers) => func(...nums, ...outers);
 console.log('curry => ' + curry(add, 1, 2, 4)(4, 2, 1));
 
 // Without writting any new functions, show multiple ways to create the inc function
-const inc = (x) => x+=1;
+const inc = (x) => x += 1;
 console.log('inc => ' + inc(inc(5)));
 
 // Write a function twiceUnary that takes a binary function and returns a unary function that passes 
@@ -415,8 +415,8 @@ console.log('counter =>', up(), down());
 const revocableb = (binary) => {
     return {
         invoke: (x, y) => binary(x, y),
-        revoke: function() { 
-            this.invoke = () => undefined; 
+        revoke: function () {
+            this.invoke = () => undefined;
         },
     }
 }
@@ -427,10 +427,166 @@ console.log('revocableb =>', rev.invoke(1, 2), rev.revoke(), rev.invoke(2, 3));
 const revocable = (func) => {
     return {
         invoke: (...args) => func(...args),
-        revoke: function() { 
-            this.invoke = () => undefined; 
+        revoke: function () {
+            this.invoke = () => undefined;
         },
     }
 }
 rev = revocable(mul);
 console.log('revocable =>', rev.invoke(1, 2, 4), rev.revoke(), rev.invoke(2, 3));
+
+// Write a function extract that takes an array of objects and an object property name 
+// and converts each object in the array by extracting that property
+const extract = (array, prop) => array.map((el) => el[prop]);
+let people = [{ name: 'john' }, { name: 'bob' }];
+console.log('extract =>', extract(people, 'name'));
+
+// Write a function m that takes a value and an optional source string and returns them in an object
+const m = (value, source) => {
+    return {
+        value,
+        source: source ? source : value,
+    }
+}
+console.log('m =>', JSON.stringify(m(Math.PI, "pi")));
+
+// Write a function addmTwo that adds two m objects and returns an m object
+const addmTwo = (m1, m2) => {
+    return {
+        value: m1.value + m2.value,
+        source: `(${m1.source}+${m2.source})`,
+    }
+}
+console.log('addmTwo =>', JSON.stringify(addmTwo(m(1), m(Math.PI, "pi"))));
+
+// Write a function addm that is generalized for any amount of arguments
+const addm = (...ms) => {
+    return {
+        value: ms.map(el => el.value).reduce((p, c) => p += c),
+        source: `(${ms.map(el => el.source).join('+')})`,
+    }
+}
+console.log('addm =>', JSON.stringify(addm(m(1), m(2), m(4))));
+
+// Write a function liftmbM that takes a binary function and a string and returns a 
+// function that acts on m objects
+const liftmbM = (binary, op) => (x, y) => {
+    return {
+        value: binary(x.value, y.value),
+        source: `(${x.source}${op}${y.source})`,
+    }
+}
+console.log('liftmbM =>', JSON.stringify(liftmbM(mul, '*')(m(3), m(4))));
+
+// Write a function liftmb that is a modified function liftmbM that can accept arguments
+// that are either numbers or m objects
+const liftmb = (binary, op) => (x, y) => {
+    return {
+        value: binary(x.value ? x.value : x, y.value ? y.value : y),
+        source: `(${x.source ? x.value : x}${op}${y.source ? y.source : y})`,
+    }
+}
+console.log('liftmb =>', JSON.stringify(liftmb(addb, '+')(3, m(4))));
+
+// Write a function liftm that is generalized for any amount of arguments
+const liftm = (func, op) => (...args) => {
+    return {
+        value: func(...args.map(el => el.value ? el.value : el)),
+        source: `(${args.map(el => el.source ? el.source : el).join(op)})`,
+    }
+}
+console.log('liftm =>', JSON.stringify(liftm(mul, '*')(m(3), m(4), 2)));
+
+// Write a function exp that evaluates simple array expressions
+const exp = (arg) => {
+    return Array.isArray(arg) ? arg[0](...arg.slice(1)) : arg;
+}
+let sae = [mul, 1, 2, 4];
+console.log('exp =>', exp(sae), exp(41));
+
+// Write a function expn that is a modified exp that can evaluate nested array expressions
+const expn = (arg) => {
+    return Array.isArray(arg[1])
+        ? arg[0](...arg.slice(1).map(el => expn(el)))
+        : arg[0](...arg.slice(1));
+}
+let nae = [
+    Math.sqrt,
+    [
+        add,
+        [square, 3],
+        [square, 4],
+        [add, 5, 6],
+    ]
+];
+console.log('expn =>', expn(nae));
+
+// Write a function addg that adds from many invocations, until it sees an empty invocation
+const addg = (val) => {
+    const inner = (value) => {
+        return value === undefined
+            ? undefined
+            : (another) => another === undefined
+                ? value
+                : inner(value + another);
+    }
+    return inner(val);
+}
+console.log('addg =>', addg(), addg(5)(), addg(4)(5)())
+
+// Write a function liftg that will take a binary function and apply it to many invocations
+const liftg = (binary) => {
+    const inner = (value) => {
+        return value === undefined
+            ? undefined
+            : (another) => another === undefined
+                ? value
+                : inner(binary(value, another));
+    }
+    return inner;
+}
+console.log('liftg =>', liftg(mulb)(), liftg(mulb)(5)(10)());
+
+// Write a function arrayg that will build an array from many invocations
+const arrayg = (val) => {
+    const arr = [];
+    const inner = (value) => {
+        if (value === undefined) {
+            return arr;
+        }
+        arr.push(value);
+        return (another) => another === undefined
+            ? arr
+            : inner(another);
+    }
+    return inner(val);
+}
+console.log('arrayg =>', arrayg(), arrayg(3)(), arrayg(4)(5)(6)());
+
+// Write a function continuizeu that takes a unary function and returns a function that
+// takes a callback and an argument
+const continuizeu = (unary) => (callback, arg) => { callback(unary(arg)) };
+console.log('continuizeu =>', continuizeu(Math.sqrt)(console.log, 81));
+
+// Write a function continuize that takes a function and returns a function that takes a callback and an argument
+const continuize = (func) => (callback, ...arg) => { callback(func(...arg)) };
+console.log('continuize =>', continuize(mul)(console.log, 81, 4, 2));
+
+// Make an array wrapper object with methods get, store, and append, such that an attacker cannot 
+// get access to the private array
+const vector = function () {
+    var arr = [];
+    return {
+        append: function append(v) {
+            arr.push(v);
+        },
+        get: function get(i) {
+            return arr[i];
+        },
+        store: function store(i, v) {
+            arr[i] = v;
+        }
+    };
+}
+let v = vector();
+console.log('vector =>', v.append(5), v.store(1, 4), v.get(0), v.get(1));

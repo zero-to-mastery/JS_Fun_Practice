@@ -574,19 +574,67 @@ console.log('continuize =>', continuize(mul)(console.log, 81, 4, 2));
 
 // Make an array wrapper object with methods get, store, and append, such that an attacker cannot 
 // get access to the private array
-const vector = function () {
+const vector = () => {
     var arr = [];
     return {
-        append: function append(v) {
+        append: (v) => {
             arr.push(v);
         },
-        get: function get(i) {
+        get: (i) => {
             return arr[i];
         },
-        store: function store(i, v) {
+        store: (i, v) => {
             arr[i] = v;
         }
     };
 }
 let v = vector();
 console.log('vector =>', v.append(5), v.store(1, 4), v.get(0), v.get(1));
+
+// Can you spot any security concerns with this approach? Mainly, can we get access to the array 
+// outside of vector? Note*: the issue has nothing to do with prototypes and we can assume that 
+// global prototypes cannot be altered. Hint*: Think about using this in a method invocation. 
+// Can we override a method of vector?
+
+// jumping exploitVector
+
+// How would you rewrite vector to deal with the issue from above?
+
+// jumping vectorSafe
+
+// Make a function pubsub that makes a publish/subscribe object. It will reliably deliver all 
+// publications to all subscribers in the right order.
+const pubsub = () => {
+    const subscribers = [];
+    return {
+        subscribe: (callback) => {
+            subscribers.push(callback);
+        },
+        publish: (value) => {
+            subscribers.forEach(sub => { sub(value) });
+        },
+    }
+}
+let ps = pubsub();
+ps.subscribe(console.log);
+console.log('pubsub =>', ps.publish('testing...'));
+
+// Make a function mapRecurse that performs a transformation 
+// for each element of a given array, recursively
+const mapRecurse = (array, predicate) => {
+    if (array.length === 1) {
+        return predicate(array[0]);
+    }
+    return array.splice(0, 1).map(el => predicate(el)).concat(mapRecurse(array, predicate));
+}
+console.log('mapRecurse =>', mapRecurse([ 1, 2, 3, 4 ], x => x * 2));
+
+// Make a function filterRecurse that takes in an array and a predicate function and returns a new 
+// array by filtering out all items using the predicate, recursively.
+const filterRecurse = (array, predicate) => {
+    if (array.length === 1) {
+        return predicate(array[0]) ? array[0] : null;
+    }
+    return array.splice(0, 1).filter(predicate).concat(filterRecurse(array, predicate));
+}
+console.log('filterRecurse =>', filterRecurse([ 1, 2, 3, 4 ], x => x % 2 === 0));

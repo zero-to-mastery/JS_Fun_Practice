@@ -29,11 +29,14 @@ p {
 	padding-bottom: 15rem;
 	display: flex;
 	flex-flow: column;
-	justify-content: space-between;
+	justify-content: space-around;
 	align-items: center;
 
 }
 
+h2, p{
+	text-align: center;
+}
 .header::after {
 	content: "";
 	background-image: url("https://images.unsplash.com/photo-1515041219749-89347f83291a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1267&q=80");
@@ -72,7 +75,7 @@ p {
 .header__box {
 	color: #555;
 	font-size: 1.8rem;
-	
+		
 }
 
 .header__box-text {
@@ -95,6 +98,7 @@ p {
 	font-size: 1.8rem;
 	color: #fff;
 	outline: none;
+	justify-content: center;
 }
 
 .btn:hover {

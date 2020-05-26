@@ -9,13 +9,13 @@ body {
 }
 
 h1 {
-	color:#585a28;
+	color:#156457;
     box-shadow: 5px 10px;
 }
 
 .container {
 	display: flex;
-    background-color: green;
+    background-color: rgb(121, 173, 121);
     box-shadow: 1px 1px 10px grey;
     margin: 2% 18px;
     padding: 10px 5px 5px 10px;
@@ -45,7 +45,7 @@ dt {
 
 code {
  	color: #24292E;
- 	font: 15px SFMono-Regular,Consolas;
+ 	font: 16px SFMono-Regular,Consolas;
  	background: rgba(27, 31, 35. 0.05);
  	padding: 3px 6px;
  	font-style: italic;

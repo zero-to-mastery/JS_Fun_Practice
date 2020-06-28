@@ -15,11 +15,13 @@ h1 {
 
 .container {
 	display: flex;
-    background-color: green;
+    background-color: green; opacity: 0.85;
     box-shadow: 1px 1px 10px grey;
     margin: 2% 18px;
     padding: 10px 5px 5px 10px;
 }
+
+
 
 dl {
     display: block;
@@ -27,6 +29,7 @@ dl {
     margin-block-end: 1em;
     margin-inline-start: 0px;
     margin-inline-end: 0px;
+
 }
 
 dd {
@@ -35,18 +38,22 @@ dd {
 	margin: 0px 0px 16px;
 	font-size: 16px;
 	padding: 0px 16px;
+	text-shadow:1px 1px 5px #5bd75b, 1px 1px 5px #ccc;
+
 }
 
 dt {
 	color: #24292E;
 	font: 16px;
 	margin: 0px 0px 16px;
+
+
 }
 
 code {
  	color: #24292E;
  	font: 15px SFMono-Regular,Consolas;
- 	background: rgba(27, 31, 35. 0.05);
+ 	background: rgba(27, 31, 35. 0.50);
  	padding: 3px 6px;
  	font-style: italic;
     font-weight: 600;

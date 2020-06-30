@@ -32,3 +32,10 @@ const maxb = (a, b) =>{
 }
 console.log(maxb(3,8));
 
+//Write a function add that is generalized for any amount of arguments
+
+const add = (...nums) => nums.reduce((acc, nums) => {
+	const sum = acc + nums;
+	return sum; 
+}, 0)
+console.log(add(5,3,5));

@@ -1,5 +1,10 @@
 # js-function-fun
+
 A list of small & fun functional programming exercises in JavaScript
+
+## Contributing
+
+Please see [CONTRIBUTING](CONTRIBUTING.md).
 
 ## Functions
 
@@ -155,6 +160,7 @@ z; // 120
 
 impure(25);
 z; // 175</pre></dd>
+
 <dt><a href="#curryb">curryb(binary, a)</a> ⇒ <code>function</code></dt>
 <dd><p>Write a function <code>curryb</code> that
 takes a binary function and
@@ -486,270 +492,303 @@ predicate, recursively.</p>
 <a name="identity"></a>
 
 ## identity(x) ⇒ <code>any</code>
+
 Write a function `identity` that
 takes an argument and returns
 that argument
 
+| Param | Type             |
+| ----- | ---------------- |
+| x     | <code>any</code> |
 
-| Param | Type |
-| --- | --- |
-| x | <code>any</code> |
+**Example**
 
-**Example**  
 ```js
 identity(3) // 3
 ```
+
 <a name="addb"></a>
 
 ## addb(a, b) ⇒ <code>number</code>
+
 Write a binary function `addb`
 that takes two numbers and returns
 their sum
 
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>number</code> |
+| b     | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| a | <code>number</code> |
-| b | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
 addb(3, 4) // 3 + 4 = 7
 ```
+
 <a name="subb"></a>
 
 ## subb(a, b) ⇒ <code>number</code>
+
 Write a binary function `subb`
 that takes two numbers and returns
 their difference
 
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>number</code> |
+| b     | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| a | <code>number</code> |
-| b | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
 subb(3, 4) // 3 - 4 = -1
 ```
+
 <a name="mulb"></a>
 
 ## mulb(a, b) ⇒ <code>number</code>
+
 Write a binary function `mulb`
 that takes two numbers and returns
 their product
 
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>number</code> |
+| b     | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| a | <code>number</code> |
-| b | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
 mulb(3, 4) // 3 * 4 = -1
 ```
+
 <a name="minb"></a>
 
 ## minb(a, b) ⇒ <code>number</code>
+
 Write a binary function `minb`
 that takes two numbers and returns
 the smaller one
 
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>number</code> |
+| b     | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| a | <code>number</code> |
-| b | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
 minb(3, 4) // 3
 ```
+
 <a name="maxb"></a>
 
 ## maxb(a, b) ⇒ <code>number</code>
+
 Write a binary function `maxb`
 that takes two numbers and returns
 the larger one
 
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>number</code> |
+| b     | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| a | <code>number</code> |
-| b | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
 maxb(3, 4) // 4
 ```
+
 <a name="add"></a>
 
 ## add(...nums) ⇒ <code>number</code>
+
 Write a function `add` that
 is generalized for any
 amount of arguments
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                |
+| ------- | ------------------- |
 | ...nums | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
 add(1, 2, 4) // 1 + 2 + 4 = 7
 ```
+
 <a name="sub"></a>
 
 ## sub(...nums) ⇒ <code>number</code>
+
 Write a function `sub` that
 is generalized for any
 amount of arguments
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                |
+| ------- | ------------------- |
 | ...nums | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
 sub(1, 2, 4) // 1 - 2 - 4 = -5
 ```
+
 <a name="mul"></a>
 
 ## mul(...nums) ⇒ <code>number</code>
+
 Write a function `mul` that
 is generalized for any
 amount of arguments
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                |
+| ------- | ------------------- |
 | ...nums | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
 mul(1, 2, 4) // 1 * 2 * 4 = 8
 ```
+
 <a name="min"></a>
 
 ## min(...nums) ⇒ <code>number</code>
+
 Write a function `min` that
 is generalized for any
 amount of arguments
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                |
+| ------- | ------------------- |
 | ...nums | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
 min(1, 2, 4) // 1
 ```
+
 <a name="max"></a>
 
 ## max(...nums) ⇒ <code>number</code>
+
 Write a function `max` that
 is generalized for any
 amount of arguments
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                |
+| ------- | ------------------- |
 | ...nums | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
 max(1, 2, 4) // 4
 ```
+
 <a name="addRecurse"></a>
 
 ## addRecurse(...nums) ⇒ <code>number</code>
+
 Write a function `addRecurse` that
 is the generalized `add` function
 but uses recursion
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                |
+| ------- | ------------------- |
 | ...nums | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
 addRecurse(1, 2, 4) // 1 + 2 + 4 = 7
 ```
+
 <a name="mulRecurse"></a>
 
 ## mulRecurse(...nums) ⇒ <code>number</code>
+
 Write a function `mulRecurse` that
 is the generalized `mul` function
 but uses recursion
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                |
+| ------- | ------------------- |
 | ...nums | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
 mulRecurse(1, 2, 4) // 1 * 2 * 4 = 8
 ```
+
 <a name="minRecurse"></a>
 
 ## minRecurse(...nums) ⇒ <code>number</code>
+
 Write a function `minRecurse` that
 is the generalized `min` function
 but uses recursion
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                |
+| ------- | ------------------- |
 | ...nums | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
 minRecurse(1, 2, 4) // 1
 ```
+
 <a name="maxRecurse"></a>
 
 ## maxRecurse(...nums) ⇒ <code>number</code>
+
 Write a function `maxRecurse` that
 is the generalized `max` function
 but uses recursion
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                |
+| ------- | ------------------- |
 | ...nums | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
 maxRecurse(1, 2, 4) // 4
 ```
+
 <a name="not"></a>
 
 ## not(func) ⇒ <code>function</code>
+
 Write a function `not` that
 takes a function and returns
 the negation of its result
 
+| Param | Type                  |
+| ----- | --------------------- |
+| func  | <code>function</code> |
 
-| Param | Type |
-| --- | --- |
-| func | <code>function</code> |
+**Example**
 
-**Example**  
 ```js
-const isOdd = x => x % 2 === 1;
-const isEven = not(isOdd);
+const isOdd = (x) => x % 2 === 1
+const isEven = not(isOdd)
 isEven(1) // false
 isEven(2) // true
 ```
+
 <a name="acc"></a>
 
 ## acc(func, initial) ⇒ <code>function</code>
+
 Write a function `acc` that
 takes a function and an
 initial value and returns
@@ -758,23 +797,25 @@ initial function on each
 argument, accumulating the
 result
 
+| Param   | Type                  |
+| ------- | --------------------- |
+| func    | <code>function</code> |
+| initial | <code>any</code>      |
 
-| Param | Type |
-| --- | --- |
-| func | <code>function</code> |
-| initial | <code>any</code> |
+**Example**
 
-**Example**  
 ```js
-let add = acc(addb, 0);
+let add = acc(addb, 0)
 add(1, 2, 4) // 7
 
-let mul = acc(mulb, 1);
+let mul = acc(mulb, 1)
 mul(1, 2, 4) // 8
 ```
+
 <a name="accPartial"></a>
 
 ## accPartial(func, start, end) ⇒ <code>function</code>
+
 Write a function `accPartial` that
 takes in a function, a start index,
 and an end index, and returns a
@@ -783,144 +824,160 @@ of its arguments by applying the
 given function to all elements
 between start and end.
 
+| Param | Type                  |
+| ----- | --------------------- |
+| func  | <code>function</code> |
+| start | <code>number</code>   |
+| end   | <code>number</code>   |
 
-| Param | Type |
-| --- | --- |
-| func | <code>function</code> |
-| start | <code>number</code> |
-| end | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
-const addSecondToThird = accPartial(add, 1, 3);
+const addSecondToThird = accPartial(add, 1, 3)
 addSecondToThird(1, 2, 4, 8) // [ 1, 6, 8 ]
 ```
+
 <a name="accRecurse"></a>
 
 ## accRecurse(func, initial) ⇒ <code>function</code>
+
 Write a function `accRecurse` that
 does what `acc` does but uses recursion
 
+| Param   | Type                  |
+| ------- | --------------------- |
+| func    | <code>function</code> |
+| initial | <code>number</code>   |
 
-| Param | Type |
-| --- | --- |
-| func | <code>function</code> |
-| initial | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
-let add = accRecurse(addb, 0);
+let add = accRecurse(addb, 0)
 add(1, 2, 4) // 7
 
-let mul = accRecurse(mulb, 1);
+let mul = accRecurse(mulb, 1)
 mul(1, 2, 4) // 8
 ```
+
 <a name="fill"></a>
 
 ## fill(num) ⇒ <code>array</code>
+
 Write a function `fill` that
 takes a number and returns
 an array with that many
 numbers equal to the given
 number
 
+| Param | Type                |
+| ----- | ------------------- |
+| num   | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| num | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
 fill(3) // [ 3, 3, 3 ]
 ```
+
 <a name="fillRecurse"></a>
 
 ## fillRecurse(num) ⇒ <code>array</code>
+
 Write a function `fillRecurse` that
 does what `fill` does but uses recursion
 
+| Param | Type                |
+| ----- | ------------------- |
+| num   | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| num | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
 fillRecurse(3) // [ 3, 3, 3 ]
 ```
+
 <a name="set"></a>
 
 ## set(...args) ⇒ <code>array</code>
+
 Write a function `set` that
 is given a list of arguments
 and returns an array with
 all duplicates removed
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type             |
+| ------- | ---------------- |
 | ...args | <code>any</code> |
 
-**Example**  
+**Example**
+
 ```js
-let oneAndTwo = set(1, 1, 1, 2, 2, 2); // [ 1, 2 ]
+let oneAndTwo = set(1, 1, 1, 2, 2, 2) // [ 1, 2 ]
 ```
+
 <a name="identityf"></a>
 
 ## identityf(x) ⇒ <code>function</code>
+
 Write a function `identityf`
 that takes an argument and
 returns a function that
 returns that argument
 
+| Param | Type             |
+| ----- | ---------------- |
+| x     | <code>any</code> |
 
-| Param | Type |
-| --- | --- |
-| x | <code>any</code> |
+**Example**
 
-**Example**  
 ```js
-let three = identityf(3);
-three(); // 3
+let three = identityf(3)
+three() // 3
 ```
+
 <a name="addf"></a>
 
 ## addf(a) ⇒ <code>function</code>
+
 Write a function `addf` that
 adds from two invocations
 
+| Param | Type                |
+| ----- | ------------------- |
+| a     | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| a | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
 addf(3)(4) // 7
 ```
+
 <a name="liftf"></a>
 
 ## liftf(binary) ⇒ <code>function</code>
+
 Write a function `liftf` that
 takes a binary function, and
 makes it callable with two
 invocations
 
-
-| Param | Type |
-| --- | --- |
+| Param  | Type                  |
+| ------ | --------------------- |
 | binary | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-let addf = liftf(add);
-addf(3)(4); // 7
+let addf = liftf(add)
+addf(3)(4) // 7
 
 liftf(mul)(5)(6) // 30
 ```
+
 <a name="pure"></a>
 
 ## pure(x, y) ⇒ <code>array</code>
+
 Write a [pure](https://en.wikipedia.org/wiki/Pure_function) function `pure` that
 is a wrapper arround the impure
 function `impure`
@@ -938,250 +995,279 @@ z; // 120
 impure(25);
 z; // 175</pre>
 
-**Returns**: <code>array</code> - an array containing  `y` and `z`  
+**Returns**: <code>array</code> - an array containing `y` and `z`
 
-| Param | Type |
-| --- | --- |
-| x | <code>number</code> |
-| y | <code>number</code> |
+| Param | Type                |
+| ----- | ------------------- |
+| x     | <code>number</code> |
+| y     | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
 pure(20, 5) // [ 6, 120 ]
 pure(25, 6) // [ 7, 175 ]
 ```
+
 <a name="curryb"></a>
 
 ## curryb(binary, a) ⇒ <code>function</code>
+
 Write a function `curryb` that
 takes a binary function and
 an argument, and returns a
 function that can take a
 second argument
 
-
-| Param | Type |
-| --- | --- |
+| Param  | Type                  |
+| ------ | --------------------- |
 | binary | <code>function</code> |
-| a | <code>any</code> |
+| a      | <code>any</code>      |
 
-**Example**  
+**Example**
+
 ```js
-let add3 = curryb(add, 3);
-add3(4); // 7
+let add3 = curryb(add, 3)
+add3(4) // 7
 
-curry(mul, 5)(6); // 30
+curry(mul, 5)(6) // 30
 ```
+
 <a name="curry"></a>
 
 ## curry(func, ...outer) ⇒ <code>function</code>
+
 Write a function `curry` that
 is generalized for any amount
 of arguments
 
+| Param    | Type                  |
+| -------- | --------------------- |
+| func     | <code>function</code> |
+| ...outer | <code>any</code>      |
 
-| Param | Type |
-| --- | --- |
-| func | <code>function</code> |
-| ...outer | <code>any</code> |
+**Example**
 
-**Example**  
 ```js
 curry(add, 1, 2, 4)(4, 2, 1) = 1 + 2 + 4 + 4 + 2 + 1 = 14
 curry(sub, 1, 2, 4)(4, 2, 1) = 1 - 2 - 4 - 4 - 2 - 1 = 0
 curry(mul, 1, 2, 4)(4, 2, 1) = 1 * 2 * 4 * 4 * 2 * 1 = 64
 ```
+
 <a name="inc"></a>
 
 ## inc(x) ⇒ <code>number</code>
+
 Without writting any new functions,
 show multiple ways to create the `inc`
 function
 
+| Param | Type                |
+| ----- | ------------------- |
+| x     | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| x | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
-inc(5)      // 6
+inc(5) // 6
 inc(inc(5)) // 7
 ```
+
 <a name="twiceUnary"></a>
 
 ## twiceUnary(binary) ⇒ <code>function</code>
+
 Write a function `twiceUnary`
 that takes a binary function
 and returns a unary function
 that passes its argument to
 the binary function twice
 
-
-| Param | Type |
-| --- | --- |
+| Param  | Type                  |
+| ------ | --------------------- |
 | binary | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-let doubl = twiceUnary(addb);
+let doubl = twiceUnary(addb)
 doubl(11) // 22
 
-let square = twiceUnary(mulb);
+let square = twiceUnary(mulb)
 square(11) // 121
 ```
+
 <a name="doubl"></a>
 
 ## doubl(x) ⇒ <code>number</code>
+
 Use the function `twiceUnary` to
 create the `doubl` function
 
+| Param | Type                |
+| ----- | ------------------- |
+| x     | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| x | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
 doubl(11) // 22
 ```
+
 <a name="square"></a>
 
 ## square(x) ⇒ <code>number</code>
+
 Use the function `twiceUnary` to
 create the `square` function
 
+| Param | Type                |
+| ----- | ------------------- |
+| x     | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| x | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
 square(11) // 121
 ```
+
 <a name="twice"></a>
 
 ## twice(x) ⇒ <code>any</code>
+
 Write a function `twice` that
 is generalized for any amount
 of arguments
 
+| Param | Type                  |
+| ----- | --------------------- |
+| x     | <code>function</code> |
 
-| Param | Type |
-| --- | --- |
-| x | <code>function</code> |
+**Example**
 
-**Example**  
 ```js
-let doubleSum = twice(add);
+let doubleSum = twice(add)
 doubleSum(1, 2, 4) // 1 + 2 + 4 + 1 + 2 + 4 = 14
 ```
+
 <a name="reverseb"></a>
 
 ## reverseb(binary) ⇒ <code>function</code>
+
 Write a function `reverseb` that
 reverses the arguments of a
 binary function
 
-
-| Param | Type |
-| --- | --- |
+| Param  | Type                  |
+| ------ | --------------------- |
 | binary | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-let bus = reverseb(subb);
+let bus = reverseb(subb)
 bus(3, 2) // -1
 ```
+
 <a name="reverse"></a>
 
 ## reverse(func) ⇒ <code>function</code>
+
 Write a function `reverse` that
 is generalized for any amount
 of arguments
 
+| Param | Type                  |
+| ----- | --------------------- |
+| func  | <code>function</code> |
 
-| Param | Type |
-| --- | --- |
-| func | <code>function</code> |
+**Example**
 
-**Example**  
 ```js
 reverse(sub)(1, 2, 4) // 4 - 2 - 1 = 1
 ```
+
 <a name="composeuTwo"></a>
 
 ## composeuTwo(unary1, unary2) ⇒ <code>function</code>
+
 Write a function `composeuTwo` that
 takes two unary functions and
 returns a unary function that
 calls them both
 
-
-| Param | Type |
-| --- | --- |
+| Param  | Type                  |
+| ------ | --------------------- |
 | unary1 | <code>function</code> |
 | unary2 | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
 composeuTwo(doubl, square)(5) // 100
 ```
+
 <a name="composeu"></a>
 
 ## composeu(...funcs) ⇒ <code>any</code>
+
 Write a function `composeu` that
 is generalized for any amount
 of arguments
 
-
-| Param | Type |
-| --- | --- |
+| Param    | Type                  |
+| -------- | --------------------- |
 | ...funcs | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
 composeu(doubl, square, identity, curry(add, 1, 2))(5) // (5 + 5) * (5 + 5) + 1 + 2 = 103
 ```
+
 <a name="composeb"></a>
 
 ## composeb(binary1, binary2) ⇒ <code>function</code>
+
 Write a function `composeb` that
 takes two binary functions and
 returns a function that calls
 them both
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                  |
+| ------- | --------------------- |
 | binary1 | <code>function</code> |
 | binary2 | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
 composeb(addb, mulb)(2, 3, 7) // 35
 ```
+
 <a name="composeTwo"></a>
 
 ## composeTwo(func1, func2) ⇒ <code>function</code>
+
 Write a function `composeTwo` that
 takes two functions and returns a
 function that calls them both
 
-
-| Param | Type |
-| --- | --- |
+| Param | Type                  |
+| ----- | --------------------- |
 | func1 | <code>function</code> |
 | func2 | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
 composeTwo(add, square)(2, 3, 7) // (2 + 3 + 7)^2 = 144
 ```
+
 <a name="compose"></a>
 
 ## compose(...funcs) ⇒ <code>function</code>
+
 Write a function `compose` that
 takes any amount of functions
 and returns a function that takes
@@ -1190,150 +1276,162 @@ them to the first function, then
 that result to the second function
 and so on
 
-
-| Param | Type |
-| --- | --- |
+| Param    | Type                  |
+| -------- | --------------------- |
 | ...funcs | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-const f = compose(add, doubl, fill, max);
+const f = compose(add, doubl, fill, max)
 f(0, 1, 2)
 // add(0, 1, 2) -> 3
 // doubl(3) -> 6
 // fill(6) -> [ 6, 6, 6, 6, 6, 6 ]
 // max([ 6, 6, 6, 6, 6, 6 ]) -> 6
 ```
+
 <a name="limitb"></a>
 
 ## limitb(binary, lmt) ⇒ <code>function</code>
+
 Write a function `limitb`
 that allows a binary function
 to be called a limited number
 of times
 
-
-| Param | Type |
-| --- | --- |
+| Param  | Type                  |
+| ------ | --------------------- |
 | binary | <code>function</code> |
-| lmt | <code>number</code> |
+| lmt    | <code>number</code>   |
 
-**Example**  
+**Example**
+
 ```js
-let addLmtb = limitb(addb, 1);
+let addLmtb = limitb(addb, 1)
 addLmtb(3, 4) // 7
 addLmtb(3, 5) // undefined
 ```
+
 <a name="limit"></a>
 
 ## limit(func, lmt) ⇒ <code>function</code>
+
 Write a function `limit` that
 is generalized for any amount
 of arguments
 
+| Param | Type                  |
+| ----- | --------------------- |
+| func  | <code>function</code> |
+| lmt   | <code>number</code>   |
 
-| Param | Type |
-| --- | --- |
-| func | <code>function</code> |
-| lmt | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
-let addLmt = limit(add, 1);
-addLmt(1, 2, 4)    // 7
+let addLmt = limit(add, 1)
+addLmt(1, 2, 4) // 7
 addLmt(3, 5, 9, 2) // undefined
 ```
+
 <a name="genFrom"></a>
 
 ## genFrom(x) ⇒ <code>function</code>
+
 Write a function `genFrom` that
 produces a generator that will
 produces a series of values
 
+| Param | Type                |
+| ----- | ------------------- |
+| x     | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| x | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
-let index = genFrom(0);
+let index = genFrom(0)
 
 index() // 0
 index() // 1
 index() // 2
 ```
+
 <a name="genTo"></a>
 
 ## genTo(gen, lmt) ⇒ <code>function</code>
+
 Write a function `genTo` that
 takes a generator and an end
 limit, and returns a generator
 that will produce numbers up
 to that limit
 
+| Param | Type                  |
+| ----- | --------------------- |
+| gen   | <code>function</code> |
+| lmt   | <code>number</code>   |
 
-| Param | Type |
-| --- | --- |
-| gen | <code>function</code> |
-| lmt | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
-let index = genTo(genFrom(1), 3);
+let index = genTo(genFrom(1), 3)
 
 index() // 1
 index() // 2
 index() // undefined
 ```
+
 <a name="genFromTo"></a>
 
 ## genFromTo(start, end) ⇒ <code>function</code>
+
 Write a function `genFromTo` that
 produces a generator that will
 produce values in a range
 
-
-| Param | Type |
-| --- | --- |
+| Param | Type                |
+| ----- | ------------------- |
 | start | <code>number</code> |
-| end | <code>number</code> |
+| end   | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
-let index = genFromTo(0, 3);
+let index = genFromTo(0, 3)
 index() // 0
 index() // 1
 index() // 2
 index() // undefined
 ```
+
 <a name="elementGen"></a>
 
 ## elementGen(array, gen) ⇒ <code>function</code>
+
 Write a function `elementGen` that
 takes an array and a generator
 and returns a generator that will
 produce elements from the array
 
+| Param | Type                  |
+| ----- | --------------------- |
+| array | <code>array</code>    |
+| gen   | <code>function</code> |
 
-| Param | Type |
-| --- | --- |
-| array | <code>array</code> |
-| gen | <code>function</code> |
+**Example**
 
-**Example**  
 ```js
-let ele = elementGen([
-  'a', 'b', 'c', 'd'
-], genFromTo(1, 3));
+let ele = elementGen(['a', 'b', 'c', 'd'], genFromTo(1, 3))
 
 ele() // 'b'
 ele() // 'c'
 ele() // undefined
 ```
+
 <a name="element"></a>
 
 ## element(array, gen) ⇒ <code>function</code>
+
 Write a function `element` that is a
 modified `elementGen` function so that
 the generator argument is optional.
@@ -1341,17 +1439,15 @@ If a generator is not provided, then
 each of the elements of the array
 will be produced.
 
+| Param | Type                  |
+| ----- | --------------------- |
+| array | <code>array</code>    |
+| gen   | <code>function</code> |
 
-| Param | Type |
-| --- | --- |
-| array | <code>array</code> |
-| gen | <code>function</code> |
+**Example**
 
-**Example**  
 ```js
-let ele = element([
-  'a', 'b', 'c', 'd'
-]);
+let ele = element(['a', 'b', 'c', 'd'])
 
 ele() // 'a'
 ele() // 'b'
@@ -1359,89 +1455,97 @@ ele() // 'c'
 ele() // 'd'
 ele() // undefined
 ```
+
 <a name="collect"></a>
 
 ## collect(gen, array) ⇒ <code>function</code>
+
 Write a function `collect` that takes a
 generator and an array and produces
 a function that will collect the results
 in the array
 
+| Param | Type                  |
+| ----- | --------------------- |
+| gen   | <code>function</code> |
+| array | <code>array</code>    |
 
-| Param | Type |
-| --- | --- |
-| gen | <code>function</code> |
-| array | <code>array</code> |
+**Example**
 
-**Example**  
 ```js
-let array = [];
-let col = collect(genFromTo(0, 2), array);
+let array = []
+let col = collect(genFromTo(0, 2), array)
 
 col() // 0
 col() // 1
 col() // undefined
 array // [0, 1]
 ```
+
 <a name="filter"></a>
 
 ## filter(gen, predicate) ⇒ <code>function</code>
+
 Write a function `filter` that takes a
 generator and a predicate and produces
 a generator that produces only the
 values approved by the predicate
 
-
-| Param | Type |
-| --- | --- |
-| gen | <code>function</code> |
+| Param     | Type                  |
+| --------- | --------------------- |
+| gen       | <code>function</code> |
 | predicate | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-let fil = filter(genFromTo(0, 5), val => val % 3);
+let fil = filter(genFromTo(0, 5), (val) => val % 3)
 
 fil() // 0
 fil() // 3
 fil() // undefined
 ```
+
 <a name="filterTail"></a>
 
 ## filterTail(gen, predicate) ⇒ <code>function</code>
+
 Write a function `filterTail` that uses
 tail-recursion to perform the filtering
 
-
-| Param | Type |
-| --- | --- |
-| gen | <code>function</code> |
+| Param     | Type                  |
+| --------- | --------------------- |
+| gen       | <code>function</code> |
 | predicate | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-let third = val => val % 3 === 0;
-let fil = filterTail(genFromTo(0, 5), third);
+let third = (val) => val % 3 === 0
+let fil = filterTail(genFromTo(0, 5), third)
 
 fil() // 0
 fil() // 3
 fil() // undefined
 ```
+
 <a name="concatTwo"></a>
 
 ## concatTwo(gen1, gen2) ⇒ <code>function</code>
+
 Write a function `concatTwo` that takes
 two generators and produces a generator
 that combines the sequences
 
+| Param | Type                  |
+| ----- | --------------------- |
+| gen1  | <code>function</code> |
+| gen2  | <code>function</code> |
 
-| Param | Type |
-| --- | --- |
-| gen1 | <code>function</code> |
-| gen2 | <code>function</code> |
+**Example**
 
-**Example**  
 ```js
-let con = concatTwo(genFromTo(0, 3), genFromTo(0, 2));
+let con = concatTwo(genFromTo(0, 3), genFromTo(0, 2))
 con() // 0
 con() // 1
 con() // 2
@@ -1449,21 +1553,23 @@ con() // 0
 con() // 1
 con() // undefined
 ```
+
 <a name="concat"></a>
 
 ## concat(...gens) ⇒ <code>function</code>
+
 Write a function `concat` that
 is generalized for any amount
 of arguments
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                  |
+| ------- | --------------------- |
 | ...gens | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-let con = concat(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7));
+let con = concat(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7))
 con() // 0
 con() // 1
 con() // 2
@@ -1473,20 +1579,22 @@ col() // 5
 col() // 6
 con() // undefined
 ```
+
 <a name="concatTail"></a>
 
 ## concatTail(...gens) ⇒ <code>function</code>
+
 Write a function `concatTail` that uses
 tail-recursion to perform the concating
 
-
-| Param | Type |
-| --- | --- |
+| Param   | Type                  |
+| ------- | --------------------- |
 | ...gens | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-let con = concatTail(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7));
+let con = concatTail(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7))
 con() // 0
 con() // 1
 con() // 2
@@ -1496,68 +1604,74 @@ col() // 5
 col() // 6
 con() // undefined
 ```
+
 <a name="gensymf"></a>
 
 ## gensymf(symbol) ⇒ <code>function</code>
+
 Write a function `gensymf` that
 makes a function that generates
 unique symbols
 
-
-| Param | Type |
-| --- | --- |
+| Param  | Type                |
+| ------ | ------------------- |
 | symbol | <code>string</code> |
 
-**Example**  
+**Example**
+
 ```js
-let genG = gensymf('G');
-let genH = gensymf('H');
+let genG = gensymf('G')
+let genH = gensymf('H')
 
 genG() // 'G1'
 genH() // 'H1'
 genG() // 'G2'
 genH() // 'H2'
 ```
+
 <a name="gensymff"></a>
 
 ## gensymff(unary, seed) ⇒ <code>function</code>
+
 Write a function `gensymff` that
 takes a unary function and a
 seed and returns a `gensymf`
 
-
-| Param | Type |
-| --- | --- |
+| Param | Type                  |
+| ----- | --------------------- |
 | unary | <code>function</code> |
-| seed | <code>number</code> |
+| seed  | <code>number</code>   |
 
-**Example**  
+**Example**
+
 ```js
-let gensymf = gensymff(inc, 0);
-let genG = gensymf('G');
-let genH = gensymf('H');
+let gensymf = gensymff(inc, 0)
+let genG = gensymf('G')
+let genH = gensymf('H')
 
 genG() // 'G1'
 genH() // 'H1'
 genG() // 'G2'
 genH() // 'H2'
 ```
+
 <a name="fibonaccif"></a>
 
 ## fibonaccif(first, second) ⇒ <code>function</code>
+
 Write a function `fibonaccif` that
 returns a generator that will
 return the next fibonacci number
 
-
-| Param | Type |
-| --- | --- |
-| first | <code>number</code> |
+| Param  | Type                |
+| ------ | ------------------- |
+| first  | <code>number</code> |
 | second | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
-let fib = fibonaccif(0, 1);
+let fib = fibonaccif(0, 1)
 fib() // 0
 fib() // 1
 fib() // 2
@@ -1565,33 +1679,37 @@ fib() // 3
 fib() // 5
 fib() // 8
 ```
+
 <a name="counter"></a>
 
 ## counter(i) ⇒ <code>object</code>
+
 Write a function `counter` that
 returns an object containing
 two functions that implement
 an up/down counter, hiding
 the counter
 
+| Param | Type                |
+| ----- | ------------------- |
+| i     | <code>number</code> |
 
-| Param | Type |
-| --- | --- |
-| i | <code>number</code> |
+**Example**
 
-**Example**  
 ```js
-let obj = counter(10);
-let { up, down } = object;
+let obj = counter(10)
+let { up, down } = object
 
-up()   // 11
+up() // 11
 down() // 10
 down() // 9
-up()   // 10
+up() // 10
 ```
+
 <a name="revocableb"></a>
 
 ## revocableb(binary) ⇒ <code>object</code>
+
 Write a function `revocableb`
 that takes a binary function, and
 returns an object containing an
@@ -1599,338 +1717,366 @@ returns an object containing an
 function and a `revoke` function
 that disables the `invoke` function
 
-
-| Param | Type |
-| --- | --- |
+| Param  | Type                  |
+| ------ | --------------------- |
 | binary | <code>function</code> |
 
-**Example**  
-```js
-let rev = revocableb(addb);
+**Example**
 
-rev.invoke(3, 4); // 7
-rev.revoke();
-rev.invoke(5, 7); // undefined
+```js
+let rev = revocableb(addb)
+
+rev.invoke(3, 4) // 7
+rev.revoke()
+rev.invoke(5, 7) // undefined
 ```
+
 <a name="revocable"></a>
 
 ## revocable(func) ⇒ <code>object</code>
+
 Write a function `revocable` that
 is generalized for any amount of
 arguments
 
+| Param | Type                  |
+| ----- | --------------------- |
+| func  | <code>function</code> |
 
-| Param | Type |
-| --- | --- |
-| func | <code>function</code> |
+**Example**
 
-**Example**  
 ```js
-let rev = revocable(add);
+let rev = revocable(add)
 
-rev.invoke(3, 4); // 7
-rev.revoke();
-rev.invoke(5, 7); // undefined
+rev.invoke(3, 4) // 7
+rev.revoke()
+rev.invoke(5, 7) // undefined
 ```
+
 <a name="extract"></a>
 
 ## extract(array, prop) ⇒ <code>array</code>
+
 Write a function `extract` that
 takes an array of objects and an
 object property name and converts
 each object in the array by
 extracting that property
 
+| Param | Type                |
+| ----- | ------------------- |
+| array | <code>array</code>  |
+| prop  | <code>string</code> |
 
-| Param | Type |
-| --- | --- |
-| array | <code>array</code> |
-| prop | <code>string</code> |
+**Example**
 
-**Example**  
 ```js
-let people = [{ name: 'john'}, { name: 'bob' }];
-let names = extract(people, 'name'); // ['john', 'bob']
+let people = [{ name: 'john' }, { name: 'bob' }]
+let names = extract(people, 'name') // ['john', 'bob']
 ```
+
 <a name="m"></a>
 
 ## m(value, source) ⇒ <code>object</code>
+
 Write a function `m` that
 takes a value and an
 optional source string
 and returns them in an
 object
 
-
-| Param | Type |
-| --- | --- |
-| value | <code>any</code> |
+| Param  | Type             |
+| ------ | ---------------- |
+| value  | <code>any</code> |
 | source | <code>any</code> |
 
-**Example**  
+**Example**
+
 ```js
 JSON.stringify(m(1)) // '{"value":1,"source":"1"}'
 
-JSON.stringify(m(Math.PI, "pi")) // '{"value":3.14159...,"source":"pi"}'
+JSON.stringify(m(Math.PI, 'pi')) // '{"value":3.14159...,"source":"pi"}'
 ```
+
 <a name="addmTwo"></a>
 
 ## addmTwo(m1, m2) ⇒ <code>object</code>
+
 Write a function `addmTwo` that
 adds two `m` objects and
 returns an `m` object
 
+| Param | Type                  |
+| ----- | --------------------- |
+| m1    | <code>function</code> |
+| m2    | <code>function</code> |
 
-| Param | Type |
-| --- | --- |
-| m1 | <code>function</code> |
-| m2 | <code>function</code> |
+**Example**
 
-**Example**  
 ```js
 JSON.stringify(addmTwo(m(3), m(4))) // '{"value":7,"source":"(3+4)"}'
 
-JSON.stringify(addmTwo(m(1), m(Math.PI, "pi"))) // '{"value":4.14159...,"source":"(1+pi)"}'
+JSON.stringify(addmTwo(m(1), m(Math.PI, 'pi'))) // '{"value":4.14159...,"source":"(1+pi)"}'
 ```
+
 <a name="addm"></a>
 
 ## addm(...ms) ⇒ <code>object</code>
+
 Write a function `addm` that
 is generalized for any amount of
 arguments
 
-
-| Param | Type |
-| --- | --- |
+| Param | Type                  |
+| ----- | --------------------- |
 | ...ms | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
 JSON.stringify(addm(m(1), m(2), m(4))) // '{"value":7,"source":"(1+2+4)"}'
 ```
+
 <a name="liftmbM"></a>
 
 ## liftmbM(binary, op) ⇒ <code>object</code>
+
 Write a function `liftmbM` that
 takes a binary function and
 a string and returns a function
 that acts on `m` objects
 
-
-| Param | Type |
-| --- | --- |
+| Param  | Type                  |
+| ------ | --------------------- |
 | binary | <code>function</code> |
-| op | <code>string</code> |
+| op     | <code>string</code>   |
 
-**Example**  
+**Example**
+
 ```js
-let addmb = liftmbM(addb, '+');
+let addmb = liftmbM(addb, '+')
 
 JSON.stringify(addmb(m(3), m(4))) // '{"value":7,"source":"(3+4)"}'
 
 JSON.stringify(liftmbM(mul, '*')(m(3), m(4))) // '{"value":12,"source":"(3*4)"}'
 ```
+
 <a name="liftmb"></a>
 
 ## liftmb(binary, op) ⇒ <code>object</code>
+
 Write a function `liftmb` that
 is a modified function `liftmbM`
 that can accept arguments that
 are either numbers or m objects
 
-
-| Param | Type |
-| --- | --- |
+| Param  | Type                  |
+| ------ | --------------------- |
 | binary | <code>function</code> |
-| op | <code>string</code> |
+| op     | <code>string</code>   |
 
-**Example**  
+**Example**
+
 ```js
 let addmb = liftmb(addb, '+')
 
 JSON.stringify(addmb(3, 4)) // '{"value":7,"source":"(3+4)"}'
 ```
+
 <a name="liftm"></a>
 
 ## liftm(func, op) ⇒ <code>object</code>
+
 Write a function `liftm` that
 is generalized for any amount of
 arguments
 
+| Param | Type                  |
+| ----- | --------------------- |
+| func  | <code>function</code> |
+| op    | <code>string</code>   |
 
-| Param | Type |
-| --- | --- |
-| func | <code>function</code> |
-| op | <code>string</code> |
+**Example**
 
-**Example**  
 ```js
-let addm = liftm(add, '+');
+let addm = liftm(add, '+')
 
 JSON.stringify(addm(m(3), m(4))) // '{"value":7,"source":"(3+4)"}'
 
 JSON.stringify(liftm(mul, '*')(m(3), m(4))) // '{"value":12,"source":"(3*4)"}'
 ```
+
 <a name="exp"></a>
 
 ## exp(value) ⇒ <code>any</code>
+
 Write a function `exp` that
 evaluates simple array
 expressions
 
-
-| Param | Type |
-| --- | --- |
+| Param | Type             |
+| ----- | ---------------- |
 | value | <code>any</code> |
 
-**Example**  
+**Example**
+
 ```js
-let sae = [mul, 1, 2, 4];
+let sae = [mul, 1, 2, 4]
 exp(sae) // 1 * 2 * 4 = 8
-exp(42)  // 42
+exp(42) // 42
 ```
+
 <a name="expn"></a>
 
 ## expn(value) ⇒ <code>any</code>
+
 Write a function `expn`
 that is a modified `exp` that
 can evaluate nested array
 expressions
 
-
-| Param | Type |
-| --- | --- |
+| Param | Type             |
+| ----- | ---------------- |
 | value | <code>any</code> |
 
-**Example**  
+**Example**
+
 ```js
-let nae = [
-  Math.sqrt,
-  [
-    add,
-    [square, 3],
-    [square, 4]
-  ]
-];
+let nae = [Math.sqrt, [add, [square, 3], [square, 4]]]
 
 expn(nae) // sqrt(((3*3)+(4*4))) === 5
 ```
+
 <a name="addg"></a>
 
 ## addg(value) ⇒ <code>number</code> &#124; <code>undefined</code>
+
 Write a function `addg` that
 adds from many invocations,
 until it sees an empty
 invocation
 
-
-| Param | Type |
-| --- | --- |
+| Param | Type                |
+| ----- | ------------------- |
 | value | <code>number</code> |
 
-**Example**  
+**Example**
+
 ```js
-addg()             // undefined
-addg(2)()          // 2
-addg(2)(7)()       // 9
-addg(3)(0)(4)()    // 7
+addg() // undefined
+addg(2)() // 2
+addg(2)(7)() // 9
+addg(3)(0)(4)() // 7
 addg(1)(2)(4)(8)() // 15
 ```
+
 <a name="liftg"></a>
 
 ## liftg(binary) ⇒ <code>function</code>
+
 Write a function `liftg` that
 will take a binary function
 and apply it to many invocations
 
-
-| Param | Type |
-| --- | --- |
+| Param  | Type                  |
+| ------ | --------------------- |
 | binary | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-liftg(mulb)()             // undefined
-liftg(mulb)(3)()          // 3
-liftg(mulb)(3)(0)(4)()    // 0
+liftg(mulb)() // undefined
+liftg(mulb)(3)() // 3
+liftg(mulb)(3)(0)(4)() // 0
 liftg(mulb)(1)(2)(4)(8)() // 64
 ```
+
 <a name="arrayg"></a>
 
 ## arrayg(value) ⇒ <code>array</code>
+
 Write a function `arrayg` that
 will build an array from many
 invocations
 
-
-| Param | Type |
-| --- | --- |
+| Param | Type             |
+| ----- | ---------------- |
 | value | <code>any</code> |
 
-**Example**  
+**Example**
+
 ```js
-arrayg()          // []
-arrayg(3)()       // [3]
+arrayg() // []
+arrayg(3)() // [3]
 arrayg(3)(4)(5)() // [3, 4, 5]
 ```
+
 <a name="continuizeu"></a>
 
 ## continuizeu(unary) ⇒ <code>function</code>
+
 Write a function `continuizeu`
 that takes a unary function
 and returns a function that
 takes a callback and an
 argument
 
-
-| Param | Type |
-| --- | --- |
+| Param | Type                  |
+| ----- | --------------------- |
 | unary | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-sqrtc = continuizeu(Math.sqrt);
-sqrtc(console.log, 81); // logs '9'
+sqrtc = continuizeu(Math.sqrt)
+sqrtc(console.log, 81) // logs '9'
 ```
+
 <a name="continuize"></a>
 
 ## continuize(any) ⇒ <code>function</code>
+
 Write a function `continuize`
 that takes a function and
 returns a function that
 takes a callback and an
 argument
 
+| Param | Type                  |
+| ----- | --------------------- |
+| any   | <code>function</code> |
 
-| Param | Type |
-| --- | --- |
-| any | <code>function</code> |
+**Example**
 
-**Example**  
 ```js
-sqrtc = continuizeu(Math.sqrt);
-sqrtc(console.log, 1, 2, 4); // logs '1 2 4'
+sqrtc = continuizeu(Math.sqrt)
+sqrtc(console.log, 1, 2, 4) // logs '1 2 4'
 ```
+
 <a name="vector"></a>
 
 ## vector()
+
 Make an array wrapper object
 with methods `get`, `store`,
 and `append`, such that an
 attacker cannot get access
 to the private array
 
-**Example**  
+**Example**
+
 ```js
-let v = vector();
-v.append(7);
-v.store(1, 8);
-v.get(0);      // 7
-v.get(1);      // 8
+let v = vector()
+v.append(7)
+v.store(1, 8)
+v.get(0) // 7
+v.get(1) // 8
 ```
+
 <a name="exploitVector"></a>
 
 ## exploitVector()
+
 Let's assume your `vector`
 implementation looks like
 something like this:
@@ -1960,74 +2106,85 @@ Hint*: Think about using `this` in a
 method invocation. Can we override a
 method of `vector`?
 
-**Example**  
+**Example**
+
 ```js
-var v = vector();
-v.append(1);
-v.append(2);
-var internalData = exploitVector(v); // [1, 2]
+var v = vector()
+v.append(1)
+v.append(2)
+var internalData = exploitVector(v) // [1, 2]
 ```
+
 <a name="vectorSafe"></a>
 
 ## vectorSafe()
+
 How would you rewrite `vector` to deal
 with the issue from above?
 
-**Example**  
+**Example**
+
 ```js
-var v = vectorSafe();
-v.append(1);
-v.append(2);
-var internalData = exploitVector(v); // undefined
+var v = vectorSafe()
+v.append(1)
+v.append(2)
+var internalData = exploitVector(v) // undefined
 ```
+
 <a name="pubsub"></a>
 
 ## pubsub()
+
 Make a function `pubsub` that
 makes a publish/subscribe object.
 It will reliably deliver all
 publications to all subscribers
 in the right order.
 
-**Example**  
+**Example**
+
 ```js
-let ps = pubsub();
-ps.subscribe(log);
+let ps = pubsub()
+ps.subscribe(log)
 ps.publish('It works!') // log('It works!')
 ```
+
 <a name="mapRecurse"></a>
 
 ## mapRecurse(array, predicate) ⇒ <code>array</code>
+
 Make a function `mapRecurse` that
 performs a transformation for each
 element of a given array, recursively
 
-
-| Param | Type |
-| --- | --- |
-| array | <code>array</code> |
+| Param     | Type                  |
+| --------- | --------------------- |
+| array     | <code>array</code>    |
 | predicate | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-mapRecurse([ 1, 2, 3, 4 ], x => x * 2) // [ 2, 4, 6, 8 ]
+mapRecurse([1, 2, 3, 4], (x) => x * 2) // [ 2, 4, 6, 8 ]
 ```
+
 <a name="filterRecurse"></a>
 
 ## filterRecurse(array, predicate) ⇒ <code>array</code>
+
 Make a function `filterRecurse` that
 takes in an array and a predicate
 function and returns a new array by
 filtering out all items using the
 predicate, recursively.
 
-
-| Param | Type |
-| --- | --- |
-| array | <code>array</code> |
+| Param     | Type                  |
+| --------- | --------------------- |
+| array     | <code>array</code>    |
 | predicate | <code>function</code> |
 
-**Example**  
+**Example**
+
 ```js
-filterRecurse([ 1, 2, 3, 4 ], x => x % 2 === 0) // [ 2, 4 ]
+filterRecurse([1, 2, 3, 4], (x) => x % 2 === 0) // [ 2, 4 ]
 ```

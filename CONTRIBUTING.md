@@ -5,5 +5,5 @@ Please note we have a **[code of conduct](https://github.com/zero-to-mastery/Cod
 ## Pull Request Process
 
 1. Please make sure to create a separate file with your solutions. **Put that file into the `Solutions` folder.**
-   build.
+
 2. After you've made your pull request, you will have to wait until a maintainer can merge your request. Please be patient, as most maintainers are volunteers.

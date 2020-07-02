@@ -38,4 +38,4 @@ const add = (...nums) => nums.reduce((acc, nums) => {
 	const sum = acc + nums;
 	return sum; 
 }, 0)
-console.log(add(5,3,5));
+console.log(add(9,6,3));

@@ -32,3 +32,8 @@ let sub = (...nums) => {
 console.log(sub(5,4,1,5));
 
 //Write a function min that is generalized for any amount of arguments
+let min = (...nums) => {
+    //returns min
+    return Math.min(...nums);
+}
+console.log(min(4,5,1,-1));

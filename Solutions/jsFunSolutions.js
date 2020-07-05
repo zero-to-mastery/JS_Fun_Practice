@@ -37,3 +37,14 @@ let min = (...nums) => {
     return Math.min(...nums);
 }
 console.log(min(4,5,1,-1));
+
+//Write a function addRecurse that is the generalized add function but uses recursion
+let addRecurse = (...nums) => {
+    if (nums.length == 1){
+        return nums[0];
+    }
+    currentValue = nums[0];
+    nums.shift();
+    return currentValue + addRecurse(...nums);
+}
+console.log(addRecurse(5,7,6));

@@ -73,6 +73,7 @@ const max = (...nums) => {
 
 max(20, 9, 12); //Returns 20
 
+
 // Function adds numbers from an array as an argument recursively
 const addRecurse = (numArray) => {
   if (numArray.length === 1) {

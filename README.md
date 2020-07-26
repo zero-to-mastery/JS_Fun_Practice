@@ -561,7 +561,7 @@ their product
 **Example**
 
 ```js
-mulb(3, 4) // 3 * 4 = -1
+mulb(3, 4) // 3 * 4 = 12
 ```
 
 <a name="minb"></a>

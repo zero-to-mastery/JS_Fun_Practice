@@ -1351,9 +1351,9 @@ produces a series of values
 ```js
 let index = genFrom(0)
 
-index() // 0
-index() // 1
-index() // 2
+index.next().value // 0
+index.next().value // 1
+index.next().value // 2
 ```
 
 <a name="genTo"></a>

@@ -968,10 +968,10 @@ invocations
 **Example**
 
 ```js
-let addf = liftf(add)
+let addf = liftf(addb)
 addf(3)(4) // 7
 
-liftf(mul)(5)(6) // 30
+liftf(mulb)(5)(6) // 30
 ```
 
 <a name="pure"></a>
@@ -1027,10 +1027,10 @@ second argument
 **Example**
 
 ```js
-let add3 = curryb(add, 3)
+let add3 = curryb(addb, 3)
 add3(4) // 7
 
-curryb(mul, 5)(6) // 30
+curryb(mulb, 5)(6) // 30
 ```
 
 <a name="curry"></a>

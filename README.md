@@ -1030,7 +1030,7 @@ second argument
 let add3 = curryb(add, 3)
 add3(4) // 7
 
-curry(mul, 5)(6) // 30
+curryb(mul, 5)(6) // 30
 ```
 
 <a name="curry"></a>

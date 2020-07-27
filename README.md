@@ -1499,7 +1499,7 @@ values approved by the predicate
 **Example**
 
 ```js
-let fil = filter(genFromTo(0, 5), (val) => val % 3)
+let fil = filter(genFromTo(0, 5), (val) => val % 3 === 0)
 
 fil() // 0
 fil() // 3

@@ -72,3 +72,13 @@ const max = (...nums) => {
 };
 
 max(20, 9, 12); //Returns 20
+
+const addRecurse = (numArray) => {
+  if (numArray.length === 1) {
+    return numArray[0];
+  } else {
+    return numArray.pop() + addRecurse(numArray);
+  }
+};
+
+console.log(addRecurse([4, 5]));

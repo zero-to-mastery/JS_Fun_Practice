@@ -1027,10 +1027,10 @@ second argument
 **Example**
 
 ```js
-let add3 = curryb(add, 3)
+let add3 = curryb(addb, 3)
 add3(4) // 7
 
-curryb(mul, 5)(6) // 30
+curryb(mulb, 5)(6) // 30
 ```
 
 <a name="curry"></a>
@@ -1050,7 +1050,7 @@ of arguments
 
 ```js
 curry(add, 1, 2, 4)(4, 2, 1) = 1 + 2 + 4 + 4 + 2 + 1 = 14
-curry(sub, 1, 2, 4)(4, 2, 1) = 1 - 2 - 4 - 4 - 2 - 1 = 0
+curry(sub, 1, 2, 4)(4, 2, 1) = 1 - 2 - 4 - 4 - 2 - 1 = -12
 curry(mul, 1, 2, 4)(4, 2, 1) = 1 * 2 * 4 * 4 * 2 * 1 = 64
 ```
 

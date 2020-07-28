@@ -2050,8 +2050,8 @@ argument
 **Example**
 
 ```js
-sqrtc = continuizeu(Math.sqrt)
-sqrtc(console.log, 1, 2, 4) // logs '1 2 4'
+mullc = continuize(Math.mul)
+mulc(console.log, 81, 4, 2) // logs '648'
 ```
 
 <a name="vector"></a>

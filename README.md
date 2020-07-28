@@ -1699,7 +1699,7 @@ the counter
 
 ```js
 let obj = counter(10)
-let { up, down } = object
+let { up, down } = obj
 
 up() // 11
 down() // 10

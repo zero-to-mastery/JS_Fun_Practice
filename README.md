@@ -11,7 +11,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 ### To test the functions:
 1. Run <code>npm install</code> to install the dependencies (need node.js for npm)
 2. Change <code>filename</code> in <code>test/tests.js</code> to the name of your solution file
-3. Make sure your solution file is in the <code>Solutions<code> folder
+3. Make sure your solution file is in the <code>Solutions</code> folder
 4. Make sure your function names match the ones listed below
 5. In your solution file, add
 <code>module.exports = {
@@ -94,10 +94,10 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
     pubsub,
     mapRecurse,
     filterRecurse,
-
 };
 </code>
-6. All the function names have to be in the module.exports but you can comment out the ones you haven't written yet
+
+6. All the function names have to be in the <code>module.exports</code> but you can comment out the ones you haven't written yet
 7. Finally, <code>node run test</code> to run the tests
 
 ## Functions

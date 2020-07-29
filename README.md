@@ -12,7 +12,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 1. Run <code>npm install</code> to install the dependencies (need node.js for npm)
 2. Change <code>filename</code> in <code>test/tests.js</code> to the name of your solution file
 3. Make sure your solution file is in the <code>Solutions<code> folder
-4. In your solution file, add
+4. Make sure your function names match the ones listed below
+5. In your solution file, add
 <code>module.exports = {
     identity,
     addb,
@@ -96,8 +97,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 
 };
 </code>
-5. All the function names have to be in the module.exports but you can comment out the ones you haven't written yet
-6. Finally, <code>node run test</code> to run the tests
+6. All the function names have to be in the module.exports but you can comment out the ones you haven't written yet
+7. Finally, <code>node run test</code> to run the tests
 
 ## Functions
 

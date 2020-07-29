@@ -96,7 +96,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
     filterRecurse,
 };</code>
 
-6. You can comment any function names in the <code>module.exports</code> that you haven't written yet, but a lot of the tests depend on previous functions to run properly so it's safer to write the functions in order
+6. You can comment out any function names in the <code>module.exports</code> that you haven't written yet, but a lot of the tests depend on previous functions to run properly so it's safer to write the functions in order
 7. Finally, <code>npm run test</code> to run the tests
 
 ## Functions

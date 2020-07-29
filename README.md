@@ -12,7 +12,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 1. Run <code>npm install</code> to install the dependencies (need node.js for npm)
 2. Change <code>filename</code> in <code>test/tests.js</code> to the name of your solution file
 3. Make sure your solution file is in the <code>Solutions</code> folder
-4. Make sure your function names match the ones listed below
+4. Make sure your function names match the ones listed below as you're coding them
 5. At the bottom of your solution file, add
 <code>module.exports = {
     identity,
@@ -96,8 +96,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
     filterRecurse,
 };</code>
 
-6. All the function names have to be in the <code>module.exports</code> but you can comment out the ones you haven't written yet
-7. Finally, <code>node run test</code> to run the tests
+6. You can comment any function names in the <code>module.exports</code> that you haven't written yet, but a lot of the tests depend on previous functions to run properly so it's safer to write the functions in order
+7. Finally, <code>npm run test</code> to run the tests
 
 ## Functions
 

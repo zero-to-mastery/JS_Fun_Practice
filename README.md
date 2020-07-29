@@ -6,6 +6,99 @@ A list of small & fun functional programming exercises in JavaScript
 
 Please see [CONTRIBUTING](CONTRIBUTING.md).
 
+## Testing
+
+### To test the functions:
+1. Run <code>npm install</code> to install the dependencies (need node.js for npm)
+2. Change <code>filename</code> in <code>test/tests.js</code> to the name of your solution file
+3. Make sure your solution file is in the <code>Solutions<code> folder
+4. In your solution file, add
+<code>module.exports = {
+    identity,
+    addb,
+    subb,
+    mulb,
+    minb,
+    maxb,
+    add,
+    sub,
+    mul,
+    min,
+    max,
+    addRecurse,
+    mulRecurse,
+    minRecurse,
+    maxRecurse,
+    not,
+    acc,
+    accPartial,
+    accRecurse,
+    fill,
+    fillRecurse,
+    set,
+    identityf,
+    addf,
+    liftf,
+    pure,
+    curryb,
+    curry,
+    inc,
+    twiceUnary,
+    doubl,
+    square,
+    twice,
+    reverseb,
+    reverse,
+    composeuTwo,
+    composeu,
+    composeb,
+    composeTwo,
+    compose,
+    limitb,
+    limit,
+    genFrom,
+    genTo,
+    genFromTo,
+    elementGen,
+    element,
+    collect,
+    filter,
+    filterTail,
+    concatTwo,
+    concat,
+    concatTail,
+    gensymf,
+    gensymff,
+    fibonaccif,
+    counter,
+    revocableb,
+    revocable,
+    extract,
+    m,
+    addmTwo,
+    addm,
+    liftmbM,
+    liftmb,
+    liftm,
+    exp,
+    expn,
+    addg,
+    liftg,
+    arrayg,
+    continuizeu,
+    continuize,
+    vector,
+    exploitVector,
+    vectorSafe,
+    pubsub,
+    mapRecurse,
+    filterRecurse,
+
+};
+</code>
+5. All the function names have to be in the module.exports but you can comment out the ones you haven't written yet
+6. Finally, <code>node run test</code> to run the tests
+
 ## Functions
 
 <dl>

@@ -545,15 +545,15 @@ describe('JS_Fun_Practice', function() {
             let v = sol.vector();
             v.append(1);
             v.append(2);
-            assert.equal(sol.exploitVector(v), [1,2]);
+            expect(sol.exploitVector(v)).to.deep.equal([1,2]);
         });
     });
     describe('vectorSafe()', function() {
-        it(`accesses array outside of vector`, function() {
+        it(`can't access array outside of vector`, function() {
             let v = sol.vectorSafe();
             v.append(1);
             v.append(2);
-            assert.equal(sol.exploitVector(v), undefined);
+            expect(sol.exploitVector(v)).to.deep.equal(undefined);
         });
     });
     describe('pubsub()', function() {

@@ -1351,9 +1351,9 @@ produces a series of values
 ```js
 let index = genFrom(0)
 
-index() // 0
-index() // 1
-index() // 2
+index.next().value // 0
+index.next().value // 1
+index.next().value // 2
 ```
 
 <a name="genTo"></a>
@@ -1499,7 +1499,7 @@ values approved by the predicate
 **Example**
 
 ```js
-let fil = filter(genFromTo(0, 5), (val) => val % 3)
+let fil = filter(genFromTo(0, 5), (val) => val % 3 === 0)
 
 fil() // 0
 fil() // 3
@@ -1674,6 +1674,7 @@ return the next fibonacci number
 let fib = fibonaccif(0, 1)
 fib() // 0
 fib() // 1
+fib() // 1
 fib() // 2
 fib() // 3
 fib() // 5
@@ -1698,7 +1699,7 @@ the counter
 
 ```js
 let obj = counter(10)
-let { up, down } = object
+let { up, down } = obj
 
 up() // 11
 down() // 10
@@ -2049,8 +2050,8 @@ argument
 **Example**
 
 ```js
-sqrtc = continuizeu(Math.sqrt)
-sqrtc(console.log, 1, 2, 4) // logs '1 2 4'
+mullc = continuize(Math.mul)
+mulc(console.log, 81, 4, 2) // logs '648'
 ```
 
 <a name="vector"></a>

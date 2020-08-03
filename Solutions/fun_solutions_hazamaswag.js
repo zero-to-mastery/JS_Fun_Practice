@@ -658,7 +658,6 @@ const myVector = () => {
 // can assume that global prototypes cannot be altered. Hint*: Think about using this in
 // a method invocation. Can we override a method of vector?
 
-// Not sure how to get the array.
 function vector() {
   var array = [];
   return {
@@ -675,31 +674,16 @@ function vector() {
 }
 
 function exploitVector(v) {
-    // v.store.apply(this, arguments);
-    // this.get = function() { return this.array; };
-    v.get = function() {
-        return this.array;
-    };
-    console.log(v.get());
-    // v.get = function() {
-    //     v.store.apply(this, arguments);
-    //     this.append = function() { return this.array; };
-    // }
-    return v.get();
+    var visible_array;
+    v.store('push', function(x){visible_array=this});
+    v.append(4345234);
+    return visible_array;
 }
 
-function exploitVector(v) {
-    v.get = function() {
-        return this.array;
-    };
-    console.log(v.get());
-    return v.get();
-}
 
 // How would you rewrite vector to deal with the issue from above?
-// probably use 'use strict' to enable strict mode
+// use arrow functions
 const vectorSafe = () => {
-    'use strict';
     let arr = [];
     return {
         append: (n) => arr.push(n),

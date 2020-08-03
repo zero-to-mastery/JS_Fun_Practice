@@ -1,0 +1,25 @@
+{
+  "name": "js_fun_practice",
+  "version": "1.0.0",
+  "description": "A testing utility for the fun javascript functions",
+  "main": "fun_solutions_hazamaswag.js",
+  "scripts": {
+    "test": "mocha || true"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hazamaswag/JS_Fun_Practice.git"
+  },
+  "author": "hazamaswag",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/hazamaswag/JS_Fun_Practice/issues"
+  },
+  "homepage": "https://github.com/hazamaswag/JS_Fun_Practice#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^8.0.1",
+    "mocha-sinon": "^2.1.2",
+    "sinon": "^9.0.2"
+  }
+}

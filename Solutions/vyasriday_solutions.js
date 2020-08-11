@@ -2,7 +2,7 @@ const identity = (x) => x;
 
 const addb = (a, b) => a + b;
 
-const subb = (a, b) => a > b ? a - b : b - a;
+const subb = (a, b) => a - b ;
 
 const mulb = (a, b) => a * b;
 

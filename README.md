@@ -2193,10 +2193,10 @@ method of `vector`?
 **Example**
 
 ```js
-var v = vector()
+let v = vector()
 v.append(1)
 v.append(2)
-var internalData = exploitVector(v) // [1, 2]
+let internalData = exploitVector(v) // [1, 2]
 ```
 
 <a name="vectorSafe"></a>
@@ -2209,10 +2209,10 @@ with the issue from above?
 **Example**
 
 ```js
-var v = vectorSafe()
+let v = vectorSafe()
 v.append(1)
 v.append(2)
-var internalData = exploitVector(v) // undefined
+let internalData = exploitVector(v) // undefined
 ```
 
 <a name="pubsub"></a>

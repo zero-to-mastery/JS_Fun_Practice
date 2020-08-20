@@ -532,17 +532,12 @@ to the private array</p>
 <dd><p>Let&#39;s assume your <code>vector</code>
 implementation looks like
 something like this:</p>
-<pre>function vector() {
-  var array = [];
+<pre>vector = () => {
+  let array = [];
   return {
-    append: function append(v) {
-      array.push(v);
-    },
-    get: function get(i) {
-      return array[i];
-    },
-    store: function store(i, v) {
-      array[i] = v;
+    append: (v) => array.push(v),
+    get: (i) => array[i],
+    store: (i, v) => array[i] = v
     }
   };
 }</pre>
@@ -2175,17 +2170,12 @@ Let's assume your `vector`
 implementation looks like
 something like this:
 
-<pre>function vector() {
-  var array = [];
+<pre>vector = () => {
+  let array = [];
   return {
-    append: function append(v) {
-      array.push(v);
-    },
-    get: function get(i) {
-      return array[i];
-    },
-    store: function store(i, v) {
-      array[i] = v;
+    append: (v) => array.push(v),
+    get: (i) => array[i],
+    store: (i, v) => array[i] = v
     }
   };
 }</pre>

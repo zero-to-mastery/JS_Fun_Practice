@@ -538,7 +538,6 @@ something like this:</p>
     append: (v) => array.push(v),
     get: (i) => array[i],
     store: (i, v) => array[i] = v
-    }
   };
 }</pre>
 
@@ -2176,7 +2175,6 @@ something like this:
     append: (v) => array.push(v),
     get: (i) => array[i],
     store: (i, v) => array[i] = v
-    }
   };
 }</pre>
 

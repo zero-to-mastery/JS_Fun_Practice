@@ -69,6 +69,80 @@ const min = (...nums) => {
 
 min(30, 40, 55, 10)          // 10
 
+
+// max that is generalized for any amount of arguments
+const max = (...nums) => {
+    let maximum = nums[0];
+    for(let i = 1; i < nums.length; i++){
+        maximum = maximum > nums[i] ? maximum : nums[i]; 
+    }
+    return maximum
+}
+
+max(30, 40, 55, 10)           // 55
+
+
+// addRecurse that is generalized add function but uses recursion
+function addRecurse(...nums) {
+    if (nums.length < 1) {
+        return 0;
+    }
+    if (nums.length === 1) {
+        return nums[0];
+    }
+    return nums[0] + addRecurse(...nums.slice(1));
+}
+
+addRecurse(1, 5, 6)            // 12
+
+
+// mulRecurse that is the generalized mul function but uses recursion
+const mulRecurse = (...nums) => {
+    if (nums.length < 1) {
+        return 0
+    }
+
+    if (nums.length == 1) {
+        return nums[0]
+    }
+
+    return nums[0] * mulRecurse(...nums.slice(1))
+}
+
+mulRecurse(1, 2, 4)              // 8
+
+// minRecurse that is the generalized min function but uses recursion
+const minRecurse = (...nums) => {
+    if (nums.length < 1) {
+        return 'Empty Array'
+    }
+
+    if (nums.length === 1) {
+        return nums[0]
+    }
+
+    return nums[0] < minRecurse(...nums.slice(1))
+        ? nums[0]
+        : minRecurse(...nums.slice(1))
+}
+
+minRecurse(1, 2, 6, 7, -6, 9, 44, 4)          // -6
+
+
+// maxRecurse that is the generalized max function but uses recursion
+const maxRecurse = (...nums) => {
+    if (nums.length < 1) {
+        return 'Empty Array'
+    }
+
+    if (nums.length === 1) {
+        return nums[0]
+    }
+
+    return maxb(nums[0], maxRecurse(...nums.slice(1)))
+}
+
+maxRecurse(2, 6, 7, -6, 9, 44, 4)               // 44
 module.exports = {
     identity,
     addb,
@@ -80,4 +154,9 @@ module.exports = {
     sub,
     mul,
     min,
+    max,
+    addRecurse,
+    mulRecurse,
+    minRecurse,
+    maxRecurse
 };

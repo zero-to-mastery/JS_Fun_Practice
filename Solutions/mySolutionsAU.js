@@ -8,4 +8,12 @@ console.log(subb(a,b));
 
 //to multiply two values
 const mulb = (a,b) => a*b;
-console.loglog(mulb(a,b));
+console.log(mulb(a,b));
+
+//to find minimum of two values
+const minb = (a, b) => (a<b)?a:b;
+console.log(minb(a,b));
+
+//to find greater of two values
+const maxb = () => (a>b)?a:b;
+console.log(maxb(a,b));

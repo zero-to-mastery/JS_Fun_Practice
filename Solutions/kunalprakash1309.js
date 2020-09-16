@@ -143,6 +143,44 @@ const maxRecurse = (...nums) => {
 }
 
 maxRecurse(2, 6, 7, -6, 9, 44, 4)               // 44
+
+// Write a function not that takes a function and returns the negation of its result
+const not = (func) => {
+    return (...args) => !(func(...args))
+}
+
+//Write a function acc that takes a function and an initial value and returns a function that runs the initial function on each argument, accumulating the result
+
+const acc = (func, initial) => {
+	return (...args) => {
+		for (item of args){
+			initial += func(item);
+		}
+		return initial;
+	}
+}
+
+//Write a function accPartial that takes in a function, a start index, and an end index, and returns a function that accumulates a subset of its arguments by applying the given function to all elements between start and end.
+
+const accPartial = (func, start, end) => {
+	let accum = 0;
+	return (...args) => {
+		for (let i = start; i< start+end; i++){
+			accum += func(args[i]);
+		}
+		return accum
+	}
+}
+
+//Write a function fill that takes a number and returns an array with that many numbers equal to the given number
+
+const fill = (num) => {
+	let nums = [];
+	for (let i=0; i<num; i++){
+		nums.push(num);
+	}
+	return nums;
+}
 module.exports = {
     identity,
     addb,
@@ -158,5 +196,9 @@ module.exports = {
     addRecurse,
     mulRecurse,
     minRecurse,
-    maxRecurse
+    maxRecurse,
+    not,
+    acc,
+    accRecusrse,
+    fill
 };

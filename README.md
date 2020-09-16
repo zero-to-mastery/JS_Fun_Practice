@@ -532,18 +532,12 @@ to the private array</p>
 <dd><p>Let&#39;s assume your <code>vector</code>
 implementation looks like
 something like this:</p>
-<pre>function vector() {
-  var array = [];
+<pre>vector = () => {
+  let array = [];
   return {
-    append: function append(v) {
-      array.push(v);
-    },
-    get: function get(i) {
-      return array[i];
-    },
-    store: function store(i, v) {
-      array[i] = v;
-    }
+    append: (v) => array.push(v),
+    get: (i) => array[i],
+    store: (i, v) => array[i] = v
   };
 }</pre>
 
@@ -2175,18 +2169,12 @@ Let's assume your `vector`
 implementation looks like
 something like this:
 
-<pre>function vector() {
-  var array = [];
+<pre>vector = () => {
+  let array = [];
   return {
-    append: function append(v) {
-      array.push(v);
-    },
-    get: function get(i) {
-      return array[i];
-    },
-    store: function store(i, v) {
-      array[i] = v;
-    }
+    append: (v) => array.push(v),
+    get: (i) => array[i],
+    store: (i, v) => array[i] = v
   };
 }</pre>
 
@@ -2203,10 +2191,10 @@ method of `vector`?
 **Example**
 
 ```js
-var v = vector()
+let v = vector()
 v.append(1)
 v.append(2)
-var internalData = exploitVector(v) // [1, 2]
+let internalData = exploitVector(v) // [1, 2]
 ```
 
 <a name="vectorSafe"></a>
@@ -2219,10 +2207,10 @@ with the issue from above?
 **Example**
 
 ```js
-var v = vectorSafe()
+let v = vectorSafe()
 v.append(1)
 v.append(2)
-var internalData = exploitVector(v) // undefined
+let internalData = exploitVector(v) // undefined
 ```
 
 <a name="pubsub"></a>

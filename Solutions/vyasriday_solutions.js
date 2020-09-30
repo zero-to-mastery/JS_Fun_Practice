@@ -20,6 +20,33 @@ const min = (...nums) => nums.reduce((min, current) => current < min ? current :
 
 const max = (...nums) => nums.reduce((max, current) => current > max ? current : max)
 
+const addRecurse = (...nums) => {
+  return nums.length === 1 ? nums[0]: Number(nums[nums.length-1]) + addRecurse(...nums.slice(0,-1))  
+}
+
+const mulRecurse = (...nums) => {
+  return nums.length === 1 ? nums[0]: Number(nums[nums.length-1]) * mulRecurse(...nums.slice(0,-1))  
+}
+
+const not = (func) => !func()
+
+const fill = (num) => Array(num).fill(num);
+
+const set = (...args) => args.reduce((accumulated, current) => {
+    if (accumulated.includes(current)) {
+      return accumulated
+    } else {
+      return [...accumulated, current]
+    }
+  }, [])
+
+const identityf = (x) => () => x;
+
+
+const addf = (a) => (b) => a + b;
+
+
+ 
 module.exports = {
   identity,
   addb,
@@ -31,5 +58,14 @@ module.exports = {
   sub,
   mul,
   min,
-  max
+  max,
+  addRecurse,
+  mulRecurse,
+  not,
+  fill,
+  set,
+  identityf,
+  addf
+
+
 }

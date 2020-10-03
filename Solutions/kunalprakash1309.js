@@ -181,6 +181,48 @@ const fill = (num) => {
 	}
 	return nums;
 }
+
+//Write a function fillRecurse that does what fill does but uses recursion
+
+const fillRecurse = (num,list=[]) => {
+	if(list.length===num){
+		return list;
+	}
+	else{
+    list.push(num);
+    return fillRecurse(num,list);
+  }
+};
+
+//Write a function set that is given a list of arguments and returns an array with all duplicates removed
+
+const set = (...args) => {
+	let sett=[];
+	for (item of args){
+		if (sett.includes(item)){
+
+		}
+		else {
+			sett.push(item)
+		}
+	}
+	return sett;
+}
+
+//Write a function identityf that takes an argument and returns a function that returns that argument
+
+const identityf = (x) =>{
+	return (x) => {x};
+}
+
+// Write a function addf that adds from two invocations
+
+const addf = (x) => {
+    return function(y) {
+        return x + y;
+    }
+}
+
 module.exports = {
     identity,
     addb,
@@ -200,5 +242,9 @@ module.exports = {
     not,
     acc,
     accRecusrse,
-    fill
+    fill,
+    fillRecurse,
+    set,
+    identityf,
+    addf
 };

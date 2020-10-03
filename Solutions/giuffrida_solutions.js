@@ -31,9 +31,37 @@ const min = (...nums) => Math.min(...nums);
 // Write a function max that is generalized for any amount of arguments
 const max = (...nums) => Math.max(...nums);
 
+// Write a function addRecurse that is the generalized add function but uses recursion
+const addRecurse = (...nums) => nums.length < 1 ? 0 : nums[0] + addRecurse(...nums.slice(1));
+
+// Write a function mulRecurse that is the generalized mul function but uses recursion
+const mulRecurse = (...nums) => nums.length < 1 ? 1 : nums[0] * mulRecurse(...nums.slice(1));
+
+// Write a function minRecurse that is the generalized min function but uses recursion
+const minRecurse = (...nums) => nums.length === 1 ? nums[0] : nums[0] < minRecurse(...nums.slice(1)) ? nums[0] : minRecurse(...nums.slice(1));
+
+// Write a function maxRecurse that is the generalized max function but uses recursion
+const maxRecurse = (...nums) => nums.length === 1 ? nums[0] : nums[0] > maxRecurse(...nums.slice(1)) ? nums[0] : maxRecurse(...nums.slice(1));
 
 
-module.exports = { identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max }
+module.exports = { 
+	identity,
+	addb,
+	subb,
+	mulb, 
+	minb, 
+	maxb, 
+	add, 
+	sub, 
+	mul, 
+	min, 
+	max, 
+	addRecurse, 
+	mulRecurse, 
+	minRecurse, 
+	maxRecurse 
+}
+
 
 
 

@@ -92,9 +92,43 @@ const accRecurse = (func, initial) => (...args) => {
 }
 
 const fill = (num) => {
-    arr = [];
+    let arr = [];
     for(let i=0; i<num; i++) arr.push(num)
     return arr;
 }
 
-module.exports = { identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max, addRecurse, mulRecurse, minRecurse, maxRecurse, not,  acc, accPartial, accRecurse,  fill, /* fillRecurse, set, identityf, addf, liftf, pure, curryb, curry, inc, twiceUnary, doubl, square, twice, reverseb, reverse, composeuTwo, composeu, composeb, composeTwo, compose, limitb, limit, genFrom, genTo, genFromTo, elementGen, element, collect, filter, filterTail, concatTwo, concat, concatTail, gensymf, gensymff, fibonaccif, counter, revocableb, revocable, extract, m, addmTwo, addm, liftmbM, liftmb, liftm, exp, expn, addg, liftg, arrayg, continuizeu, continuize, vector, exploitVector, vectorSafe, pubsub, mapRecurse, filterRecurse, */ };
+const fillRecurse = (num, arr=[]) => {
+    if(arr.length === num){
+        return arr
+    }else{
+        arr.push(num)
+        return fillRecurse(num, arr)
+    }
+}
+
+const set = (...args) => args.filter((arg, index) => args.indexOf(arg) === index);
+
+const identityf = arg => () => arg
+
+const addf = a => b => a + b;
+
+const liftf = fun => a => b => fun(a, b)
+
+const pure = (x, y) => {
+    const impure = (x) => {
+      y++;
+      z = x * y;
+    }
+    impure(x);
+    return [y, z];
+}
+
+const curryb = (fun, num) => (num1) => fun(num, num1)
+
+const curry = (fun, ...rest) => (...any) => fun(...rest.concat(any))
+
+const inc = num => addb(num, 1)
+
+const twiceUnary = fun => num => fun(num, num)
+
+module.exports = { identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max, addRecurse, mulRecurse, minRecurse, maxRecurse, not,  acc, accPartial, accRecurse,  fill,  fillRecurse, set, identityf, addf, liftf, pure, curryb, curry, inc, twiceUnary, /*doubl, square, twice, reverseb, reverse, composeuTwo, composeu, composeb, composeTwo, compose, limitb, limit, genFrom, genTo, genFromTo, elementGen, element, collect, filter, filterTail, concatTwo, concat, concatTail, gensymf, gensymff, fibonaccif, counter, revocableb, revocable, extract, m, addmTwo, addm, liftmbM, liftmb, liftm, exp, expn, addg, liftg, arrayg, continuizeu, continuize, vector, exploitVector, vectorSafe, pubsub, mapRecurse, filterRecurse, */ };

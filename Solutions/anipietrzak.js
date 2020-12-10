@@ -3,8 +3,9 @@ require('mocha-sinon');
 
 
 //Write a function identity that takes an argument and returns that argument
+
 const identity = (x) => {
-    return x;
+    return (x);
 };
 
 describe('JS_Fun_Practice', function () {
@@ -23,7 +24,6 @@ describe('JS_Fun_Practice', function () {
             assert.equal(sol.addb(3, 4), 7);
         });
     });
-
     //Write a binary function subb that takes two numbers and returns their difference
     const subb = (a, b) => {
         return (a - b)
@@ -72,7 +72,6 @@ describe('JS_Fun_Practice', function () {
             assert.equal(sol.maxb(3, 4), 4);
         });
     });
-
     //Write a function add that is generalized for any amount of arguments
     const add = (...nums) => {
         return nums.reduce((a, b) => a + b);

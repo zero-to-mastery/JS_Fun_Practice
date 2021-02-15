@@ -30,3 +30,4 @@ return nums.reduce((total,amount)=>total * amount)
 //for now i did this i i will contribute everyday
 
 module.exports = { identity, addb, subb, mulb, minb, maxb, add, sub, mul,min};
+

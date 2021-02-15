@@ -76,7 +76,7 @@ function isOdd(x){
 const isEven = not(isOdd);
 
 function acc(fn, init){
-  return (a,b,c)=> fn(fn(a,b),c);
+  return (...nums)=> nums.reduce(fn, init);
 }
 
 function accPartial(fn,start,end){
@@ -86,3 +86,43 @@ function accPartial(fn,start,end){
     return nums;
   }
 }
+
+function accRecurse(fn, init){
+  return (...num) => {
+    let numm = num.flat();
+     if(numm.length ===1){
+      return fn(init,numm[0]);
+    } else { return accRecurse(fn,fn(init,numm.shift()))(numm); }
+  }
+}
+
+const fill = (num)=>{
+  let arr=[];
+  for(i=0; i<num; i++){
+    arr.push(num);
+  }
+  return arr;
+}
+
+function fillRecurse(num,Arr=[]){
+   if(Arr.length==num){return Arr;} 
+  else {
+    Arr.push(num);
+    return fillRecurse(num,Arr)
+  }
+}
+
+function set(...args){
+  let argArr=[];
+  for(let i of args){
+    if(argArr.includes(i)){continue } 
+    else{ argArr.push(i); }
+  }
+  return argArr;
+}
+
+const identityf = (x)=>()=> x;
+
+const addf = (a)=>(b)=> a+b;
+
+const liftf = (fn)=>(a)=>(b)=>fn(a,b);

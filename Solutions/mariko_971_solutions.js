@@ -126,3 +126,36 @@ const identityf = (x)=>()=> x;
 const addf = (a)=>(b)=> a+b;
 
 const liftf = (fn)=>(a)=>(b)=>fn(a,b);
+
+function pure(x,y){
+  function impure(x) { y++;  z = x * y; }
+  var z;
+  impure(x);
+  return [y,z]
+}
+
+const curryb = (fn,x)=>(a)=>fn(x,a);
+
+const curry=(fn,...x)=>(...b)=>fn(...x,...b);
+
+const twiceUnary = (fn)=>(x)=>fn(x,x);
+
+const doubl = (x)=>twiceUnary(addb)(x);
+
+const square = (x)=>twiceUnary(mulb)(x);
+
+const twice = (fn)=>(...x)=>fn(...x)*2;
+
+const reverseb = (fn)=>(a,b)=>fn(b,a);
+
+const reverse = (fn)=>(...x)=>fn(x.reverse());
+
+const composeuTwo = (a,b)=>(x)=>b(a(x));
+
+const composeu = (...fn)=>(x)=>fn.reduce(((acc,el)=> el(acc)),x);
+
+const composeb = (a,b)=>(x,y,z)=>b(a(x,y),z);
+
+const composeTwo = (a,b)=>(x,y,z)=>b(a(x,y,z));
+
+const compose =(...fn)=>(...x) => fn.reduce(((ac,el)=>el(ac)),fn.shift()(...x));

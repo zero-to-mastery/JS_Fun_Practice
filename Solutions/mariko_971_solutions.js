@@ -159,3 +159,63 @@ const composeb = (a,b)=>(x,y,z)=>b(a(x,y),z);
 const composeTwo = (a,b)=>(x,y,z)=>b(a(x,y,z));
 
 const compose =(...fn)=>(...x) => fn.reduce(((ac,el)=>el(ac)),fn.shift()(...x));
+
+const limitb = (fn,x, counter=0)=>(a,b)=> {
+    counter++;
+    return counter>x ? undefined : fn(a,b);
+  };
+
+ const limit = (fn,x, counter=0)=>(...args)=> {
+    counter++;
+    return counter>x ? undefined : fn(...args);
+  };
+
+  function* genFrom(x){
+    while(true)
+    yield x++;
+}; 
+
+function genTo(fn,lmt){
+  return ()=>{
+    let value = fn.next().value;
+    if(value<lmt){
+    return value
+    }
+    return undefined
+    } 
+};
+
+function genFromTo(start,end){
+  function* gen(){
+      while(start<end)
+      yield start++
+      }
+  return ()=> gen().next().value;
+}
+
+const elementGen = (array,gen)=>()=> array[gen()];
+
+function element(array,gen){
+  function* gen2(){
+    let index = 0;
+    while(true)
+      yield index++
+  }
+  if(gen===undefined){
+    let res = gen2()
+    return ()=> array[res.next().value];
+  } else { return ()=> array[gen()]; }
+}
+
+const collect = (gen,array)=>{
+  return ()=>{
+    let res = gen()
+    if(res!== undefined){
+      array.push(res)
+   }
+  }
+}
+
+
+
+  module.exports = { identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max, addRecurse, mulRecurse, minRecurse, maxRecurse, not, acc, accPartial, accRecurse, fill, fillRecurse, set, identityf, addf, liftf, pure, curryb, curry, inc, twiceUnary, doubl, square, twice, reverseb, reverse, composeuTwo, composeu, composeb, composeTwo, compose, limitb, limit, genFrom, genTo, genFromTo, elementGen, element, collect, };//, filter, filterTail, concatTwo, concat, concatTail, gensymf, gensymff, fibonaccif, counter, revocableb, revocable, extract, m, addmTwo, addm, liftmbM, liftmb, liftm, exp, expn, addg, liftg, arrayg, continuizeu, continuize, vector, exploitVector, vectorSafe, pubsub, mapRecurse, filterRecurse, }; 

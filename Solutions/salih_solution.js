@@ -10,14 +10,24 @@ const minb=(a,b)=>a<b ? a:b
 
 const maxb=(a,b)=>a>b ? a:b
 
-const add=(...nums)=>{
-    let sum = 0
-   for(let i=0;i<nums.length;i++){
-    sum += nums[i]
-   }
-   return sum
+const add = (...nums)=>{
+return nums.reduce((total,amount)=>total + amount)
 }
+
+const sub = (...nums)=>{
+return nums.reduce((total,amount)=>total - amount)
+}
+
+const mul = (...nums)=>{
+return nums.reduce((total,amount)=>total * amount)
+ }
+
+ const min = (...nums)=>{
+    return nums.reduce((total,amount)=>total < amount ? total:amount)
+     }
+
 
 //for now i did this i i will contribute everyday
 
-module.exports = { identity, addb, subb, mulb, minb, maxb, add};
+module.exports = { identity, addb, subb, mulb, minb, maxb, add, sub, mul,min};
+

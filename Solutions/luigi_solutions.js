@@ -20,14 +20,14 @@ const maxb = (a, b) => (a > b ? a : b);
 const add = (...nums) => {
   return nums.reduce((a, acc) => {
     return a + acc;
-  }, 0);
+  });
 };
 
 // Write a function sub that is generalized for any amount of arguments
 const sub = (...nums) => {
   return nums.reduce((a, acc) => {
     return a - acc;
-  }, 0);
+  });
 };
 
 //Write a function mul that is generalized for any amount of arguments

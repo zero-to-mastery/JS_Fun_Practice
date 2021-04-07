@@ -17,7 +17,7 @@ const minb = (a, b) => (a < b ? a : b);
 const maxb = (a, b) => (a > b ? a : b);
 
 // Write a function add that is generalized for any amount of arguments
-const sum = (...nums) => {
+const add = (...nums) => {
   return nums.reduce((a, acc) => {
     return a + acc;
   }, 0);

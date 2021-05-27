@@ -1,4 +1,4 @@
-// ZTM JS_Fun_Practice
+// ZTM JS_Fun_Practice - Vincent
 
 // takes an argument and returns it
 const identity = (x) => x;

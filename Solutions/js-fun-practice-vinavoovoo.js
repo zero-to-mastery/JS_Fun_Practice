@@ -12,6 +12,24 @@ const subb = (a, b) => a - b;
 // returns product of two numbers
 const mulb = (a, b) => a * b;
 
+// takes two numbers and returns whichever is smaller
+const minb = (a, b) => {
+	if (a > b) {
+		return b;
+	} else {
+		return a;
+	}
+}
+
+// takes two numbers and returns whichever is larger
+const maxb = (a, b) => {
+	if (a < b) {
+		return b;
+	} else {
+		return a;
+	}
+}
+
 
 
 module.exports = { identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max, addRecurse, mulRecurse, minRecurse, maxRecurse, not, acc, accPartial, accRecurse, fill, fillRecurse, set, identityf, addf, liftf, pure, curryb, curry, inc, twiceUnary, doubl, square, twice, reverseb, reverse, composeuTwo, composeu, composeb, composeTwo, compose, limitb, limit, genFrom, genTo, genFromTo, elementGen, element, collect, filter, filterTail, concatTwo, concat, concatTail, gensymf, gensymff, fibonaccif, counter, revocableb, revocable, extract, m, addmTwo, addm, liftmbM, liftmb, liftm, exp, expn, addg, liftg, arrayg, continuizeu, continuize, vector, exploitVector, vectorSafe, pubsub, mapRecurse, filterRecurse, };

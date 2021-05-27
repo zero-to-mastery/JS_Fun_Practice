@@ -1,18 +1,18 @@
 // ZTM JS_Fun_Practice - Vincent
 
-// takes an argument and returns it
+// 1. takes an argument and returns it
 const identity = (x) => x;
 
-// returns sum of two numbers
+// 2. returns sum of two numbers
 const addb = (a, b) => a + b;
 
-// returns difference of two numbers
+// 3. returns difference of two numbers
 const subb = (a, b) => a - b;
 
-// returns product of two numbers
+// 4. returns product of two numbers
 const mulb = (a, b) => a * b;
 
-// takes two numbers and returns whichever is smaller
+// 5. takes two numbers and returns whichever is smaller
 const minb = (a, b) => {
 	if (a > b) {
 		return b;
@@ -21,13 +21,56 @@ const minb = (a, b) => {
 	}
 }
 
-// takes two numbers and returns whichever is larger
+// 6. takes two numbers and returns whichever is larger
 const maxb = (a, b) => {
 	if (a < b) {
 		return b;
 	} else {
 		return a;
 	}
+}
+
+// 7. addition function for any amount of arguments
+const add = (...args) => {
+	return args.reduce((acc, arg) => {
+		return acc + arg;
+	});
+}
+
+// 8. subtraction function ... unlimited arguments
+const sub = (...args) => {
+	return args.reduce((acc, arg) => {
+		return acc - arg;
+	});
+}
+
+// 9. multiplication function ... unlimited arguments
+const mul = (...args) => {
+	return args.reduce((acc, arg) => {
+		return acc * arg;
+	});
+}
+
+// 10. returns smallest number ... unlimited arguments
+const min = (...args) => {
+	let min = args[0];
+	for (arg of args) {
+		if (min > arg) {
+			min = arg;
+		}
+	}
+	return min;
+}
+
+// 11. returns largest number ... unlimited arguments
+const max = (...args) => {
+	let max = args[0];
+	for (arg of args) {
+		if (max < arg) {
+			max = arg;
+		}
+	}
+	return max;
 }
 
 

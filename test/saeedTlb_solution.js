@@ -269,4 +269,11 @@ describe('JS_Fun_Practice', function () {
       assert.equal(index.next().value, 2);
     });
   });
+  describe('mapRecurse(array, predicate)', function () {
+    it(`performs a transformation for each element of a given array, recursively`, function () {
+      expect(sol.mapRecurse([1, 2, 3, 4], (x) => x * 2)).to.deep.equal([
+        2, 4, 6, 8,
+      ]);
+    });
+  });
 });

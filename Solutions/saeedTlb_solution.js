@@ -105,8 +105,10 @@ const not = (func) => (x) => !func(x);
  * @param {any} initial
  * @return {function}
  **/
-const acc = (func, initial) => (...nums) =>
-  nums.reduce((result, num) => (result = func(num, result)), initial);
+const acc =
+  (func, initial) =>
+  (...nums) =>
+    nums.reduce((result, num) => (result = func(num, result)), initial);
 
 /**
  * @param {function} func
@@ -114,33 +116,37 @@ const acc = (func, initial) => (...nums) =>
  * @param {number} end
  * @return {function}
  **/
-const accPartial = (func, start, end) => (...nums) => {
-  const edit = func(...nums.slice(start, end));
+const accPartial =
+  (func, start, end) =>
+  (...nums) => {
+    const edit = func(...nums.slice(start, end));
 
-  nums.splice(start, end - start, edit);
+    nums.splice(start, end - start, edit);
 
-  return nums;
-};
+    return nums;
+  };
 
 /**
  * @param {function} func
  * @param {number} initial
  * @return {function}
  **/
-const accRecurse = (func, initial) => (...nums) => {
-  let res = initial;
-  const recurseFunc = (index, b) => {
-    res = func(nums[index], b);
+const accRecurse =
+  (func, initial) =>
+  (...nums) => {
+    let res = initial;
+    const recurseFunc = (index, b) => {
+      res = func(nums[index], b);
 
-    if (index === 0) return;
+      if (index === 0) return;
 
-    recurseFunc(index - 1, res);
+      recurseFunc(index - 1, res);
+    };
+
+    recurseFunc(nums.length - 1, initial);
+
+    return res;
   };
-
-  recurseFunc(nums.length - 1, initial);
-
-  return res;
-};
 
 /**
  * @param {number} num
@@ -216,7 +222,10 @@ const curryb = (binary, a) => (x) => binary(a, x);
  * @param {any[]} outer
  * @return {function}
  **/
-const curry = (func, ...outer) => (...args) => func(...outer, ...args);
+const curry =
+  (func, ...outer) =>
+  (...args) =>
+    func(...outer, ...args);
 
 /**
  * @param {number} x
@@ -246,7 +255,10 @@ const square = (x) => twiceUnary((num) => num ** 2)(x);
  * @param {function} x
  * @return {any}
  **/
-const twice = (x) => (...args) => x(...args.map((i) => i * 2));
+const twice =
+  (x) =>
+  (...args) =>
+    x(...args.map((i) => i * 2));
 
 /**
  * @param {function} binary
@@ -258,7 +270,10 @@ const reverseb = (binary) => (a, b) => binary(b, a);
  * @param {function} func
  * @return {function}
  **/
-const reverse = (func) => (...args) => func(...args.reverse());
+const reverse =
+  (func) =>
+  (...args) =>
+    func(...args.reverse());
 
 /**
  * @param {function} unary1
@@ -271,56 +286,66 @@ const composeuTwo = (unary1, unary2) => (num) => unary2(unary1(num));
  * @param {function[]} funcs
  * @return {any}
  **/
-const composeu = (...funcs) => (num) => {
-  let res = num;
+const composeu =
+  (...funcs) =>
+  (num) => {
+    let res = num;
 
-  funcs.forEach((func) => (res = func(res)));
+    funcs.forEach((func) => (res = func(res)));
 
-  return res;
-};
+    return res;
+  };
 
 /**
  * @param {function} binary1
  * @param {function} binary2
  * @return {function}
  **/
-const composeb = (binary1, binary2) => (...nums) =>
-  binary2(binary1(nums[0], nums[1]), nums[2]);
+const composeb =
+  (binary1, binary2) =>
+  (...nums) =>
+    binary2(binary1(nums[0], nums[1]), nums[2]);
 
 /**
  * @param {function} func1
  * @param {function} func2
  * @return {function}
  **/
-const composeTwo = (func1, func2) => (...nums) => func2(func1(...nums));
+const composeTwo =
+  (func1, func2) =>
+  (...nums) =>
+    func2(func1(...nums));
 
 /**
  * @param {function[]} funcs
  * @return {function}
  **/
-const compose = (...funcs) => (...nums) => {
-  let result = funcs[0](...nums);
+const compose =
+  (...funcs) =>
+  (...nums) => {
+    let result = funcs[0](...nums);
 
-  funcs.slice(1, -1).forEach((func) => (result = func(result)));
+    funcs.slice(1, -1).forEach((func) => (result = func(result)));
 
-  return funcs.slice(-1)[0](...result);
-};
+    return funcs.slice(-1)[0](...result);
+  };
 
 /**
  * @param {function} binary
  * @param {number} lmt
  * @return {function}
  **/
-const limitb = (binary, lmt) => (a, b) =>
-  lmt-- >= 1 ? binary(a, b) : undefined;
+const limitb = (binary, lmt) => (a, b) => lmt-- >= 1 ? binary(a, b) : undefined;
 
 /**
  * @param {function} func
  * @param {number} lmt
  * @return {function}
  **/
-const limit = (func, lmt) => (...nums) =>
-  lmt-- >= 1 ? func(...nums) : undefined;
+const limit =
+  (func, lmt) =>
+  (...nums) =>
+    lmt-- >= 1 ? func(...nums) : undefined;
 
 /**
  * @param {number} x
@@ -333,6 +358,14 @@ const genFrom = (x) => ({
     return this;
   },
 });
+
+/**
+ *
+ * @param {array} array
+ * @param {function} periodicate
+ * @returns array
+ */
+const mapRecurse = (array, periodicate) => array.map((i) => periodicate(i));
 
 module.exports = {
   identity,
@@ -378,4 +411,5 @@ module.exports = {
   limitb,
   limit,
   genFrom,
+  mapRecurse,
 };

@@ -75,14 +75,50 @@ const max = (...args) => {
 
 // 12. addition function using recursion
 const addRecurse = (...nums) => {
-	debugger;
 	if (nums.length === 1) {
 		return nums[0];
 	}
 	return nums.pop() + addRecurse(...nums);
 }
 
+// 13. multiplication function using recursion
+const mulRecurse = (...nums) => {
+	if (nums.length === 1) {
+		return nums[0];
+	}
+	return nums.pop() * mulRecurse(...nums);
+}
 
+// 14. returns smallest number using recursion
+const minRecurse = (...nums) => {
+	if (nums.length === 1) {
+		return nums[0];
+	} else if (nums[0] > nums[1]) {
+		nums.shift();
+	} else {
+		nums[1] = nums[0];
+		nums.shift();
+	}
+	return minRecurse(...nums);
+}
+
+// 15. returns largest number using recursion
+const maxRecurse = (...nums) => {
+	if (nums.length === 1) {
+		return nums[0];
+	} else if (nums[0] < nums[1]) {
+		nums.shift();
+	} else {
+		nums[1] = nums[0];
+		nums.shift();
+	}
+	return maxRecurse(...nums);
+}
+
+// 16. takes a function as an argument and returns the opposite Bool
+const not = func =>(...args) => {
+	return !Boolean(func(...args));
+}
 
 module.exports = { identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max, 
 	addRecurse, mulRecurse, minRecurse, maxRecurse, not, acc, accPartial, accRecurse, 

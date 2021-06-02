@@ -15,7 +15,7 @@ subb(99991, 16161);
 function mulb() {
     return arguments;
 }
-mulb(`Works!`)
+mulb(`Works!`);
 // ----------------------OR--------------------------
 mulb2 = (a,b) => a * b;
 mulb2(7,5);
@@ -120,34 +120,13 @@ function maxRecurse(...args) {
 }
 maxRecurse(51, 52, 1, 581, 56, 0);
 
-// Write a function not that takes a function and returns the negation of its result********************************************************************
+// Write a function not that takes a function and returns the negation of its result
 let check = function check_one(num) {
     return !(num % 2 == 1);
 } 
 check(5);
-// Kaip callint antra funkcija per recursice funkcija... ji duoda expression ir end game... neskaito juk toliau kodo ://
-function check_two() {
-	let check = !check;
-}
-console.log(`Is this number Even: ${check_one(5)}`)
-console.log(`Is this number Even: ${check_one(6)}`)
-
-let thomas = true;
-console.log(thomas)
-function convert() {
-    thomas = !thomas;
-}
-convert();
-console.log(thomas);
 
 
-function not() {
-    isOdd = !isOdd
-}
-const isOdd = (x) => x % 2 === 1;
-const isEven = not(isOdd);
-isEven(1) // false
-isEven(2) // true
 // Write a function acc that takes a function and an initial value and returns a function that runs the initial function on each argument, accumulating the result
 let addb = (...nums) => {
     return nums.reduce((a, b) => a + b)
@@ -199,11 +178,13 @@ addf(3)(4) // 7
 
 
 // Write a function liftf that takes a binary function, and makes it callable with two invocations
-// *****************NEVEIKIA NESUPRANTU********************
 liftf = mulb = (x) => (y) => x + y
 liftf(mulb)(5)(6) // 30
 
 // Write a pure function pure that is a wrapper arround the impure function impure
+function pure(impure) {
+    return (args...)
+}
 function impure(x) {
     y++;
     z = x * y;
@@ -235,16 +216,16 @@ z; // 175
     mulRecurse,
     minRecurse,
     maxRecurse,
-//     not,*****************************
-//     acc,
-//     accPartial,
-//     accRecurse,
-//     fill,
-//     fillRecurse,
-//     set,
-//     identityf,
-//     addf,
-//     liftf,
+    not,
+    acc,
+    accPartial,
+    accRecurse,
+    fill,
+    fillRecurse,
+    set,
+    identityf,
+    addf,
+    liftf,
 //     pure,
 //     curryb,
 //     curry,

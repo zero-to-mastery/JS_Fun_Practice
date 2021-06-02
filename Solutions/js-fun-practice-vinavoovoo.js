@@ -120,6 +120,37 @@ const not = func =>(...args) => {
 	return !Boolean(func(...args));
 }
 
+
+// 17. takes a function and initial value and returns a function that 
+// runs the initial function on each argument, accumulating the result
+const acc = (func, begin) => (...args) => {
+	let c = begin;
+	for (i of args) {
+		c = (func(c, i));
+	}
+	return c;
+}
+
+// 18. takes in a function, start, and end, and returns a function that creates 
+// a new array with function applied to all elements between start and end
+const accPartial = (func, start, end) => () => {
+ return (func, start, end)
+}
+
+
+
+
+////////////////For Reference//////////////////
+const mapArray = array.map(num => {
+	return num * 2
+})
+const reduceArray = array.reduce((accumulator, num) => {
+	return accumulator + num;
+}, 100);
+///////////////////////////////////////////////
+
+
+
 module.exports = { identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max, 
 	addRecurse, mulRecurse, minRecurse, maxRecurse, not, acc, accPartial, accRecurse, 
 	fill, fillRecurse, set, identityf, addf, liftf, pure, curryb, curry, inc, 

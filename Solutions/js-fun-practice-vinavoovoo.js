@@ -131,11 +131,20 @@ const acc = (func, begin) => (...args) => {
 	return c;
 }
 
-// 18. takes in a function, start, and end, and returns a function that creates 
+// 18. working on it... takes in a function, start, and end, and returns a function that creates 
 // a new array with function applied to all elements between start and end
+const addb = (a, b) => a + b;
+
 const accPartial = (func, start, end) => () => {
- return (func, start, end)
+ 	let newArr = [];
+ 	if (start < end) {
+ 		for (i=start;i<(end); i++) {
+ 			newArr.push(func(i));
+ 		}
+	}
+	return newArr;
 }
+accPartial(addb,1,10)()
 
 
 ////////////////For Reference//////////////////

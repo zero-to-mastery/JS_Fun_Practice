@@ -138,8 +138,6 @@ const accPartial = (func, start, end) => () => {
 }
 
 
-
-
 ////////////////For Reference//////////////////
 const mapArray = array.map(num => {
 	return num * 2

@@ -131,20 +131,19 @@ const acc = (func, begin) => (...args) => {
 	return c;
 }
 
-// 18. working on it... takes in a function, start, and end, and returns a function that creates 
-// a new array with function applied to all elements between start and end
-const addb = (a, b) => a + b;
-
-const accPartial = (func, start, end) => () => {
- 	let newArr = [];
- 	if (start < end) {
- 		for (i=start;i<(end); i++) {
- 			newArr.push(func(i));
- 		}
-	}
-	return newArr;
+// 18. still working on it... takes in a function, start, and end, and returns a function that
+// creates a subset of array, with function applied to that subset
+const add = (...args) => {
+	return args.reduce((acc, arg) => {
+		return acc + arg;
+	});
 }
-accPartial(addb,1,10)()
+
+const accPartial = (func, start, end) => (...args) => {
+ 	return func([args[start], args[end]]);
+ 	}
+
+accPartial(add,1,10)()
 
 
 ////////////////For Reference//////////////////
@@ -155,16 +154,3 @@ const reduceArray = array.reduce((accumulator, num) => {
 	return accumulator + num;
 }, 100);
 ///////////////////////////////////////////////
-
-
-
-module.exports = { identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max, 
-	addRecurse, mulRecurse, minRecurse, maxRecurse, not, acc, accPartial, accRecurse, 
-	fill, fillRecurse, set, identityf, addf, liftf, pure, curryb, curry, inc, 
-	twiceUnary, doubl, square, twice, reverseb, reverse, composeuTwo, composeu, 
-	composeb, composeTwo, compose, limitb, limit, genFrom, genTo, genFromTo, 
-	elementGen, element, collect, filter, filterTail, concatTwo, concat, concatTail, 
-	gensymf, gensymff, fibonaccif, counter, revocableb, revocable, extract, m, 
-	addmTwo, addm, liftmbM, liftmb, liftm, exp, expn, addg, liftg, arrayg, 
-	continuizeu, ontinuize, vector, exploitVector, vectorSafe, pubsub, mapRecurse, 
-	filterRecurse, };

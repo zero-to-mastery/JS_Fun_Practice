@@ -16,3 +16,15 @@ const add = (...nums) => {
    })
 };
 /////////////////////////////////////////
+const sub = (...nums) => {
+    return nums.reduce((acc,current) => {
+        return acc - current;
+    },0)
+};
+/////////////////////////////////////////
+const mul = (...nums) => {
+    return nums.reduce((acc,current) => {
+        return acc * current;
+    },1)
+};
+/////////////////////////////////////////

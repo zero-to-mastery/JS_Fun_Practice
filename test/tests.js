@@ -1,6 +1,6 @@
 const assert = require('chai').assert;
 const expect = require('chai').expect;
-const filename = 'ielisman';
+const filename = 'mjlearn13_solutions.js';
 const sol = require('../Solutions/' + filename);
 require('mocha-sinon');
 

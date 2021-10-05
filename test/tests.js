@@ -1,8 +1,9 @@
-const assert = require("chai").assert;
-const expect = require("chai").expect;
-const filename = "hari_krishna_js_fun";
-const sol = require("../Solutions/" + filename);
-require("mocha-sinon");
+const assert = require('chai').assert;
+const expect = require('chai').expect;
+const filename = 'asha_JS_solution';
+const sol = require('../Solutions/' + filename);
+require('mocha-sinon');
+
 
 describe("JS_Fun_Practice", function () {
   describe("identity()", function () {

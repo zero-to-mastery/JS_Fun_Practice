@@ -2,7 +2,7 @@
   "name": "js_fun_practice",
   "version": "1.0.0",
   "description": "A testing utility for the fun javascript functions",
-  "main": "fun_solutions_hazamaswag.js",
+  "main": "index.js",
   "scripts": {
     "test": "mocha || true"
   },

@@ -23,6 +23,8 @@ const subb = (a,b) => {
 
  //Write a binary function mulb that takes two numbers and returns their product
 
+
+
  const mulb = (a,b) => {
  	return a*b;
  }

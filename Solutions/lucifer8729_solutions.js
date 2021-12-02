@@ -22,6 +22,54 @@ const min = (...args) => args.reduce((acc, num) => minb(acc, num));
 
 const max = (...args) => args.reduce((acc, num) => maxb(acc, num));
 
+const addRecurse = (...args) => {
+  if (args.length === 1) return args[0];
+
+  return args.pop() + addRecurse(...args);
+};
+
+const mulRecurse = (...args) => {
+  if (args.length === 1) return args[0];
+
+  return args.pop() * mulRecurse(...args);
+};
+
+const minRecurse = (...args) => {
+  if (args.length === 1) return args[0];
+
+  if (args[0] < minRecurse(...args.slice(1))) return args[0];
+  return minRecurse(...args.slice(1));
+};
+
+const maxRecurse = (...args) => {
+  if (args.length === 1) return args[0];
+
+  if (args[0] > minRecurse(...args.slice(1))) return args[0];
+  return maxRecurse(...args.slice(1));
+};
+
+const not = (func) => {
+  return (...args) => !func(...args);
+};
+
+const acc = (func, val) => {
+  return (...args) => {
+    for (el of args) {
+      val = func(val, el);
+    }
+    return val;
+  };
+};
+
+// const accPartial = (func, start, end) => {
+//   return (...args) => {
+//     for (let i = start; i < end; i++) {
+//       val = func(val, args[i]);
+//     }
+//     return val;
+//   };
+// };
+
 module.exports = {
   identity,
   addb,
@@ -34,13 +82,13 @@ module.exports = {
   mul,
   min,
   max,
-  //   addRecurse,
-  //   mulRecurse,
-  //   minRecurse,
-  //   maxRecurse,
-  //   not,
-  //   acc,
-  //   accPartial,
+  addRecurse,
+  mulRecurse,
+  minRecurse,
+  maxRecurse,
+  not,
+  acc,
+  // accPartial,
   //   accRecurse,
   //   fill,
   //   fillRecurse,

@@ -120,12 +120,128 @@ const limitb = (func, l) => (a, b) => l-- >=1 ? func(a, b) : undefined
 
 const limit = (func, l) => (...nums) => l-- >=1 ? func(...nums) : undefined
 
+function* genFrom(num){
+  while(true)yield num++;
+}
+
+// const genTo = (func, l) => () => {
+//   let num = func.next().value
+//   if(num < l) return num
+//   return undefined
+// }
+
+// const genFromTo = (start, end) =>{
+//   function* genFrom(){
+//     while(start < end)yield start++;
+//   }
+//   return () => genFrom().next().value
+// }
+
+// const elementGen = (nums, func) => {
+//   let index = func.next().value
+//   while(index !== undefined){
+//     yield nums[index]
+//     index = func.next().value
+//   }
+//   yield index
+// }
+
+function* gensymf(s){
+  let i = 1;
+  while(true){
+    yield s+i;
+    i++;
+  }
+}
+
+function* fibonaccif(f, s){
+  yield f
+  yield s
+  let sum = f+s
+  while(true){
+    yield sum
+    f = s
+    s = sum
+    sum+=f
+  }
+}
+
+const counter = num =>{
+  return{
+    up: () => ++num,
+    down: () => --num
+  }
+}
+
+const revocableb = func => {
+  let flag = true
+  return {
+    invoke: (a, b)=> flag? func(a,b): undefined,
+    revoke: () => flag = false
+  }
+}
+
+const revocable = func => {
+  let flag = true
+  return {
+    invoke: (...nums)=> flag? func(...nums): undefined,
+    revoke: () => flag = false
+  }
+}
+
+const extract = (arr, prop) => arr.map(a => a[prop])
+
+const m = (value, source = '') =>{
+  return {
+    value: value,
+    source: source? source : JSON.stringify(value)
+  }
+}
+
+const addmTwo = (m1, m2) =>{
+  return {
+    value: m1.value + m2.value,
+    source: `(${m1.source}+${m2.source})`
+  }
+}
+
+const addm = (...m) =>{
+  return{
+    value: m.reduce((acc, num) => acc + num.value, 0),
+    source: '(' + `${m.reduce((acc, num) => acc+"+"+num.source, '')})`.slice(1)
+  }
+}
+
+const liftmbM = (func, source) => (m1, m2) =>{
+  return {
+    value: func(m1.value, m2.value),
+    source: `(${m1.source}${source}${m2.source})`
+  }
+}
+
+const liftmb = (func, source) => (a, b) =>{
+  return {
+    value: func(a, b),
+    source: `(${a}${source}${b})`
+  }
+}
+
+const liftm = (func, source) => (...args) =>{
+  let values = args.map(arg => typeof(arg === 'number'? arg:arg.value))
+  return {
+    value: m(func(...values)),
+    source: `(${values.join(source)})`
+  }
+}
+
+
+
 module.exports = { 
   identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max, addRecurse, mulRecurse, minRecurse, 
   maxRecurse, not, acc, accPartial, accRecurse, fill, fillRecurse, set, identityf, addf, liftf, pure, curryb, 
   curry, inc, twiceUnary, doubl, square, twice, reverseb, reverse, composeuTwo, composeu, composeb, composeTwo, 
-  compose, limitb, limit, /*genFrom, genTo, genFromTo, elementGen, element, collect, filter, filterTail, concatTwo, 
-  concat, concatTail, gensymf, gensymff, fibonaccif, counter, revocableb, revocable, extract, m, addmTwo, addm, liftmbM, 
-  liftmb, liftm, exp, expn, addg, liftg, arrayg, continuizeu, continuize, vector, exploitVector, vectorSafe, pubsub, 
+  compose, limitb, limit, genFrom, /*genTo, genFromTo, elementGen, element, collect, filter, filterTail, concatTwo, 
+  concat, concatTail,*/ gensymf,/* gensymff, */fibonaccif, counter, revocableb, revocable, extract, m, addmTwo, addm, liftmbM, 
+  liftmb,/* liftm, exp, expn, addg, liftg, arrayg, continuizeu, continuize, vector, exploitVector, vectorSafe, pubsub, 
   mapRecurse, filterRecurse */
 };

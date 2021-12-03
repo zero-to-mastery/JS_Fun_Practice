@@ -1,6 +1,6 @@
 const assert = require('chai').assert;
 const expect = require('chai').expect;
-const filename = 'usergr_solution';
+const filename = 'v1zei_solutions';
 const sol = require('../Solutions/' + filename);
 require('mocha-sinon');
 

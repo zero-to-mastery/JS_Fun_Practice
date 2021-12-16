@@ -1427,7 +1427,7 @@ addLmt(3, 5, 9, 2) // undefined
 
 Write a function `genFrom` that
 produces a generator that will
-produces a series of values
+produces a series of values. Follows the [iterator protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol) for the returned format.
 
 | Param | Type                |
 | ----- | ------------------- |
@@ -1463,9 +1463,9 @@ to that limit
 ```js
 let index = genTo(genFrom(1), 3)
 
-index() // 1
-index() // 2
-index() // undefined
+index.next().value // 1
+index.next().value // 2
+index.next().value // undefined
 ```
 
 <a name="genFromTo"></a>
@@ -1485,10 +1485,10 @@ produce values in a range
 
 ```js
 let index = genFromTo(0, 3)
-index() // 0
-index() // 1
-index() // 2
-index() // undefined
+index.next().value // 0
+index.next().value // 1
+index.next().value // 2
+index.next().value // undefined
 ```
 
 <a name="elementGen"></a>
@@ -1510,9 +1510,9 @@ produce elements from the array
 ```js
 let ele = elementGen(['a', 'b', 'c', 'd'], genFromTo(1, 3))
 
-ele() // 'b'
-ele() // 'c'
-ele() // undefined
+ele.next().value // 'b'
+ele.next().value // 'c'
+ele.next().value // undefined
 ```
 
 <a name="element"></a>
@@ -1536,11 +1536,11 @@ will be produced.
 ```js
 let ele = element(['a', 'b', 'c', 'd'])
 
-ele() // 'a'
-ele() // 'b'
-ele() // 'c'
-ele() // 'd'
-ele() // undefined
+ele.next().value // 'a'
+ele.next().value // 'b'
+ele.next().value // 'c'
+ele.next().value // 'd'
+ele.next().value // undefined
 ```
 
 <a name="collect"></a>
@@ -1563,9 +1563,9 @@ in the array
 let array = []
 let col = collect(genFromTo(0, 2), array)
 
-col() // 0
-col() // 1
-col() // undefined
+col.next().value // 0
+col.next().value // 1
+col.next().value // undefined
 array // [0, 1]
 ```
 
@@ -1586,11 +1586,12 @@ values approved by the predicate
 **Example**
 
 ```js
-let fil = filter(genFromTo(0, 5), (val) => val % 3 === 0)
+let third = (val) => val % 3 === 0
+let fil = filter(genFromTo(0, 5), third)
 
-fil() // 0
-fil() // 3
-fil() // undefined
+fil.next().value // 0
+fil.next().value // 3
+fil.next().value // undefined
 ```
 
 <a name="filterTail"></a>
@@ -1611,9 +1612,9 @@ tail-recursion to perform the filtering
 let third = (val) => val % 3 === 0
 let fil = filterTail(genFromTo(0, 5), third)
 
-fil() // 0
-fil() // 3
-fil() // undefined
+fil.next().value // 0
+fil.next().value // 3
+fil.next().value // undefined
 ```
 
 <a name="concatTwo"></a>
@@ -1633,12 +1634,12 @@ that combines the sequences
 
 ```js
 let con = concatTwo(genFromTo(0, 3), genFromTo(0, 2))
-con() // 0
-con() // 1
-con() // 2
-con() // 0
-con() // 1
-con() // undefined
+con.next().value // 0
+con.next().value // 1
+con.next().value // 2
+con.next().value // 0
+con.next().value // 1
+con.next().value // undefined
 ```
 
 <a name="concat"></a>
@@ -1657,14 +1658,14 @@ of arguments
 
 ```js
 let con = concat(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7))
-con() // 0
-con() // 1
-con() // 2
-con() // 0
-con() // 1
-col() // 5
-col() // 6
-con() // undefined
+con.next().value // 0
+con.next().value // 1
+con.next().value // 2
+con.next().value // 0
+con.next().value // 1
+con.next().value // 5
+con.next().value // 6
+con.next().value // undefined
 ```
 
 <a name="concatTail"></a>
@@ -1682,14 +1683,14 @@ tail-recursion to perform the concating
 
 ```js
 let con = concatTail(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7))
-con() // 0
-con() // 1
-con() // 2
-con() // 0
-con() // 1
-col() // 5
-col() // 6
-con() // undefined
+con.next().value // 0
+con.next().value // 1
+con.next().value // 2
+con.next().value // 0
+con.next().value // 1
+con.next().value // 5
+con.next().value // 6
+con.next().value // undefined
 ```
 
 <a name="gensymf"></a>
@@ -1710,10 +1711,10 @@ unique symbols
 let genG = gensymf('G')
 let genH = gensymf('H')
 
-genG() // 'G1'
-genH() // 'H1'
-genG() // 'G2'
-genH() // 'H2'
+genG.next().value // 'G1'
+genH.next().value // 'H1'
+genG.next().value // 'G2'
+genH.next().value // 'H2'
 ```
 
 <a name="gensymff"></a>
@@ -1736,10 +1737,10 @@ let gensymf = gensymff(inc, 0)
 let genG = gensymf('G')
 let genH = gensymf('H')
 
-genG() // 'G1'
-genH() // 'H1'
-genG() // 'G2'
-genH() // 'H2'
+genG.next().value // 'G1'
+genH.next().value // 'H1'
+genG.next().value // 'G2'
+genH.next().value // 'H2'
 ```
 
 <a name="fibonaccif"></a>
@@ -1759,13 +1760,13 @@ return the next fibonacci number
 
 ```js
 let fib = fibonaccif(0, 1)
-fib() // 0
-fib() // 1
-fib() // 1
-fib() // 2
-fib() // 3
-fib() // 5
-fib() // 8
+fib.next().value // 0
+fib.next().value // 1
+fib.next().value // 1
+fib.next().value // 2
+fib.next().value // 3
+fib.next().value // 5
+fib.next().value // 8
 ```
 
 <a name="counter"></a>

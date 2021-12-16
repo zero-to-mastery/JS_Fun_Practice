@@ -514,12 +514,11 @@ and returns a function that
 takes a callback and an
 argument</p>
 </dd>
-<dt><a href="#continuize">continuize(any)</a> ⇒ <code>function</code></dt>
+<dt><a href="#continuize">continuize(func)</a> ⇒ <code>function</code></dt>
 <dd><p>Write a function <code>continuize</code>
 that takes a function and
 returns a function that
-takes a callback and an
-argument</p>
+takes a callback and arguments</p>
 </dd>
 <dt><a href="#vector">vector()</a></dt>
 <dd><p>Make an array wrapper object
@@ -532,13 +531,13 @@ to the private array</p>
 <dd><p>Let&#39;s assume your <code>vector</code>
 implementation looks like
 something like this:</p>
-<pre>vector = () => {
-  let array = [];
+<pre>let vector = () => {
+  let array = []
   return {
     append: (v) => array.push(v),
     get: (i) => array[i],
     store: (i, v) => array[i] = v
-  };
+  }
 }</pre>
 
 <p>Can you spot any security concerns with
@@ -562,7 +561,7 @@ It will reliably deliver all
 publications to all subscribers
 in the right order.</p>
 </dd>
-<dt><a href="#mapRecurse">mapRecurse(array, predicate)</a> ⇒ <code>array</code></dt>
+<dt><a href="#mapRecurse">mapRecurse(array, callback)</a> ⇒ <code>array</code></dt>
 <dd><p>Make a function <code>mapRecurse</code> that
 performs a transformation for each
 element of a given array, recursively</p>
@@ -1291,7 +1290,7 @@ calls them both
 **Example**
 
 ```js
-composeuTwo(doubl, square)(5) // 100
+composeuTwo(doubl, square)(5) // (5 * 2)^2 = 100
 ```
 
 <a name="composeu"></a>
@@ -1309,7 +1308,7 @@ of arguments
 **Example**
 
 ```js
-composeu(doubl, square, identity, curry(add, 1, 2))(5) // (5 + 5) * (5 + 5) + 1 + 2 = 103
+composeu(doubl, square, identity, curry(add, 1, 2))(5) // (5 * 2)^2 + 1 + 2 = 103
 ```
 
 <a name="composeb"></a>
@@ -1329,7 +1328,7 @@ them both
 **Example**
 
 ```js
-composeb(addb, mulb)(2, 3, 7) // 35
+composeb(addb, mulb)(2, 3, 7) // (2 + 3) * 7 = 35
 ```
 
 <a name="composeTwo"></a>
@@ -1348,7 +1347,7 @@ function that calls them both
 **Example**
 
 ```js
-composeTwo(add, square)(2, 3, 7) // (2 + 3 + 7)^2 = 144
+composeTwo(add, square)(2, 3, 7, 5) // (2 + 3 + 7 + 5)^2 = 289
 ```
 
 <a name="compose"></a>
@@ -1375,7 +1374,7 @@ f(0, 1, 2)
 // add(0, 1, 2) -> 3
 // doubl(3) -> 6
 // fill(6) -> [ 6, 6, 6, 6, 6, 6 ]
-// max([ 6, 6, 6, 6, 6, 6 ]) -> 6
+// max(6, 6, 6, 6, 6, 6) -> 6
 ```
 
 <a name="limitb"></a>
@@ -1882,9 +1881,9 @@ object
 **Example**
 
 ```js
-JSON.stringify(m(1)) // '{"value":1,"source":"1"}'
+m(1) // {value:1, source:"1"}
 
-JSON.stringify(m(Math.PI, 'pi')) // '{"value":3.14159...,"source":"pi"}'
+m(Math.PI, 'pi') // {value:3.14159..., source:"pi"}
 ```
 
 <a name="addmTwo"></a>
@@ -1903,9 +1902,9 @@ returns an `m` object
 **Example**
 
 ```js
-JSON.stringify(addmTwo(m(3), m(4))) // '{"value":7,"source":"(3+4)"}'
+addmTwo(m(3), m(4)) // {value:7, source:"(3+4)"}
 
-JSON.stringify(addmTwo(m(1), m(Math.PI, 'pi'))) // '{"value":4.14159...,"source":"(1+pi)"}'
+addmTwo(m(1, m(Math.PI, 'pi'))) // {value:4.14159..., source:"(1+pi)"}
 ```
 
 <a name="addm"></a>
@@ -1923,7 +1922,7 @@ arguments
 **Example**
 
 ```js
-JSON.stringify(addm(m(1), m(2), m(4))) // '{"value":7,"source":"(1+2+4)"}'
+addm(m(1), m(2), m(4)) // {value:7, source:"(1+2+4)"}
 ```
 
 <a name="liftmbM"></a>
@@ -1945,9 +1944,9 @@ that acts on `m` objects
 ```js
 let addmb = liftmbM(addb, '+')
 
-JSON.stringify(addmb(m(3), m(4))) // '{"value":7,"source":"(3+4)"}'
+addmb(m(3), m(4)) // {value:7, source:"(3+4)"}
 
-JSON.stringify(liftmbM(mul, '*')(m(3), m(4))) // '{"value":12,"source":"(3*4)"}'
+liftmbM(mul, '*')(m(3), m(4)) // {value:12, source:"(3*4)"}
 ```
 
 <a name="liftmb"></a>
@@ -1969,7 +1968,7 @@ are either numbers or m objects
 ```js
 let addmb = liftmb(addb, '+')
 
-JSON.stringify(addmb(3, 4)) // '{"value":7,"source":"(3+4)"}'
+addmb(3, 4) // {value:7, source:"(3+4)"}
 ```
 
 <a name="liftm"></a>
@@ -1990,9 +1989,9 @@ arguments
 ```js
 let addm = liftm(add, '+')
 
-JSON.stringify(addm(m(3), m(4))) // '{"value":7,"source":"(3+4)"}'
+addm(m(3), m(4)) // {value:7, source:"(3+4)"}
 
-JSON.stringify(liftm(mul, '*')(m(3), m(4))) // '{"value":12,"source":"(3*4)"}'
+liftm(mul, '*')(m(3), m(4)) // {value:12, source:"(3*4)"}
 ```
 
 <a name="exp"></a>
@@ -2117,29 +2116,28 @@ argument
 **Example**
 
 ```js
-sqrtc = continuizeu(Math.sqrt)
+let sqrtc = continuizeu(Math.sqrt)
 sqrtc(console.log, 81) // logs '9'
 ```
 
 <a name="continuize"></a>
 
-## continuize(any) ⇒ <code>function</code>
+## continuize(func) ⇒ <code>function</code>
 
 Write a function `continuize`
 that takes a function and
 returns a function that
-takes a callback and an
-argument
+takes a callback and arguments
 
 | Param | Type                  |
 | ----- | --------------------- |
-| any   | <code>function</code> |
+| func  | <code>function</code> |
 
 **Example**
 
 ```js
-mullc = continuize(Math.mul)
-mulc(console.log, 81, 4, 2) // logs '648'
+let mullc = continuize(mul)
+mullc(console.log, 81, 4, 2) // logs '648'
 ```
 
 <a name="vector"></a>
@@ -2170,13 +2168,13 @@ Let's assume your `vector`
 implementation looks like
 something like this:
 
-<pre>vector = () => {
-  let array = [];
+<pre>let vector = () => {
+  let array = []
   return {
     append: (v) => array.push(v),
     get: (i) => array[i],
     store: (i, v) => array[i] = v
-  };
+  }
 }</pre>
 
 Can you spot any security concerns with
@@ -2228,22 +2226,22 @@ in the right order.
 
 ```js
 let ps = pubsub()
-ps.subscribe(log)
-ps.publish('It works!') // log('It works!')
+ps.subscribe(console.log)
+ps.publish('It works!') // logs 'It works!'
 ```
 
 <a name="mapRecurse"></a>
 
-## mapRecurse(array, predicate) ⇒ <code>array</code>
+## mapRecurse(array, callback) ⇒ <code>array</code>
 
 Make a function `mapRecurse` that
 performs a transformation for each
 element of a given array, recursively
 
-| Param     | Type                  |
-| --------- | --------------------- |
-| array     | <code>array</code>    |
-| predicate | <code>function</code> |
+| Param    | Type                  |
+| -------- | --------------------- |
+| array    | <code>array</code>    |
+| callback | <code>function</code> |
 
 **Example**
 

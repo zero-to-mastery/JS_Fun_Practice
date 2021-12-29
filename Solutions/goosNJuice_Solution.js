@@ -4,3 +4,5 @@ export const identity = (argument) => argument;
 //Write a binary function addb that takes two numbers and returns their sum
 export const addb = (a, b) => a + b;
 
+// Write a binary function subb that takes two numbers and returns their difference
+const subb = (a, b) => a - b;

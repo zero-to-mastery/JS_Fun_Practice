@@ -8,4 +8,4 @@ export const addb = (a, b) => a + b;
 export const subb = (a, b) => a - b;
 
 // Write a binary function mulb that takes two numbers and returns their product
-const mulb = (a, b) => a*b;
+export const mulb = (a, b) => a*b;

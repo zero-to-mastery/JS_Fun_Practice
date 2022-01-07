@@ -12,3 +12,6 @@ export const mulb = (a, b) => a*b;
 
 // Write a binary function minb that takes two numbers and returns the smaller one
 const minb = (a, b) => a < b ? a : b;
+
+// Write a binary function maxb that takes two numbers and returns the larger one
+const maxb = (a, b) => a > b ? a : b;

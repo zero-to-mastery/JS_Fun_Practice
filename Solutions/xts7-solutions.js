@@ -61,7 +61,7 @@ const mulRecurse = (...nums) => {
     return nums[0] * mulRecurse(...nums.slice(1))
 }
 
-git test
+
 
 
 

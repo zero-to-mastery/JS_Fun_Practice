@@ -14,5 +14,15 @@ describe("catbirdseatio_solution", () => {
       it("returns 'odd' if odd", ()=> {
           assert.equal(sol.oddOrEven(13), 'odd');
       })
+  });
+
+  describe("max", ()=> {
+      it("returns the maximum number in an array", ()=> {
+          assert(sol.max([1,56, 3, 4, 11, 69]), 69);
+      });
+
+      it("return undefined for empty array", ()=> {
+          assert(sol.max([], undefined));
+      })
   })
 });

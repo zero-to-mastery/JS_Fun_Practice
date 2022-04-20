@@ -1,4 +1,4 @@
-*{
+/* *{
     margin:0;
     padding:0;
 }
@@ -121,4 +121,4 @@ div:nth-child(7){
     100%{
         transform: translateY(-500px) rotate(360deg);
     }
-}
+} */

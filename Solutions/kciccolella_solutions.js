@@ -3,9 +3,14 @@ function identity(arg) {
   return arg;
 }
 
+// Write a binary function addb that takes two numbers and returns their sum
+function addb(num1, num2) {
+  return num1 + num2;
+}
+
 module.exports = {
   identity, 
-  // addb, 
+  addb, 
   // subb, 
   // mulb, 
   // minb, 

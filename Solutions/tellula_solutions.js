@@ -311,42 +311,31 @@ let limit =
 }
 
 // Write a function genFrom that produces a generator that will produces a series of values
-// let genFrom = (x) => {
-
-//  yield x;
-//  yield x++;
-//  return x++;
-// };
-
-// let index = genFrom(0)
-
-// console.log(index.next().value); // 1
-// console.log(index.next().value);
-// console.log(index.next().value);  
 function* genFrom(i) {
   while (true)
     yield i++;
 }
 
 // Write a function genTo that takes a generator and an end limit, and returns a generator that will produce numbers up to that limit
-function genTo(fn,lmt){
-  return ()=>{
-    let value = fn.next().value;
-    if(value<lmt){
-    return value
+let genTo = (geneFunc,lmt) => {
+  return () => {
+    let count = geneFunc.next().value;
+    if(count < lmt) {
+    return count
     }
-    return undefined
+    return 
     } 
 };
 
-let index = genTo(genFrom(1), 3)
-console.log(index())
-console.log(index())
-console.log(index())
+// Write a function genFromTo that produces a generator that will produce values in a range
+function genFromTo(start,end){
+  function* count(){
+      while(start<end)
+      yield start++
+      }
+  return () => count().next().value;
+}
 
-// index() // 1
-// index() // 2
-// index() // undefined
 
 
 
@@ -464,11 +453,11 @@ module.exports = {
   composeb,
   composeTwo,
   compose,
-  // limitb,
-  // limit,
-  // genFrom,
-  // genTo,
-  // genFromTo,
+  limitb,
+  limit,
+  genFrom,
+  genTo,
+  genFromTo,
   // elementGen,
   // element,
   // collect,

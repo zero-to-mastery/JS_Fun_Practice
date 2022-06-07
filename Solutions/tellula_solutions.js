@@ -294,9 +294,6 @@ let limitb =
   (binaryFunc, lmt, count = 0) =>
   (x, y) => {
     count++;
-    console.log("x", x);
-    console.log("y", y);
-    console.log("count", count);
     return count <= lmt ? binaryFunc(x, y) : undefined ;
   };
 
@@ -305,8 +302,6 @@ let limit =
 (func, lmt, count = 0) => 
 (...args) => {
   count++;
-  console.log('args', ...args);
-  console.log("count", count);
   return count <= lmt ? func(...args) : undefined ;
 }
 
@@ -335,14 +330,28 @@ function genFromTo(start,end){
       }
   return () => count().next().value;
 }
+// Write a function elementGen that takes an array and a generator and returns a generator that will produce elements from the array
+// let elementGen = (array, geneFunc) => () => array[geneFunc()]
 
 
+// let index = genFromTo(1, 3)
+// console.log(index()) // 0
+// console.log(index()) // 1
+// console.log(index()) // 2
+// console.log(index())// undefined
+
+// console.log(genFromTo(1,3)())
+// console.log(genFromTo(1,3)())
+// console.log(genFromTo(1,3)())
+
+// console.log(['a', 'b', 'c', 'd'][1,2,3])
 
 
+// let ele = elementGen(['a', 'b', 'c', 'd'], genFromTo(1, 3))
 
-
-
-
+// console.log(ele()) // 'b'
+// console.log(ele()) // 'c'
+// console.log(ele()) // undefined
 
 
 

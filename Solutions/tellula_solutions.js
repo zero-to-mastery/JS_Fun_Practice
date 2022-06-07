@@ -294,116 +294,70 @@ let limitb =
   (binaryFunc, lmt, count = 0) =>
   (x, y) => {
     count++;
-    return count <= lmt ? binaryFunc(x, y) : undefined ;
+    return count <= lmt ? binaryFunc(x, y) : undefined;
   };
 
 // Write a function limit that is generalized for any amount of arguments
 let limit =
-(func, lmt, count = 0) => 
-(...args) => {
-  count++;
-  return count <= lmt ? func(...args) : undefined ;
-}
+  (func, lmt, count = 0) =>
+  (...args) => {
+    count++;
+    return count <= lmt ? func(...args) : undefined;
+  };
 
 // Write a function genFrom that produces a generator that will produces a series of values
 function* genFrom(i) {
-  while (true)
-    yield i++;
+  while (true) yield i++;
 }
 
 // Write a function genTo that takes a generator and an end limit, and returns a generator that will produce numbers up to that limit
-let genTo = (geneFunc,lmt) => {
+let genTo = (geneFunc, lmt) => {
   return () => {
     let count = geneFunc.next().value;
-    if(count < lmt) {
-    return count
+    if (count < lmt) {
+      return count;
     }
-    return 
-    } 
+    return;
+  };
 };
 
 // Write a function genFromTo that produces a generator that will produce values in a range
-function genFromTo(start,end){
-  function* count(){
-      while(start<end)
-      yield start++
-      }
+function genFromTo(start, end) {
+  function* count() {
+    while (start < end) yield start++;
+  }
   return () => count().next().value;
 }
+
 // Write a function elementGen that takes an array and a generator and returns a generator that will produce elements from the array
-// let elementGen = (array, geneFunc) => () => array[geneFunc()]
+let elementGen = (array, geneFunc) => () => array[geneFunc()];
 
+// Write a function element that is a modified elementGen function so that the generator argument is optional. If a generator is not provided,
+// then each of the elements of the array will be produced.
+let element = (array, geneFunc) => {
+  function* index() {
+    let index = 0;
+    while (true) yield index++;
+  }
+  if (geneFunc === undefined) {
+    let index = index();
+    return () => array[index.next().value];
+  } else {
+    return () => array[geneFunc()];
+  }
+};
 
-// let index = genFromTo(1, 3)
-// console.log(index()) // 0
-// console.log(index()) // 1
-// console.log(index()) // 2
-// console.log(index())// undefined
+// Write a function collect that takes a generator and an array and produces a function that will collect the results in the array
+let collect = (geneFunc, array) => {
+return function () {
+  let content = geneFunc()
+  if (content !== undefined) {
+    array.push(content)
+    return content
+  }
 
-// console.log(genFromTo(1,3)())
-// console.log(genFromTo(1,3)())
-// console.log(genFromTo(1,3)())
-
-// console.log(['a', 'b', 'c', 'd'][1,2,3])
-
-
-// let ele = elementGen(['a', 'b', 'c', 'd'], genFromTo(1, 3))
-
-// console.log(ele()) // 'b'
-// console.log(ele()) // 'c'
-// console.log(ele()) // undefined
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+} 
+}
 
 
 
@@ -467,9 +421,9 @@ module.exports = {
   genFrom,
   genTo,
   genFromTo,
-  // elementGen,
-  // element,
-  // collect,
+  elementGen,
+  element,
+  collect,
   // filter,
   // filterTail,
   // concatTwo,

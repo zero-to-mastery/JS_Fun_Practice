@@ -126,7 +126,7 @@ let accRecurse = (func, initial) => {
 
 // Write a function fill that takes a number and returns an array with that many numbers equal to the given number
 let fill = (num) => {
-  let array = [];
+  const array = [];
   for (let i = 0; i < num; i++) {
     array.push(num);
   }

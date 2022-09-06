@@ -10,7 +10,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 
 ### To test the functions:
 1. Run <code>npm install</code> to install the dependencies (need node.js for npm).
-2. Change <code>filename</code> in <code>test/tests.js</code> to the name of your solution file.
+2. Change <code>filename</code> in <code>test/tests.js</code> to the name of your solution file (optional).
 3. Make sure your solution file is in the <code>Solutions</code> folder.
 4. Make sure your function names match the ones listed below as you're coding them.
 5. At the bottom of your solution file, add

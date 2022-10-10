@@ -514,12 +514,11 @@ and returns a function that
 takes a callback and an
 argument</p>
 </dd>
-<dt><a href="#continuize">continuize(any)</a> ⇒ <code>function</code></dt>
+<dt><a href="#continuize">continuize(func)</a> ⇒ <code>function</code></dt>
 <dd><p>Write a function <code>continuize</code>
 that takes a function and
 returns a function that
-takes a callback and an
-argument</p>
+takes a callback and arguments</p>
 </dd>
 <dt><a href="#vector">vector()</a></dt>
 <dd><p>Make an array wrapper object
@@ -532,13 +531,13 @@ to the private array</p>
 <dd><p>Let&#39;s assume your <code>vector</code>
 implementation looks like
 something like this:</p>
-<pre>vector = () => {
-  let array = [];
+<pre>let vector = () => {
+  let array = []
   return {
     append: (v) => array.push(v),
     get: (i) => array[i],
     store: (i, v) => array[i] = v
-  };
+  }
 }</pre>
 
 <p>Can you spot any security concerns with
@@ -562,7 +561,7 @@ It will reliably deliver all
 publications to all subscribers
 in the right order.</p>
 </dd>
-<dt><a href="#mapRecurse">mapRecurse(array, predicate)</a> ⇒ <code>array</code></dt>
+<dt><a href="#mapRecurse">mapRecurse(array, callback)</a> ⇒ <code>array</code></dt>
 <dd><p>Make a function <code>mapRecurse</code> that
 performs a transformation for each
 element of a given array, recursively</p>
@@ -1291,7 +1290,7 @@ calls them both
 **Example**
 
 ```js
-composeuTwo(doubl, square)(5) // 100
+composeuTwo(doubl, square)(5) // (5 * 2)^2 = 100
 ```
 
 <a name="composeu"></a>
@@ -1309,7 +1308,7 @@ of arguments
 **Example**
 
 ```js
-composeu(doubl, square, identity, curry(add, 1, 2))(5) // (5 + 5) * (5 + 5) + 1 + 2 = 103
+composeu(doubl, square, identity, curry(add, 1, 2))(5) // (5 * 2)^2 + 1 + 2 = 103
 ```
 
 <a name="composeb"></a>
@@ -1329,7 +1328,7 @@ them both
 **Example**
 
 ```js
-composeb(addb, mulb)(2, 3, 7) // 35
+composeb(addb, mulb)(2, 3, 7) // (2 + 3) * 7 = 35
 ```
 
 <a name="composeTwo"></a>
@@ -1348,7 +1347,7 @@ function that calls them both
 **Example**
 
 ```js
-composeTwo(add, square)(2, 3, 7) // (2 + 3 + 7)^2 = 144
+composeTwo(add, square)(2, 3, 7, 5) // (2 + 3 + 7 + 5)^2 = 289
 ```
 
 <a name="compose"></a>
@@ -1375,7 +1374,7 @@ f(0, 1, 2)
 // add(0, 1, 2) -> 3
 // doubl(3) -> 6
 // fill(6) -> [ 6, 6, 6, 6, 6, 6 ]
-// max([ 6, 6, 6, 6, 6, 6 ]) -> 6
+// max(6, 6, 6, 6, 6, 6) -> 6
 ```
 
 <a name="limitb"></a>
@@ -1427,7 +1426,7 @@ addLmt(3, 5, 9, 2) // undefined
 
 Write a function `genFrom` that
 produces a generator that will
-produces a series of values
+produces a series of values. Follows the [iterator protocol](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Iteration_protocols#the_iterator_protocol) for the returned format.
 
 | Param | Type                |
 | ----- | ------------------- |
@@ -1463,9 +1462,9 @@ to that limit
 ```js
 let index = genTo(genFrom(1), 3)
 
-index() // 1
-index() // 2
-index() // undefined
+index.next().value // 1
+index.next().value // 2
+index.next().value // undefined
 ```
 
 <a name="genFromTo"></a>
@@ -1485,10 +1484,10 @@ produce values in a range
 
 ```js
 let index = genFromTo(0, 3)
-index() // 0
-index() // 1
-index() // 2
-index() // undefined
+index.next().value // 0
+index.next().value // 1
+index.next().value // 2
+index.next().value // undefined
 ```
 
 <a name="elementGen"></a>
@@ -1510,9 +1509,9 @@ produce elements from the array
 ```js
 let ele = elementGen(['a', 'b', 'c', 'd'], genFromTo(1, 3))
 
-ele() // 'b'
-ele() // 'c'
-ele() // undefined
+ele.next().value // 'b'
+ele.next().value // 'c'
+ele.next().value // undefined
 ```
 
 <a name="element"></a>
@@ -1536,11 +1535,11 @@ will be produced.
 ```js
 let ele = element(['a', 'b', 'c', 'd'])
 
-ele() // 'a'
-ele() // 'b'
-ele() // 'c'
-ele() // 'd'
-ele() // undefined
+ele.next().value // 'a'
+ele.next().value // 'b'
+ele.next().value // 'c'
+ele.next().value // 'd'
+ele.next().value // undefined
 ```
 
 <a name="collect"></a>
@@ -1563,9 +1562,9 @@ in the array
 let array = []
 let col = collect(genFromTo(0, 2), array)
 
-col() // 0
-col() // 1
-col() // undefined
+col.next().value // 0
+col.next().value // 1
+col.next().value // undefined
 array // [0, 1]
 ```
 
@@ -1586,11 +1585,12 @@ values approved by the predicate
 **Example**
 
 ```js
-let fil = filter(genFromTo(0, 5), (val) => val % 3 === 0)
+let third = (val) => val % 3 === 0
+let fil = filter(genFromTo(0, 5), third)
 
-fil() // 0
-fil() // 3
-fil() // undefined
+fil.next().value // 0
+fil.next().value // 3
+fil.next().value // undefined
 ```
 
 <a name="filterTail"></a>
@@ -1611,9 +1611,9 @@ tail-recursion to perform the filtering
 let third = (val) => val % 3 === 0
 let fil = filterTail(genFromTo(0, 5), third)
 
-fil() // 0
-fil() // 3
-fil() // undefined
+fil.next().value // 0
+fil.next().value // 3
+fil.next().value // undefined
 ```
 
 <a name="concatTwo"></a>
@@ -1633,12 +1633,12 @@ that combines the sequences
 
 ```js
 let con = concatTwo(genFromTo(0, 3), genFromTo(0, 2))
-con() // 0
-con() // 1
-con() // 2
-con() // 0
-con() // 1
-con() // undefined
+con.next().value // 0
+con.next().value // 1
+con.next().value // 2
+con.next().value // 0
+con.next().value // 1
+con.next().value // undefined
 ```
 
 <a name="concat"></a>
@@ -1657,14 +1657,14 @@ of arguments
 
 ```js
 let con = concat(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7))
-con() // 0
-con() // 1
-con() // 2
-con() // 0
-con() // 1
-col() // 5
-col() // 6
-con() // undefined
+con.next().value // 0
+con.next().value // 1
+con.next().value // 2
+con.next().value // 0
+con.next().value // 1
+con.next().value // 5
+con.next().value // 6
+con.next().value // undefined
 ```
 
 <a name="concatTail"></a>
@@ -1682,14 +1682,14 @@ tail-recursion to perform the concating
 
 ```js
 let con = concatTail(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7))
-con() // 0
-con() // 1
-con() // 2
-con() // 0
-con() // 1
-col() // 5
-col() // 6
-con() // undefined
+con.next().value // 0
+con.next().value // 1
+con.next().value // 2
+con.next().value // 0
+con.next().value // 1
+con.next().value // 5
+con.next().value // 6
+con.next().value // undefined
 ```
 
 <a name="gensymf"></a>
@@ -1710,10 +1710,10 @@ unique symbols
 let genG = gensymf('G')
 let genH = gensymf('H')
 
-genG() // 'G1'
-genH() // 'H1'
-genG() // 'G2'
-genH() // 'H2'
+genG.next().value // 'G1'
+genH.next().value // 'H1'
+genG.next().value // 'G2'
+genH.next().value // 'H2'
 ```
 
 <a name="gensymff"></a>
@@ -1736,10 +1736,10 @@ let gensymf = gensymff(inc, 0)
 let genG = gensymf('G')
 let genH = gensymf('H')
 
-genG() // 'G1'
-genH() // 'H1'
-genG() // 'G2'
-genH() // 'H2'
+genG.next().value // 'G1'
+genH.next().value // 'H1'
+genG.next().value // 'G2'
+genH.next().value // 'H2'
 ```
 
 <a name="fibonaccif"></a>
@@ -1759,13 +1759,13 @@ return the next fibonacci number
 
 ```js
 let fib = fibonaccif(0, 1)
-fib() // 0
-fib() // 1
-fib() // 1
-fib() // 2
-fib() // 3
-fib() // 5
-fib() // 8
+fib.next().value // 0
+fib.next().value // 1
+fib.next().value // 1
+fib.next().value // 2
+fib.next().value // 3
+fib.next().value // 5
+fib.next().value // 8
 ```
 
 <a name="counter"></a>
@@ -1881,9 +1881,9 @@ object
 **Example**
 
 ```js
-JSON.stringify(m(1)) // '{"value":1,"source":"1"}'
+m(1) // {value:1, source:"1"}
 
-JSON.stringify(m(Math.PI, 'pi')) // '{"value":3.14159...,"source":"pi"}'
+m(Math.PI, 'pi') // {value:3.14159..., source:"pi"}
 ```
 
 <a name="addmTwo"></a>
@@ -1902,9 +1902,9 @@ returns an `m` object
 **Example**
 
 ```js
-JSON.stringify(addmTwo(m(3), m(4))) // '{"value":7,"source":"(3+4)"}'
+addmTwo(m(3), m(4)) // {value:7, source:"(3+4)"}
 
-JSON.stringify(addmTwo(m(1), m(Math.PI, 'pi'))) // '{"value":4.14159...,"source":"(1+pi)"}'
+addmTwo(m(1, m(Math.PI, 'pi'))) // {value:4.14159..., source:"(1+pi)"}
 ```
 
 <a name="addm"></a>
@@ -1922,7 +1922,7 @@ arguments
 **Example**
 
 ```js
-JSON.stringify(addm(m(1), m(2), m(4))) // '{"value":7,"source":"(1+2+4)"}'
+addm(m(1), m(2), m(4)) // {value:7, source:"(1+2+4)"}
 ```
 
 <a name="liftmbM"></a>
@@ -1944,9 +1944,9 @@ that acts on `m` objects
 ```js
 let addmb = liftmbM(addb, '+')
 
-JSON.stringify(addmb(m(3), m(4))) // '{"value":7,"source":"(3+4)"}'
+addmb(m(3), m(4)) // {value:7, source:"(3+4)"}
 
-JSON.stringify(liftmbM(mul, '*')(m(3), m(4))) // '{"value":12,"source":"(3*4)"}'
+liftmbM(mul, '*')(m(3), m(4)) // {value:12, source:"(3*4)"}
 ```
 
 <a name="liftmb"></a>
@@ -1968,7 +1968,7 @@ are either numbers or m objects
 ```js
 let addmb = liftmb(addb, '+')
 
-JSON.stringify(addmb(3, 4)) // '{"value":7,"source":"(3+4)"}'
+addmb(3, 4) // {value:7, source:"(3+4)"}
 ```
 
 <a name="liftm"></a>
@@ -1989,9 +1989,9 @@ arguments
 ```js
 let addm = liftm(add, '+')
 
-JSON.stringify(addm(m(3), m(4))) // '{"value":7,"source":"(3+4)"}'
+addm(m(3), m(4)) // {value:7, source:"(3+4)"}
 
-JSON.stringify(liftm(mul, '*')(m(3), m(4))) // '{"value":12,"source":"(3*4)"}'
+liftm(mul, '*')(m(3), m(4)) // {value:12, source:"(3*4)"}
 ```
 
 <a name="exp"></a>
@@ -2116,29 +2116,28 @@ argument
 **Example**
 
 ```js
-sqrtc = continuizeu(Math.sqrt)
+let sqrtc = continuizeu(Math.sqrt)
 sqrtc(console.log, 81) // logs '9'
 ```
 
 <a name="continuize"></a>
 
-## continuize(any) ⇒ <code>function</code>
+## continuize(func) ⇒ <code>function</code>
 
 Write a function `continuize`
 that takes a function and
 returns a function that
-takes a callback and an
-argument
+takes a callback and arguments
 
 | Param | Type                  |
 | ----- | --------------------- |
-| any   | <code>function</code> |
+| func  | <code>function</code> |
 
 **Example**
 
 ```js
-mullc = continuize(Math.mul)
-mulc(console.log, 81, 4, 2) // logs '648'
+let mullc = continuize(mul)
+mullc(console.log, 81, 4, 2) // logs '648'
 ```
 
 <a name="vector"></a>
@@ -2169,13 +2168,13 @@ Let's assume your `vector`
 implementation looks like
 something like this:
 
-<pre>vector = () => {
-  let array = [];
+<pre>let vector = () => {
+  let array = []
   return {
     append: (v) => array.push(v),
     get: (i) => array[i],
     store: (i, v) => array[i] = v
-  };
+  }
 }</pre>
 
 Can you spot any security concerns with
@@ -2227,22 +2226,22 @@ in the right order.
 
 ```js
 let ps = pubsub()
-ps.subscribe(log)
-ps.publish('It works!') // log('It works!')
+ps.subscribe(console.log)
+ps.publish('It works!') // logs 'It works!'
 ```
 
 <a name="mapRecurse"></a>
 
-## mapRecurse(array, predicate) ⇒ <code>array</code>
+## mapRecurse(array, callback) ⇒ <code>array</code>
 
 Make a function `mapRecurse` that
 performs a transformation for each
 element of a given array, recursively
 
-| Param     | Type                  |
-| --------- | --------------------- |
-| array     | <code>array</code>    |
-| predicate | <code>function</code> |
+| Param    | Type                  |
+| -------- | --------------------- |
+| array    | <code>array</code>    |
+| callback | <code>function</code> |
 
 **Example**
 

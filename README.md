@@ -14,7 +14,7 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 3. Make sure your solution file is in the <code>Solutions</code> folder.
 4. Make sure your function names match the ones listed below as you're coding them.
 5. At the bottom of your solution file, add
-```javascript
+```js
 module.exports = {
     identity,
     addb,
@@ -243,7 +243,9 @@ invocations</p>
 <dd><p>Write a <a href="https://en.wikipedia.org/wiki/Pure_function">pure</a> function <code>pure</code> that
 is a wrapper arround the impure
 function <code>impure</code></p>
-<pre>function impure(x) {
+
+```js
+function impure(x) {
   y++;
   z = x * y;
 }
@@ -254,7 +256,8 @@ impure(20);
 z; // 120
 
 impure(25);
-z; // 175</pre></dd>
+z; // 175
+```
 
 <dt><a href="#curryb">curryb(binary, a)</a> ⇒ <code>function</code></dt>
 <dd><p>Write a function <code>curryb</code> that
@@ -533,14 +536,17 @@ to the private array</p>
 <dd><p>Let&#39;s assume your <code>vector</code>
 implementation looks like
 something like this:</p>
-<pre>let vector = () => {
+
+```js
+let vector = () => {
   let array = []
   return {
     append: (v) => array.push(v),
     get: (i) => array[i],
     store: (i, v) => array[i] = v
   }
-}</pre>
+}
+```
 
 <p>Can you spot any security concerns with
 this approach? Mainly, can we get access
@@ -1070,7 +1076,8 @@ Write a [pure](https://en.wikipedia.org/wiki/Pure_function) function `pure` that
 is a wrapper arround the impure
 function `impure`
 
-<pre>function impure(x) {
+```js
+function impure(x) {
   y++;
   z = x * y;
 }
@@ -1081,7 +1088,8 @@ impure(20);
 z; // 120
 
 impure(25);
-z; // 175</pre>
+z; // 175
+```
 
 **Returns**: <code>array</code> - an array containing `y` and `z`
 
@@ -2170,14 +2178,16 @@ Let's assume your `vector`
 implementation looks like
 something like this:
 
-<pre>let vector = () => {
+```js
+let vector = () => {
   let array = []
   return {
     append: (v) => array.push(v),
     get: (i) => array[i],
     store: (i, v) => array[i] = v
   }
-}</pre>
+}
+```
 
 Can you spot any security concerns with
 this approach? Mainly, can we get access

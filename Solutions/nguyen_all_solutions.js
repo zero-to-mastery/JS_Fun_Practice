@@ -92,15 +92,15 @@ const composeuTwo = (unary1, unary2) => (x) => unary2(unary1(x));
 const composeu = (...funcs) => (x) => funcs.reduce((acc, func) => func(acc), x);
 
 // Write a function accPartial that takes in a function, a start index, and an end index, and returns a function that accumulates a subset of its arguments by applying the given function to all elements between start and end.
-// const accPartial = (func, start, end) => ;
+const accPartial = (func, start, end) => (...nums) => { nums.splice(start, end - start, func(...nums.slice(start, end))); return nums; };
 
 // Write a function accRecurse that does what acc does but uses recursion
 const accRecurse = (func, initial) => (...nums) => nums.length <= 1 ? initial + nums.pop() : nums.pop() + accRecurse(func, initial)(...nums);
 
 // Write a function fill that takes a number and returns an array with that many numbers equal to the given number
-const fill = (num) => Array.from({length: 3}, () => num);
+const fill = (num) => Array.from({ length: 3 }, () => num);
 
 module.exports = {
     identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max, addRecurse, mulRecurse, minRecurse, maxRecurse, not, acc, addf, identityf,
-    liftf, curryb, curry, inc, twiceUnary, doubl, square, twice, reverseb, reverse, composeuTwo, composeu, accRecurse, fill
+    liftf, curryb, curry, inc, twiceUnary, doubl, square, twice, reverseb, reverse, composeuTwo, composeu, accRecurse, fill, accPartial
 }

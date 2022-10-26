@@ -14,7 +14,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 3. Make sure your solution file is in the <code>Solutions</code> folder.
 4. Make sure your function names match the ones listed below as you're coding them.
 5. At the bottom of your solution file, add
-<code>module.exports = {
+```javascript
+module.exports = {
     identity,
     addb,
     subb,
@@ -94,7 +95,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
     pubsub,
     mapRecurse,
     filterRecurse,
-};</code>
+};
+```
 
 6. You can comment out any function names in the <code>module.exports</code> that you haven't written yet, but a lot of the tests depend on previous functions to run properly so it's safer to write the functions in order.
 7. Finally, <code>npm run test</code> to run the tests.

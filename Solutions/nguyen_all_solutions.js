@@ -98,9 +98,34 @@ const accPartial = (func, start, end) => (...nums) => { nums.splice(start, end -
 const accRecurse = (func, initial) => (...nums) => nums.length <= 1 ? initial + nums.pop() : nums.pop() + accRecurse(func, initial)(...nums);
 
 // Write a function fill that takes a number and returns an array with that many numbers equal to the given number
-const fill = (num) => Array.from({ length: 3 }, () => num);
+const fill = (num) => Array.from({ length: num }, () => num);
+
+// Write a function composeb that takes two binary functions and returns a function that calls them both
+const composeb = (binary1, binary2) => (a, b, c) => binary2(binary1(a, b), c);
+
+// Write a function composeTwo that takes two functions and returns a function that calls them both
+const composeTwo = (func1, func2) => (...nums) => func2(func1(...nums));
+
+// Write a function compose that takes any amount of functions and returns a function that takes any amount of arguments and gives them to the first function, then that result to the second function and so on
+const compose = (...funcs) => (...nums) => funcs.reduce((prevValue, func) => Array.isArray(prevValue) ? func(...prevValue) : func(prevValue), nums);
+
+// Write a function fillRecurse that does what fill does but uses recursion
+const fillRecurse = (num) => {
+    function fillArray(n, i, a) {
+        a.push(i);
+        return a.length < n ? fillArray(n, i, a) : a;
+    }
+    return fillArray(num, num, []);
+}
+
+// Write a function set that is given a list of arguments and returns an array with all duplicates removed
+const set = (...args) => Array.from(new Set(args));
+
+// Write a pure function pure that is a wrapper arround the impure function impure
+const pure = (x, y) => Array.from(new Set(args));
 
 module.exports = {
     identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max, addRecurse, mulRecurse, minRecurse, maxRecurse, not, acc, addf, identityf,
-    liftf, curryb, curry, inc, twiceUnary, doubl, square, twice, reverseb, reverse, composeuTwo, composeu, accRecurse, fill, accPartial
+    liftf, curryb, curry, inc, twiceUnary, doubl, square, twice, reverseb, reverse, composeuTwo, composeu, accRecurse, fill, accPartial,
+    composeb, composeTwo, compose, fillRecurse, set
 }

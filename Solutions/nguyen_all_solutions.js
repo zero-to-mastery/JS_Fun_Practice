@@ -122,10 +122,68 @@ const fillRecurse = (num) => {
 const set = (...args) => Array.from(new Set(args));
 
 // Write a pure function pure that is a wrapper arround the impure function impure
-const pure = (x, y) => Array.from(new Set(args));
+const pure = (x, y) => {
+    let z;
+    function impure(x) {
+        y++;
+        z = x * y;
+    }
+    impure(x);
+    return [y, z]
+}
+
+// Write a function limitb that allows a binary function to be called a limited number of times
+const limitb = (binary, lmt) => (a, b) => lmt-- > 0 ? binary(a, b) : undefined;
+
+// Write a function limit that is generalized for any amount of arguments
+const limit = (func, lmt) => (...nums) => lmt-- > 0 ? func(...nums) : undefined;
+
+// Write a function genFrom that produces a generator that will produces a series of values. Follows the iterator protocol for the returned format.
+const genFrom = (x) => ({ next: () => ({ value: x++ }) })
+
+// Write a function genTo that takes a generator and an end limit, and returns a generator that will produce numbers up to that limit
+const genTo = (gen, lmt) => ({
+    next: () => {
+        x = gen.next().value
+        return { value: x < lmt ? x : undefined }
+    }
+})
+
+// Write a function genFromTo that produces a generator that will produce values in a range
+const genFromTo = (start, end) => genTo(genFrom(start), end);
+
+// Write a function elementGen that takes an array and a generator and returns a generator that will produce elements from the array
+const elementGen = (array, gen) => ({
+    next: () => {
+        let i = gen.next().value;
+        return {
+            value: i < 0 || i > array.length - 1 ? undefined : array[i]
+        }
+    }
+})
+
+// Write a function element that is a modified elementGen function so that the generator argument is optional. If a generator is not provided, then each of the elements of the array will be produced.
+const element = (array, gen = genFromTo(0, array.length)) => elementGen(array, gen)
+
+// Write a function filter that takes a generator and a predicate and produces a generator that produces only the values approved by the predicate
+const filter = (gen, predicate) => ({
+    next: () => {
+        let a = gen.next().value;
+        while (a !== undefined) {
+            if (predicate(a))
+                return {
+                    value: a
+                }
+            a = gen.next().value;
+        }
+        return {
+            value: undefined
+        }
+    }
+})
 
 module.exports = {
     identity, addb, subb, mulb, minb, maxb, add, sub, mul, min, max, addRecurse, mulRecurse, minRecurse, maxRecurse, not, acc, addf, identityf,
     liftf, curryb, curry, inc, twiceUnary, doubl, square, twice, reverseb, reverse, composeuTwo, composeu, accRecurse, fill, accPartial,
-    composeb, composeTwo, compose, fillRecurse, set
+    composeb, composeTwo, compose, fillRecurse, set, pure, limitb, limit, genFrom, genTo, genFromTo, elementGen, element, filter
 }

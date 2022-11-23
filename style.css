@@ -23,6 +23,7 @@ li{
 li>a{
     text-decoration: none;
     color:inherit;
+    list-style: none;
 }
 .push{
     margin-left:auto;

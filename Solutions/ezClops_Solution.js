@@ -83,10 +83,12 @@ function max(...num) {
 /*Write a function addRecurse that is the generalized add function but uses recursion*/
 function addRecurse(...num) {
     const array = [...num];
-    const array2 = array[0];
     let sum = 0;
-    let value = array2.shift();
-    
+    const array2 = [...array[0]];
+    if (array2.length > 0) {
+        let n = array2.shift();
+        sum = n + addRecurse(array2);
+    }
     return sum;
 }
 
@@ -101,5 +103,6 @@ module.exports = {
     sub,
     mul,
     min,
-    max
+    max,
+    addRecurse
 };

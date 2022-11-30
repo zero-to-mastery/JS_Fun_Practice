@@ -91,7 +91,30 @@ function addRecurse(...num) {
     }
     return sum;
 }
+/*Write a function mulRecurse that is the generalized mul function but uses recursion*/
+function mulRecurse(...num) {
+    const array = [...num];
+    const array2 = [...array[0]];
+    let prod = 1;
+    if (array2.length > 0) {
+        let n = array2.shift();
+        prod = n * mulRecurse(array2);
+    }
+    return prod;
+}
+/*Write a function minRecurse that is the generalized min function but uses recursion*/
+function minRecurse(...num) {
+    const array = [...num];
+    const array2 = [...array[0]];
+    let min = array2[0];
+    console.log(array);
+}
+/*
+[1, 2, 4]
+if (1 < minRecurse(arr
 
+
+*/
 
 module.exports = {
     identity,
@@ -104,5 +127,6 @@ module.exports = {
     mul,
     min,
     max,
-    addRecurse
+    addRecurse,
+    mulRecurse
 };

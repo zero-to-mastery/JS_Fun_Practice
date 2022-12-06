@@ -104,18 +104,40 @@ function mulRecurse(...num) {
 }
 /*Write a function minRecurse that is the generalized min function but uses recursion*/
 function minRecurse(...num) {
-    const array = [...num];
-    const array2 = [...array[0]];
+    const array = num[0];
+    const array2 = [...array];
     let min = array2[0];
-    console.log(array);
+
+    if (array2.length === 1) {return min}
+    array2.shift();
+    let newMin = minRecurse(array2);
+    if (min > newMin) {min = newMin}
+    
+    return min;
 }
-/*
-[1, 2, 4]
-if (1 < minRecurse(arr
+/*Write a function maxRecurse that is the generalized max function but uses recursion*/
+function maxRecurse(...num) {
+    const array = num[0];
+    const array2 = [...array];
+    let max = array2[0];
 
-
-*/
-
+    if (array2.length === 1) {return max}
+    array2.shift();
+    let newMax = maxRecurse(array2);
+    if (max < newMax) {max = newMax}
+    
+    return max;    
+}
+//Write a function not that takes a function and returns the negation of its result
+function not(func) {
+    if (func === true) {
+        return false;
+    }else{return true}
+}
+/*Write a function acc that takes a function and an initial value and returns a function that runs the initial function on each argument, accumulating the result*/
+function acc(func, initial) {
+    
+}
 module.exports = {
     identity,
     addb,
@@ -128,5 +150,8 @@ module.exports = {
     min,
     max,
     addRecurse,
-    mulRecurse
+    mulRecurse,
+    minRecurse,
+    maxRecurse,
+    not
 };

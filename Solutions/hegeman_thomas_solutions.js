@@ -212,6 +212,54 @@ const composeu =
   (val) =>
     funcs.reduce((acc, func) => func(acc), val);
 
+const composeb = (binary1, binary2) => (a, b, c) => binary2(c, binary1(a, b));
+
+const composeTwo =
+  (func1, func2) =>
+  (...vals) =>
+    func2(func1(vals));
+
+const compose =
+  (...funcs) =>
+  (...vals) =>
+    funcs.reduce(
+      (acc, func) => (Array.isArray(acc) ? func(...acc) : func(acc)),
+      vals
+    );
+
+const limitb = (binary, lmt) => (a, b) => {
+  if (lmt > 0) {
+    --lmt;
+    return binary(a, b);
+  }
+  return undefined;
+};
+
+const limit =
+  (func, lmt) =>
+  (...vals) => {
+    if (lmt > 0) {
+      --lmt;
+      return func(...vals);
+    }
+
+    return undefined;
+  };
+
+function* genFrom(x) {
+  yield i;
+  yield i + 1;
+}
+
+const genTo = (gen, lmt) => {
+  if (lmt > 0) {
+    --lmt;
+    console.log(lmt);
+    return gen;
+  }
+  return undefined;
+};
+
 module.exports = {
   identity,
   addb,
@@ -257,39 +305,39 @@ module.exports = {
   limit,
   genFrom,
   genTo,
-  genFromTo,
-  elementGen,
-  element,
-  collect,
-  filter,
-  filterTail,
-  concatTwo,
-  concat,
-  concatTail,
-  gensymf,
-  gensymff,
-  fibonaccif,
-  counter,
-  revocableb,
-  revocable,
-  extract,
-  m,
-  addmTwo,
-  addm,
-  liftmbM,
-  liftmb,
-  liftm,
-  exp,
-  expn,
-  addg,
-  liftg,
-  arrayg,
-  continuizeu,
-  continuize,
-  vector,
-  exploitVector,
-  vectorSafe,
-  pubsub,
-  mapRecurse,
-  filterRecurse,
 };
+// genFromTo,
+// elementGen,
+// element,
+// collect,
+// filter,
+// filterTail,
+// concatTwo,
+// concat,
+// concatTail,
+// gensymf,
+// gensymff,
+// fibonaccif,
+// counter,
+// revocableb,
+// revocable,
+// extract,
+// m,
+// addmTwo,
+// addm,
+// liftmbM,
+// liftmb,
+// liftm,
+// exp,
+// expn,
+// addg,
+// liftg,
+// arrayg,
+// continuizeu,
+// continuize,
+// vector,
+// exploitVector,
+// vectorSafe,
+// pubsub,
+// mapRecurse,
+// filterRecurse,

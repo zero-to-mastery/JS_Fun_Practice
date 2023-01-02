@@ -153,6 +153,65 @@ const set = (...vals) => {
 
 const identityf = (x) => () => x;
 
+const addf = (a) => (b) => a + b;
+
+const liftf = (binary) => (x) => (y) => binary(x, y);
+
+const pure = (x, y) => {
+  let z;
+  function impure(x) {
+    y++;
+    z = x * y;
+  }
+  impure(x);
+  return [y, z];
+};
+
+const curryb = (binary, a) => (b) => binary(a, b);
+
+const inc = (x) => x + 1;
+
+const twiceUnary = (binary) => (x) => binary(x, x);
+
+const doubl = (x) => twiceUnary((a, b) => a + b)(x);
+
+const square = (x) => twiceUnary((a, b) => a * b)(x);
+
+const twice =
+  (func) =>
+  (...vals) => {
+    let valRet = 0;
+
+    for (let val of vals) {
+      valRet = func(valRet, func(val, val));
+    }
+
+    return valRet;
+  };
+
+const reverseb = (binary) => (x, y) => binary(y, x);
+
+const reverse =
+  (func) =>
+  (...vals) => {
+    const valsR = vals.slice().reverse();
+    const valsRLen = valsR.length;
+    let valRet = valsR[0];
+
+    for (let i = 1; i < valsRLen; i++) {
+      valRet = func(valRet, valsR[i]);
+    }
+
+    return valRet;
+  };
+
+const composeuTwo = (unary1, unary2) => (val) => unary2(unary1(val));
+
+const composeu =
+  (...funcs) =>
+  (val) =>
+    funcs.reduce((acc, func) => func(acc), val);
+
 module.exports = {
   identity,
   addb,

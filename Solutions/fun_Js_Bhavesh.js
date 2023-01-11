@@ -87,3 +87,18 @@ const mulRecurse = (...nums) => {
 
     return nums[0] * mulRecurse(...nums.slice(1))
 }
+
+
+module.exports = {
+    identity,
+    addb,
+    subb,
+    mulb,
+    minb,
+    maxb,
+    add,
+    sub,
+    mul,
+    min,
+    max,
+}

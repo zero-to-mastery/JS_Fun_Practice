@@ -1,6 +1,6 @@
 // Write a function identity that takes an argument and returns that argument
 const identity = (x) => {
-  return x;
+  return x
 }
 
 // Write a binary function addb that takes two numbers and returns their sum

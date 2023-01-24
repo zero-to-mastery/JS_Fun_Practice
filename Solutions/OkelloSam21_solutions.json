@@ -3,4 +3,9 @@
 const identity = (x) => x 
 
 ```
+Write a binary function `adb` that takes two numbers and returns their sum
+```
+const adb = ( a,b) => (a + b)
+
+```
 

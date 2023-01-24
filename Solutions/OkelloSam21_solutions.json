@@ -1,0 +1,66 @@
+//Write a function `identity` that takes an argument and returns that argument.
+```
+const identity = (x) => x 
+
+```
+//Write a binary function `adb` that takes two numbers and returns their sum
+```
+const adb = ( a,b) => (a + b)
+
+```
+
+//Write a binary function subb that takes two numbers and returns their difference
+	```
+	const sub = (a,b) => (a - b)
+	
+	```
+
+//Write a binary function `mulb` that takes two numbers and returns their product
+
+	```
+	const mulb = (a,b) => (a * b);
+	
+	```
+
+//Write a binary function `minb` that takes two numbers and returns the smaller one
+
+	```
+	const sub = (a,b) => a < b ? a : b;
+	
+	```
+
+//Write a binary function maxb that takes two numbers and returns the larger one
+
+	```
+	const sub = (a,b) => a > b ? a : b;
+	
+	```
+//Write a function add that is generalized for any amount of arguments
+
+	```
+	const add = (...nums) => nums.reduce((a , b)=>a+b)
+	
+	```
+//Write a function sub that is generalized for any amount of arguments
+	```
+	const add = (...nums) => nums.reduce((a , b)=>a+b)
+	
+	```
+
+//Write a function mul that is generalized for any amount of arguments
+	```
+	const add = (...nums) => nums.reduce((a , b)=>a - b)
+	
+	```
+
+//Write a function min that is generalized for any amount of arguments
+	```
+	const add = (...nums) => nums.reduce((a, b)=>Math.min(a,b))
+	
+	```
+
+//Write a function max that is generalized for any amount of arguments
+	```
+	const add = (...nums) => nums.reduce((a, b)=>Math.max(a,b))
+	
+	```

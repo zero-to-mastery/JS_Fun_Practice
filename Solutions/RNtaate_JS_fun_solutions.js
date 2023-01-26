@@ -75,6 +75,55 @@ const max = (...nums) => {
   return nums.reduce(maxb)
 }
 
+
+const addRecurse = (...nums) => {
+  if(!nums.length){
+    return "No arguments provided"
+  }
+  if(nums.length == 1){
+    return nums[0]
+  }
+  return (nums.pop() + addRecurse(...nums) )
+}
+
+
+// Write a function mulRecurse that is the generalized mul function but uses recursion
+const mulRecurse = (...nums) => {
+  if(!nums.length) {
+    return "No arguments provided"
+  }
+  if(nums.length == 1){
+    return nums[0]
+  }
+  return (nums.pop() * mulRecurse(...nums))
+}
+
+
+// Write a function minRecurse that is the generalized min function but uses recursion
+const minRecurse = (...nums) => {
+  if(!nums.length) {
+    return "No arguments provided"
+  }
+  if(nums.length == 1) {
+    return nums[0]
+  }
+  let number = nums.pop() // making sure that pop() happens once.
+  return number <= minRecurse(...nums) ? number : minRecurse(...nums)
+}
+
+
+// Write a function maxRecurse that is the generalized max function but uses recursion
+const maxRecurse = (...nums) => {
+  if(!nums.length) {
+    return "No arguments provided"
+  }
+  if(nums.length == 1) {
+    return nums[0]
+  }
+  let number = nums.pop();
+  return number >= maxRecurse(...nums) ? number : maxRecurse(...nums)
+}
+
 module.exports = {
   identity,
   addb,
@@ -87,10 +136,10 @@ module.exports = {
   mul,
   min,
   max,
-  // addRecurse,
-  // mulRecurse,
-  // minRecurse,
-  // maxRecurse,
+  addRecurse,
+  mulRecurse,
+  minRecurse,
+  maxRecurse,
   // not,
   // acc,
   // accPartial,

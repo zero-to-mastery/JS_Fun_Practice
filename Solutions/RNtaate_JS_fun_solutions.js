@@ -34,49 +34,29 @@ const maxb = (a, b) => ( a >= b ? a : b)
 
 // Write a function add that is generalized for any amount of arguments
 const add = (...nums) => {
-  let sum;
-  if(nums.length){
-    sum = nums[0]
-    for(let i = 1; i < nums.length; i += 1) {
-      sum += nums[i]
-    }
+  if(!nums.length){
+    return 'No arguments provided'
   }
-  else {
-    sum = "No Arguments provided"
-  }
-  return sum;
+  return nums.reduce(addb);
 }
 
 
 // Write a function sub that is generalized for any amount of arguments
 const sub = (...nums) => {
-  let answer;
-  if(nums.length) {
-    answer = nums[0]
-    for(let i = 1; i < nums.length; i += 1){
-      answer -= nums[i]
-    }
-  }else {
-    answer = "No arguments provided"
+  if(!nums.length){
+    return 'No arguments provided'
   }
-  return answer;
+  return nums.reduce(subb);
 }
 
 
 // Write a function mul that is generalized for any amount of arguments
 const mul = (...nums) => {
-  let answer;
-  if(nums.length) {
-    answer = nums[0]
-    for(let i = 1; i < nums.length; i += 1) {
-      answer *= nums[i]
-    }
-  }else {
-    answer = "No arguments provided"
+  if(!nums.length){
+    return 'No arguments provided'
   }
-  return answer;
+  return nums.reduce(mulb);
 }
-
 
 // Write a function min that is generalized for any amount of arguments
 const min = (...nums) => {

@@ -4,24 +4,23 @@ const identity = (x) => ( x )
 
 // Write a binary function addb that takes two numbers and returns their sum
 const addb = ( a, b ) => {
-  if(typeof a != 'number' || typeof b != 'number') {
-    return 'Please provide arguments that are numbers'
-  }
+  if(!b) return a
   return ( a + b)
 };
 
 
 //Write a binary function subb that takes two numbers and returns their difference
 const subb = (a, b) => {
-  if(typeof a != 'number' || typeof b != 'number') {
-    return 'Please provide arguments that are numbers'
-  }
+  if(!b) return a
   return ( a - b);
 }
 
 
 // Write a binary function mulb that takes two numbers and returns their product
-const mulb = (a, b) => ( ( a * b ) )
+const mulb = (a, b) => {
+  if(!b) return a
+  return ( a * b ) 
+}
 
 
 // Write a binary function minb that takes two numbers and returns the smaller one
@@ -81,9 +80,10 @@ const addRecurse = (...nums) => {
     return "No arguments provided"
   }
   if(nums.length == 1){
-    return nums[0]
+    return addb(nums[0])
   }
-  return (nums.pop() + addRecurse(...nums) )
+  let number = nums.pop()
+  return addb(number, addRecurse(...nums))
 }
 
 
@@ -93,9 +93,10 @@ const mulRecurse = (...nums) => {
     return "No arguments provided"
   }
   if(nums.length == 1){
-    return nums[0]
+    return mulb(nums[0])
   }
-  return (nums.pop() * mulRecurse(...nums))
+  let number = nums.pop()
+  return mulb(number, mulRecurse(...nums))
 }
 
 
@@ -124,6 +125,180 @@ const maxRecurse = (...nums) => {
   return number >= maxRecurse(...nums) ? number : maxRecurse(...nums)
 }
 
+
+// Write a function not that takes a function and returns the negation of its result
+const not = (func) => (!func);
+
+
+// Write a function acc that takes a function and an initial value and returns a function that runs the initial function on each argument, accumulating the result
+const acc = (func, initial = 0) => {
+  const argsReceiver = (...nums) => {
+    if(!nums.length) return "No arguments provided"
+    let newNums = nums.slice(initial);
+    return newNums.reduce(func);
+  }
+  return argsReceiver;
+}
+
+
+// Write a function accPartial that takes in a function, a start index, and an end index, and returns a function that accumulates a subset of its arguments by applying the given function to all elements between start and end.
+
+const accPartial = (func, start, end) => {
+  const argsReceiver = (...nums) => {
+    if(!nums.length) return "No arguments provided";
+    let newNums = nums.slice(start, end);
+    let number = func(...newNums)
+    nums.splice(start, end - 1, number);
+    return nums;
+  }
+  return argsReceiver;
+}
+
+
+// Write a function accRecurse that does what acc does but uses recursion
+const accRecurse = (func, initial) => {
+  const argsReceiver = (...nums) => {
+    /** NOTE: The function funcRecurse relies on the fact that the provided argument func takes 1 or 2 parameters. i.e, it is a binary function as this test calls it. */
+    const funcRecurse = (pos) => {
+      if (pos == nums.length) {
+        return
+      }
+      if(pos == nums.length - 1) {
+        return func(nums[pos])
+      }
+      return func(nums[pos], funcRecurse(pos + 1))
+    }
+
+    return funcRecurse(initial)
+  }
+
+  return argsReceiver;
+}
+
+
+// Write a function fill that takes a number and returns an array with that many numbers equal to the given number
+const fill = (num) => {
+  let array = [];
+  for ( let i = 0; i < num; i += 1) {
+    array.push(num)
+  }
+  return array;
+}
+
+
+// Write a function fillRecurse that does what fill does but uses recursion
+const fillRecurse = (num, counter = 1) => {
+  if (counter == num) return [num]
+  return ([num].concat(fillRecurse(num, counter + 1)))
+}
+
+
+// Write a function set that is given a list of arguments and returns an array with all duplicates removed
+const set = (...args) => {
+  let obj = {}
+  args.forEach( el => {
+    if(!obj[el]){
+      obj[el] = el
+    }
+  })
+  return Object.values(obj)
+}
+
+
+// Write a function identityf that takes an argument and returns a function that returns that argument
+const identityf = (x) => {
+  return (() => (x));
+}
+
+
+//Write a function addf that adds from two invocations
+const addf = (a) => {
+  const innerAdd = (b) => {
+    return (a + b)
+  }
+  return innerAdd;
+}
+
+// Write a function liftf that takes a binary function, and makes it callable with two invocations
+const liftf = (funcb) => {
+  const innerLift = (a) => {
+    const innerLiftB = (b) => {
+      return funcb(a, b);
+    }
+    return innerLiftB;
+  }
+  return innerLift;
+}
+
+
+// Write a pure function pure that is a wrapper arround the impure function impure
+const pure = (x, y) => {
+  let z;
+  function impure(innerx) {
+    y ++;
+    z = innerx * y
+  }
+  impure(x)
+  return [y, z]
+}
+
+
+// Write a function curryb that takes a binary function and an argument, and returns a function that can take a second argument
+const curryb = (binary, a) => {
+  const innerfunc = (innerarg) => {
+    return binary(a, innerarg);
+  }
+  return innerfunc;
+}
+
+
+// Write a function curry that is generalized for any amount of arguments
+const curry = (func, ...outer) => {
+  const innerfunc = (...innerargs) => {
+    let finalArgList = outer.concat(innerargs);
+    return func(...finalArgList);
+  }
+  return innerfunc;
+}
+
+// Without writting any new functions, show multiple ways to create the inc function
+const inc = (x) => ( ++x ); // The plus symbols should come before not after x
+
+
+// Write a function twiceUnary that takes a binary function and returns a unary function that passes its argument to the binary function twice
+
+const twiceUnary = (binaryfunc) => {
+  const innerFunc = (arg) => {
+    return binaryfunc(arg, arg);
+  }
+  return innerFunc;
+}
+
+
+// Use the function twiceUnary to create the doubl function
+const doubl = (x) => ( twiceUnary(addb)(x) );
+
+
+// Use the function twiceUnary to create the square function
+const square = (x) => ( twiceUnary(mulb)(x) );
+
+
+// Write a function twice that is generalized for any amount of arguments
+const twice = (func) => {
+  const inner = (...args) => {
+    let finalList = args.concat(args);
+    return func(...finalList);
+  }
+  return inner;
+}
+
+// Write a function reverseb that reverses the arguments of a binary function
+const reverseb = (func) => {
+  const innerfunc = (a, b) => ( func(b, a) );
+  return innerfunc;
+}
+
+
 module.exports = {
   identity,
   addb,
@@ -140,25 +315,25 @@ module.exports = {
   mulRecurse,
   minRecurse,
   maxRecurse,
-  // not,
-  // acc,
-  // accPartial,
-  // accRecurse,
-  // fill,
-  // fillRecurse,
-  // set,
-  // identityf,
-  // addf,
-  // liftf,
-  // pure,
-  // curryb,
-  // curry,
-  // inc,
-  // twiceUnary,
-  // doubl,
-  // square,
-  // twice,
-  // reverseb,
+  not,
+  acc,
+  accPartial,
+  accRecurse,
+  fill,
+  fillRecurse,
+  set,
+  identityf,
+  addf,
+  liftf,
+  pure,
+  curryb,
+  curry,
+  inc,
+  twiceUnary,
+  doubl,
+  square,
+  twice,
+  reverseb,
   // reverse,
   // composeuTwo,
   // composeu,

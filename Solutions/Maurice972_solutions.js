@@ -1,5 +1,5 @@
 
-//Maurice972
+//Maurice972 solutions
 
 //Write a function identity that takes an argument and returns that argument
 function identity(x) {

@@ -59,7 +59,21 @@ function max(...nums) {
     return nums.reduce((a,b) => a < b ? a : b)
 };
 
+// Write a function addRecurse that is the generalized add function but uses recursion
 
+function addRecurse(...nums) {
+    if (nums.length < 1)
+        return 0
+    return nums[0] + addRecurse(...nums.slice(1))
+};
+
+// Write a function mulRecurse that is the generalized mul function but uses recursion
+
+function mulRecurse(...nums) {
+    if (nums.length < 1)
+        return 0
+    return nums[0] * mulRecurse(...nums.slice(1))
+};
 
 module.exports = {
     identity,
@@ -73,8 +87,8 @@ module.exports = {
     mul,
     min,
     max,
-    // addRecurse,
-    // mulRecurse,
+    addRecurse,
+    mulRecurse,
     // minRecurse,
     // maxRecurse,
     // not,

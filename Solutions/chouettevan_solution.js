@@ -18,7 +18,7 @@ const not = func => {
         return !Boolean(func(...args))
     }
     return func2;
-}
+};
 const acc = (func,initial) => (array) => array.reduce(func,initial);
 const accPartial = (func,start,end) => (array) => {
     array2 = array.filter((value,index) => index < end && index > start)
@@ -114,7 +114,7 @@ function genFrom(x) {
         x++;
         yield x;
     }
-}
+};
 function genTo(gen,lmt) {
     return function* generator() {
         let i = 0;
@@ -124,7 +124,7 @@ function genTo(gen,lmt) {
             i < lmt ? yield i : out=true;
         }
     }
-}
+};
 const genFromTo = (start,end) => genTo(genFrom(start),end);
 function elementGen(array,gen) {
     return function* generator() {
@@ -132,7 +132,7 @@ function elementGen(array,gen) {
             yield array[i];
         }
     }
-}
+};
 function element(array,gen) {
     if (gen) return elementGen(array,gen);
     else {
@@ -142,7 +142,7 @@ function element(array,gen) {
             }
         }
     }
-}
+};
 
 const filter = (gen,predicate) => {
     return function* generator() {
@@ -181,7 +181,7 @@ const concatTwo = (gen1,gen2) => {
             yield i;
         }
     }
-}
+};
 const concat = (...gens) => {
     return function* generator() {
         for (let gen of gens) {
@@ -190,7 +190,7 @@ const concat = (...gens) => {
             }
         }
     }
-}
+};
 const gensymf = symbol => {
     return function* generator() {
         let num = 0;
@@ -199,7 +199,7 @@ const gensymf = symbol => {
             yield `${symbol}${num}`;
         }
     }
-}
+};
 const gensymff = (unary,seed) => symbol => {
     return function* generator() {
         let hold = seed;
@@ -208,7 +208,7 @@ const gensymff = (unary,seed) => symbol => {
             yield hold;
         }
     }
-}
+};
 const fibonnaci = (first,second) => {
     return function* generator() {
         let newFirst = first;
@@ -226,7 +226,7 @@ const fibonnaci = (first,second) => {
 
         }
     }
-}   
+};   
 const counter = i =>  {
     let count = i;
     return {
@@ -239,7 +239,7 @@ const counter = i =>  {
             return count;
         }
     }
-}
+};
 const revocableb = binary => {
     let revoked = false
     const revocable = (a,b) => {
@@ -253,7 +253,7 @@ const revocableb = binary => {
             revoked = !revoked;
         }
     }
-}
+};
 const revocable = func => {
     let revoked = false
     const revocable = (...args) => {
@@ -267,8 +267,32 @@ const revocable = func => {
             revoked = !revoked;
         }
     }
+};
+const extract = (array,prop) => array.reduce((prev,curr) => prev.push(curr[prop]),[]);
+const m = (value,source=null) => {
+    if (!source) {
+        source = `${value}`;
+    }
+    return { value,source };
 }
-/*module.exports = {
+const addmTwo = (m1,m2) => {
+    let source = `(${m1}+${m2})`;
+    return {value:m1+m2,source:source };
+};
+const addm = (...ms) => {
+    let source = ''
+    let value = 0;
+    for (let m of ms) {
+        value += m.value;
+        source += `${m.value}+`
+    }
+    source[-1] = ')';
+    source = '(' + source;
+    return { value,source };
+};
+
+
+module.exports = {
     identity,
     addb,
     subb,
@@ -348,4 +372,4 @@ const revocable = func => {
     pubsub,
     mapRecurse,
     filterRecurse,
-};*/
+};

@@ -143,7 +143,14 @@ function element(array,gen) {
         }
     }
 };
-
+const collect = (gen,array) => {
+    return function* generator() {
+        for (let i of gen()) {
+            array.push(i);
+            yield i;
+        }
+    }
+};
 const filter = (gen,predicate) => {
     return function* generator() {
         for (let i of gen()) {
@@ -191,6 +198,16 @@ const concat = (...gens) => {
         }
     }
 };
+const concatTail = (...gens) => {
+    function* gen1(array) {
+        for (let i of array[0]) {
+            yield i;
+        }
+        array = array.filter((_,idx) => idx !== 0);
+        if (array.length) return gen1(array);
+    }
+    return gen1(gens);
+};
 const gensymf = symbol => {
     return function* generator() {
         let num = 0;
@@ -209,7 +226,7 @@ const gensymff = (unary,seed) => symbol => {
         }
     }
 };
-const fibonnaci = (first,second) => {
+const fibonaccif = (first,second) => {
     return function* generator() {
         let newFirst = first;
         let newSecond = second;
@@ -291,8 +308,144 @@ const addm = (...ms) => {
     return { value,source };
 };
 
+const liftmbM = (binary,op) => (m1,m2) => {
+    const value = binary(m1.value,m2.value);
+    const source = `(${m1.source}${op}${m2.value})`;
+    return { value,source };
+}
+const liftmb = (binary,op) => (a,b) => {
+    if (a?.value & b?.value) {
+        return liftmbM(binary,op)(a,b);
+    } else {
+        return liftmbM(binary,op)(m(a),m(b));
+    }
+}
+const liftm = (func,op) => (...args) => {
+    const value = func(...args);
+    let source = args.reduce((prev,curr) => prev + `${curr}${op !== args[-1] && op}`,'');
+    return { value,source };
+}
+const exp = value => {
+    if (typeof value !== "object") {
+        return value;
+    } else {
+        let func = value[0]
+        value = value.filter((_,idx) => idx > 0);
+        return func(...value);
+    }
+};
+const expn = value => {
+    if (typeof value !== "object") {
+        return value;
+    } else {
+        const inputs = [];
+        const func = value[0];
+        value = value.filter((_,idx) => idx > 0);
+        for (let i of value) {
+            if (typeof i === "object") {
+                inputs.push(expn(i));   
+            } else {
+                inputs.push(i);
+            }
+        }
+        return func(...inputs);
+    } 
+};
+const addg = num => {
+    if (!num) return;
+    const li = [];
+    li.push(num);
+    const addv = num => {
+        if (!num) return add(...li);
+        li.push(num);
+        return addv;
+    };
+    return addv;
+}
+const liftg = binary => num => {
+    if (!num) return;
+    const li = [];
+    li.push(num);
+    const addv = num => {
+        if (!num) return li.reduce(binary);
+        li.push(num);
+        return addv;
+    };
+    return addv;   
+};
+const arrayg = liftg((acc,val) => {
+    if (typeof acc !== 'object') return [val];
+    acc.push(val);
+    return acc;
+});
+const continuizeu = unary => (f,arg) => f(unary(arg));
+const continuize = func => (f,...args) => f(func(args));
+const vector = () => {
+    const array = [];
+    return {
+        append:v => array.push(v),
+        store:(i,v) => array[i] = v,
+        get:num => array[num]    
+    };
+};
 
-module.exports = {
+const exploitVector = v => {
+    let arr = [];
+    let i = 0;
+    while (v.get(i) !== undefined) {
+        arr.push(v.get(i));
+        i++;
+    }
+    return arr;
+};
+const vectorSafe = v => {
+    const array = [undefined];
+    return {
+        append: v => array.push(v),
+        store:(i,v) => {
+            if (i) {
+                array[i] = v;
+            }
+        },
+        get:num => array[num]
+    };
+}
+
+const pubsub = () => {
+    let publish = () => {}
+    return {
+        subscribe:f => publish = f,
+        publish
+    };
+}
+const mapRecurse = (array,callback) => {
+    const recurse = (arr,acc) => {
+        let value = callback(arr[0]);
+        acc.push(value);
+        let newArr = arr.filter((_,idx) => idx !== 0);
+        if (newArr.length) {
+            return recurse(newArr,acc);
+        } else {
+            return acc;
+        }
+    }
+    return recurse(array,[]);
+};
+const filterRecurse = (array,predicate) => {
+    const recurse = (arr,acc) => {
+        let value = predicate(arr[0]);
+        if (value) acc.push(arr[0]);
+        let newArr = arr.filter((_,idx) => idx !== 0);
+        if (newArr.length) {
+            return recurse(newArr,acc);
+        } else {
+            return acc;
+        }
+    };
+    return recurse(array,[]);
+};
+
+ module.exports = {
     identity,
     addb,
     subb,
@@ -372,4 +525,4 @@ module.exports = {
     pubsub,
     mapRecurse,
     filterRecurse,
-};
+}; 

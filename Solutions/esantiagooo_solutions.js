@@ -1,3 +1,21 @@
+const identity = (a) => {
+    return a 
+}
+
+identity('eric')
+
+const addb = (a,b) => {
+    return a + b
+}
+addb(1,2)
+
+
+
+
+
+
+
+
 module.exports = {
     identity,
     addb,

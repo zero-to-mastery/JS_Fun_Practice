@@ -9,6 +9,21 @@ const addb = (a,b) => {
 }
 addb(1,2)
 
+const subb = (a,b) => {
+    return a - b
+}
+subb(3,2)
+
+const mulb = (a,b) => {
+    return a * b
+}
+mulb(10,10)
+
+const minb = (a,b) => {
+    return Math.min(a,b)
+}
+minb(27,21)
+
 
 
 

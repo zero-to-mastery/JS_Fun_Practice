@@ -24,6 +24,10 @@ const minb = (a,b) => {
 }
 minb(27,21)
 
+const maxb = (a,b) => {
+    return Math.max(a,b)
+}
+maxb(27,21)
 
 
 

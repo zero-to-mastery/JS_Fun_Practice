@@ -9,12 +9,13 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 ## Testing
 
 ### To test the functions:
-1. Run <code>npm install</code> to install the dependencies (need node.js for npm).
+1. Run <code>npm install</code> to install the dependencies (need node.js for npm). If you don't have node please visit the [Node JS](https://nodejs.org/en/) website to download. It is recommended to download the LTS version.
 2. Change <code>filename</code> in <code>test/tests.js</code> to the name of your solution file (optional).
 3. Make sure your solution file is in the <code>Solutions</code> folder.
 4. Make sure your function names match the ones listed below as you're coding them.
-5. At the bottom of your solution file, add
-<code>module.exports = {
+5. At the bottom of your solution file, copy and paste the following code:
+```js
+module.exports = {
     identity,
     addb,
     subb,
@@ -94,7 +95,8 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
     pubsub,
     mapRecurse,
     filterRecurse,
-};</code>
+};
+```
 
 6. You can comment out any function names in the <code>module.exports</code> that you haven't written yet, but a lot of the tests depend on previous functions to run properly so it's safer to write the functions in order.
 7. Finally, <code>npm run test</code> to run the tests.
@@ -241,7 +243,9 @@ invocations</p>
 <dd><p>Write a <a href="https://en.wikipedia.org/wiki/Pure_function">pure</a> function <code>pure</code> that
 is a wrapper arround the impure
 function <code>impure</code></p>
-<pre>function impure(x) {
+
+```js
+function impure(x) {
   y++;
   z = x * y;
 }
@@ -252,7 +256,8 @@ impure(20);
 z; // 120
 
 impure(25);
-z; // 175</pre></dd>
+z; // 175
+```
 
 <dt><a href="#curryb">curryb(binary, a)</a> ⇒ <code>function</code></dt>
 <dd><p>Write a function <code>curryb</code> that
@@ -531,14 +536,17 @@ to the private array</p>
 <dd><p>Let&#39;s assume your <code>vector</code>
 implementation looks like
 something like this:</p>
-<pre>let vector = () => {
+
+```js
+let vector = () => {
   let array = []
   return {
     append: (v) => array.push(v),
     get: (i) => array[i],
     store: (i, v) => array[i] = v
   }
-}</pre>
+}
+```
 
 <p>Can you spot any security concerns with
 this approach? Mainly, can we get access
@@ -1068,7 +1076,8 @@ Write a [pure](https://en.wikipedia.org/wiki/Pure_function) function `pure` that
 is a wrapper arround the impure
 function `impure`
 
-<pre>function impure(x) {
+```js
+function impure(x) {
   y++;
   z = x * y;
 }
@@ -1079,7 +1088,8 @@ impure(20);
 z; // 120
 
 impure(25);
-z; // 175</pre>
+z; // 175
+```
 
 **Returns**: <code>array</code> - an array containing `y` and `z`
 
@@ -2168,14 +2178,16 @@ Let's assume your `vector`
 implementation looks like
 something like this:
 
-<pre>let vector = () => {
+```js
+let vector = () => {
   let array = []
   return {
     append: (v) => array.push(v),
     get: (i) => array[i],
     store: (i, v) => array[i] = v
   }
-}</pre>
+}
+```
 
 Can you spot any security concerns with
 this approach? Mainly, can we get access

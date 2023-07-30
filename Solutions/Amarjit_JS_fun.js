@@ -1,0 +1,14 @@
+const identity = x => x;
+
+const addb = (a,b) => a + b;
+
+const subb = (a,b) => a - b;
+
+const mulb = (a,b) => a * b;
+
+module.exports = {
+    identity,
+    addb,
+    subb,
+    mulb
+  };

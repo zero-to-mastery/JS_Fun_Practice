@@ -6,9 +6,78 @@ const subb = (a,b) => a - b;
 
 const mulb = (a,b) => a * b;
 
+const minb = (a,b) => {
+  if(a<b)
+  return a;
+  else
+  return b;
+};
+
+const maxb = (a,b) => {
+  if(a>b)
+  return a;
+  else
+  return b;
+};
+
+const add = (...nums) => {
+  let n=0; 
+  for (let i=0;i<nums.length;i++) {
+       n+=nums[i];
+   }
+   return n;
+}
+
+const sub = (...nums) => {
+  let n=0; 
+  for (let i=0;i<nums.length;i++) {
+       if(n===0)
+         n=nums[i];
+       else  
+       n-=nums[i];
+   }
+   return n;
+}
+
+const mul = (...nums) => {
+  let n=1; 
+  for (let i=0;i<nums.length;i++) {
+       n*=nums[i];
+   }
+   return n;
+}
+
+const min = (...nums) => {
+  let n=0; 
+  for (let i=0;i<nums.length;i++) {
+       if(n<nums[i])
+        n=nums[i];
+       else if(nums[i]<n)
+       n=nums[i];
+
+   }
+   return n;
+}
+
+const max = (...nums) => {
+  let n=0; 
+  for (let i=0;i<nums.length;i++) {
+       if(nums[i]>n)
+        n=nums[i];
+   }
+   return n;
+}
+
 module.exports = {
     identity,
     addb,
     subb,
-    mulb
+    mulb,
+    minb,
+    maxb,
+    add,
+    sub,
+    mul,
+    min,
+    max
   };

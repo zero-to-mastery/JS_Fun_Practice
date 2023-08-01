@@ -68,6 +68,21 @@ const max = (...nums) => {
    return n;
 }
 
+const addRecurse = (...nums) => {
+  let sum = 0;
+  for (const num of nums) {
+    if(Array.isArray(num)) {
+      sum+=addRecurse(...num);
+    }
+      else if (typeof num==='number') {
+       sum+=num;
+    }  
+    }
+    return sum;
+  }
+
+
+
 module.exports = {
     identity,
     addb,
@@ -79,5 +94,6 @@ module.exports = {
     sub,
     mul,
     min,
-    max
+    max,
+    addRecurse
   };

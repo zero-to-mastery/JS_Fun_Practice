@@ -13,3 +13,6 @@ console.log(mathModule.mul(3, 7, 5));
 console.log(mathModule.min(10,5,2,3));
 console.log(mathModule.max(10,2,3,11));
 console.log(mathModule.addRecurse(10,2,3,[2,3,[5]],11));
+console.log(mathModule.mulRecurse(10,2,3,[2,3,[5]],11));
+console.log(mathModule.minRecurse(10,2,3,[2,3,[5]],11));
+console.log(mathModule.maxRecurse(10,2,3,[2,3,[5]],11));

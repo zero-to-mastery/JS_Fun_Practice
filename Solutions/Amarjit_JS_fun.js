@@ -21,33 +21,42 @@ const maxb = (a,b) => {
 };
 
 const add = (...nums) => {
-  let n=0; 
-  for (let i=0;i<nums.length;i++) {
+  if (nums.length === 0) {
+    throw new Error("No numbers provided for addition.");
+  }
+  let n=nums[0]; 
+  for (let i=1;i<nums.length;i++) {
        n+=nums[i];
    }
    return n;
 }
 
 const sub = (...nums) => {
-  let n=0; 
-  for (let i=0;i<nums.length;i++) {
-       if(n===0)
-         n=nums[i];
-       else  
-       n-=nums[i];
+  if (nums.length === 0) {
+    throw new Error("No numbers provided for subtraction.");
+  }
+  let n=nums[0]; 
+  for (let i=1;i<nums.length;i++) {
+        n-=nums[i];
    }
    return n;
 }
 
 const mul = (...nums) => {
-  let n=1; 
-  for (let i=0;i<nums.length;i++) {
+  if (nums.length === 0) {
+    throw new Error("No numbers provided for multiplication.");
+  }
+  let n=nums[0]; 
+  for (let i=1;i<nums.length;i++) {
        n*=nums[i];
    }
    return n;
 }
 
 const min = (...nums) => {
+    if (nums.length === 0) {
+    throw new Error("No numbers provided for minimum.");
+  }
   let n=nums[0]; 
   for (let i=1;i<nums.length;i++) {
        if(nums[i]<n)
@@ -57,8 +66,12 @@ const min = (...nums) => {
 }
 
 const max = (...nums) => {
-  let n=0; 
-  for (let i=0;i<nums.length;i++) {
+    if (nums.length === 0) {
+    throw new Error("No numbers provided for maximum.");
+  }
+
+  let n=nums[0]; 
+  for (let i=1;i<nums.length;i++) {
        if(nums[i]>n)
         n=nums[i];
    }
@@ -66,6 +79,10 @@ const max = (...nums) => {
 }
 
 const addRecurse = (...nums) => {
+    if (nums.length === 0) {
+    throw new Error("No numbers provided for adding recursively.");
+  }
+
   let sum = 0;
   for (const num of nums) {
     if(Array.isArray(num)) {
@@ -79,6 +96,9 @@ const addRecurse = (...nums) => {
   }
 
   const mulRecurse = (...nums) => {
+    if (nums.length === 0) {
+    throw new Error("No numbers provided for multiply recursively.");
+  }
     let sum = 1;
     for (const num of nums) {
       if(Array.isArray(num)) {
@@ -92,6 +112,9 @@ const addRecurse = (...nums) => {
     }
 
     const minRecurse = (...nums) => {
+    if (nums.length === 0) {
+    throw new Error("No numbers provided for minimum recursively.");
+  }
       let min = Number.POSITIVE_INFINITY;
       for (const num of nums) {
         if(Array.isArray(num)) {
@@ -108,6 +131,10 @@ const addRecurse = (...nums) => {
       }
 
       const maxRecurse = (...nums) => {
+       if (nums.length === 0) {
+    throw new Error("No numbers provided for maximum recursively.");
+  }
+
         let max = Number.NEGATIVE_INFINITY;
         for (const num of nums) {
           if(Array.isArray(num)) {
@@ -123,6 +150,10 @@ const addRecurse = (...nums) => {
           return max;
         }      
 
+        const not = (func)=>{
+          return !func();
+        }
+        
 module.exports = {
     identity,
     addb,
@@ -138,5 +169,6 @@ module.exports = {
     addRecurse,
     mulRecurse,
     minRecurse,
-    maxRecurse
+    maxRecurse,
+    not
   };

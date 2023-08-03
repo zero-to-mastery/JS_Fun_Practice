@@ -16,3 +16,12 @@ console.log(mathModule.addRecurse(10,2,3,[2,3,[5]],11));
 console.log(mathModule.mulRecurse(10,2,3,[2,3,[5]],11));
 console.log(mathModule.minRecurse(10,2,3,[2,3,[5]],11));
 console.log(mathModule.maxRecurse(10,2,3,[2,3,[5]],11));
+
+// Define a test function for not method
+const isEven = num => num % 2 === 0;
+
+// Use the 'not' function from mathModule to get the negation of the result of 'isEven'
+const isOdd = mathModule.not(() => isEven(6));
+
+console.log(isEven(6)); // Output: true
+console.log(isOdd);   // Output: false (negation of true)

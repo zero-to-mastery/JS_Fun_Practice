@@ -154,7 +154,38 @@ const addRecurse = (...nums) => {
           return !func();
         }
         
-module.exports = {
+        const acc = (func, initial) => {
+          return (...args) => {
+            let result = initial;
+            for (const arg of args) {
+              result = func(result, arg);
+            }
+            return result;
+          };
+        };
+        
+        const accPartial = (func, start, end) => {
+          return (...args) => {
+            let result = args[start];
+            for (let i=start+1;i<=end;i++) {
+              result = func(result, args[i]);
+            }
+            return result;
+          };
+        };
+
+        const accRecurse = (func, initial) => {
+          return (...args) => {
+            if(args.length===0)
+              return initial;
+              else {
+                const [head, ...tail] = args;
+                return func(initial, head) + accRecurse(func, initial)(...tail);
+              }
+          };
+        };
+
+    module.exports = {
     identity,
     addb,
     subb,
@@ -170,5 +201,8 @@ module.exports = {
     mulRecurse,
     minRecurse,
     maxRecurse,
-    not
+    not,
+    acc,
+    accPartial,
+    accRecurse
   };

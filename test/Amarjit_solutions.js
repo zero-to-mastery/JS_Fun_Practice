@@ -25,3 +25,27 @@ const isOdd = mathModule.not(() => isEven(6));
 
 console.log(isEven(6)); // Output: true
 console.log(isOdd);   // Output: false (negation of true)
+
+// Define a function to add numbers
+const add = (a, b) => a + b;
+
+// Use the acc function to create a new function that accumulates the sum
+const accumulateSum = mathModule.acc(add, 0);
+
+console.log(accumulateSum(1, 2, 3, 4)); // Output: 10 (0 + 1 + 2 + 3 + 4)
+
+// Define a function to multiply numbers
+const multiply = (a, b) => a * b;
+
+// Use the accPartial function to create a new function that accumulates multiplication
+const accumulateProduct = mathModule.accPartial(multiply, 1, 3);
+
+console.log(accumulateProduct(2, 3, 4, 5)); // Output: 60 (3 * 4 * 5)
+
+// Define a function to add numbers
+const add1 = (a, b) => a + b;
+
+// Use the accRecurse function to create a new function that accumulates addition
+ const accumulateSum1 = mathModule.accRecurse(add1, 0);
+
+console.log(accumulateSum1(1, 2, 3, 4)); // Output: 10 (1 + 2 + 3 + 4)

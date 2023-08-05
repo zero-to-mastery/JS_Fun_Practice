@@ -185,6 +185,23 @@ const addRecurse = (...nums) => {
           };
         };
 
+        const fill = (num) => {
+          const arr = new Array(num); 
+          for (let i=0; i<arr.length; i++) {
+            arr[i]=num;
+          }
+          return arr;
+        };
+
+        const fillRecurse = (num,count=num,arr=[]) => {
+          if(count===0) {
+           return arr;
+          }
+           arr.push(num);
+
+          return fillRecurse(num,count-1,arr);
+        };        
+
     module.exports = {
     identity,
     addb,
@@ -204,5 +221,7 @@ const addRecurse = (...nums) => {
     not,
     acc,
     accPartial,
-    accRecurse
+    accRecurse,
+    fill,
+    fillRecurse
   };

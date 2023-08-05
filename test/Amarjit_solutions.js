@@ -49,3 +49,9 @@ const add1 = (a, b) => a + b;
  const accumulateSum1 = mathModule.accRecurse(add1, 0);
 
 console.log(accumulateSum1(1, 2, 3, 4)); // Output: 10 (1 + 2 + 3 + 4)
+
+ const res = mathModule.fill(5);
+ console.log(res); 
+
+ const result2 = mathModule.fillRecurse(5);
+ console.log(result2);

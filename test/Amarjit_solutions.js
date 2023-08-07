@@ -55,3 +55,10 @@ console.log(accumulateSum1(1, 2, 3, 4)); // Output: 10 (1 + 2 + 3 + 4)
 
  const result2 = mathModule.fillRecurse(5);
  console.log(result2);
+
+ const oargs=[1,2,2,3,4,4,5];
+ const uargs=mathModule.set(...oargs);
+ console.log(uargs);
+
+ const fn = mathModule.identityf(7);
+ console.log(fn());

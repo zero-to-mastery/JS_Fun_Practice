@@ -202,6 +202,14 @@ const addRecurse = (...nums) => {
           return fillRecurse(num,count-1,arr);
         };        
 
+        const set=(...args)=>{
+          return [...new Set(args)];
+        }
+
+        const identityf = (arg)=> {
+          return()=>arg;
+        }
+
     module.exports = {
     identity,
     addb,
@@ -223,5 +231,7 @@ const addRecurse = (...nums) => {
     accPartial,
     accRecurse,
     fill,
-    fillRecurse
+    fillRecurse,
+    set,
+    identityf
   };

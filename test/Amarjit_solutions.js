@@ -62,3 +62,13 @@ console.log(accumulateSum1(1, 2, 3, 4)); // Output: 10 (1 + 2 + 3 + 4)
 
  const fn = mathModule.identityf(7);
  console.log(fn());
+
+ const add2 = mathModule.addf(2);
+ console.log(add2(3));
+ console.log(add2(5));
+ console.log(add2(9));
+
+ const addl = (a,b)=>a+b;
+ const liftedadd=mathModule.liftf(addl);
+ const returnl=liftedadd(3)(5);
+ console.log(returnl);

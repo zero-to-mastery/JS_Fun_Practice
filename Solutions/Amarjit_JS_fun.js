@@ -210,6 +210,18 @@ const addRecurse = (...nums) => {
           return()=>arg;
         }
 
+        const addf = (a)=>{
+         return (b)=> (a+b);
+        }
+
+        const liftf = (binary)=> {
+          return (x) => {
+          return (y) => {
+            return binary(x,y);
+          };  
+          };
+        }
+
     module.exports = {
     identity,
     addb,
@@ -233,5 +245,7 @@ const addRecurse = (...nums) => {
     fill,
     fillRecurse,
     set,
-    identityf
+    identityf,
+    addf,
+    liftf
   };

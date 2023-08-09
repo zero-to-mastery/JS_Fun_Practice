@@ -72,3 +72,19 @@ console.log(accumulateSum1(1, 2, 3, 4)); // Output: 10 (1 + 2 + 3 + 4)
  const liftedadd=mathModule.liftf(addl);
  const returnl=liftedadd(3)(5);
  console.log(returnl);
+
+
+let y = 5, z;
+
+const result3 = mathModule.pure(20, y);
+console.log(result3[1]); // Output: 120
+
+const result4 = mathModule.pure(25, result3[0]);
+console.log(result4[1]); // Output: 175
+
+// Example usage
+const add3 = (x, y) => x + y;
+const curriedAdd = mathModule.curryb(add3, 5);
+
+console.log(curriedAdd(3)); // Output: 8 (5 + 3)
+console.log(curriedAdd(10)); // Output: 15 (5 + 10)

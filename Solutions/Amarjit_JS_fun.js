@@ -222,6 +222,21 @@ const addRecurse = (...nums) => {
           };
         }
 
+        const pure = (x,y)=> {
+          let newY=y;
+          let newZ;
+          const impure = (x)=> {
+            newY++;
+            newZ=x*newY;
+          }
+          impure(x);
+          return [newY, newZ];
+        }
+
+        const curryb = (binary,a)=> {
+          return (b)=>binary(a,b);
+        }
+
     module.exports = {
     identity,
     addb,
@@ -247,5 +262,7 @@ const addRecurse = (...nums) => {
     set,
     identityf,
     addf,
-    liftf
+    liftf,
+    pure,
+    curryb
   };

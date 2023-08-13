@@ -15,4 +15,29 @@ describe("JS_Fun_Practice", function () {
       assert.equal(sol.addb(3, 4), 7);
     });
   });
+  describe("max(...nums)", function () {
+    it("is a max fxn that is generalized for any amount of arguments", function () {
+      assert.equal(sol.max(1, 2, 4), 4);
+    });
+  });
+  describe("addRecurse(...nums)", function () {
+    it("is an add fxn that is generalized but uses recursion", function () {
+      assert.equal(sol.addRecurse(1, 2, 4), 7);
+    });
+  });
+  describe("mulRecurse(...nums)", function () {
+    it("is a mul fxn that is generalized but uses recursion", function () {
+      assert.equal(sol.mulRecurse(1, 2, 4), 8);
+    });
+  });
+  describe("minRecurse(...nums)", function () {
+    it("is a min fxn that is generalized but uses recursion", function () {
+      assert.equal(sol.minRecurse(1, 2, 4), 1);
+    });
+  });
+  describe("maxRecurse(...nums)", function () {
+    it("is a max fxn that is generalized but uses recursion", function () {
+      assert.equal(sol.maxRecurse(1, 2, 4), 4);
+    });
+  });
 });

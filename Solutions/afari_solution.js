@@ -17,8 +17,47 @@ const minb = (a, b) => {
   }
 };
 
+// function max that is generalized for any amount of arguments
+let max = (...nums) => {
+  let maximum = nums[0];
+  for (let i = 1; i < nums.length; i++) {
+    if (nums[i] > maximum) {
+      maximum = nums[i];
+    }
+  }
+  return maximum;
+};
+
+// function addRecurse that is the generalized add function but uses recursion
+let addRecurse = (...nums) => {
+  if (nums.length === 1) return nums[0];
+  return nums.pop() + addRecurse(...nums);
+};
+
+let mulRecurse = (...nums) => {
+  if (nums.length === 1) return nums[0];
+  return nums.pop() * mulRecurse(...nums);
+};
+
+let minRecurse = (...nums) => {
+  if (nums.length === 1) return nums[0];
+  let num = nums.pop();
+  return num < minRecurse(...nums) ? num : minRecurse(...nums);
+};
+
+let maxRecurse = (...nums) => {
+  if (nums.length === 1) return nums[0];
+  let num = nums.pop();
+  return num > maxRecurse(...nums) ? num : maxRecurse(...nums);
+};
+
 module.exports = {
   identity,
   addb,
   minb,
+  max,
+  addRecurse,
+  mulRecurse,
+  minRecurse,
+  maxRecurse
 };

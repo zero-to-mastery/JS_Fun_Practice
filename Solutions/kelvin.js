@@ -1,22 +1,20 @@
 function identity(x) {
-    return x;
-  }
-  
-  // Example usage:
-  let result = identity(5);
-  console.log(result); // Output: 5
-  const addb          = (a,b)     => a+b;
-  
+  return x;
+}
 
-
-
+// Example usage:
+let result = identity(5);
+console.log(result); // Output: 5
+const addb = (a, b) => a + b;
+const subb = (a, b) => a - b;
+const mulb = (a, b) => a * b;
 
 module.exports = {
-    identity,
-    addb,
-    /*subb,
-    mulb,
-    minb,
+  identity,
+  addb,
+  subb,
+  mulb,
+  /*minb,
     maxb,
     add,
     sub,

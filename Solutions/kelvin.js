@@ -5,6 +5,7 @@ function identity(x) {
   // Example usage:
   let result = identity(5);
   console.log(result); // Output: 5
+  const addb          = (a,b)     => a+b;
   
 
 
@@ -12,8 +13,8 @@ function identity(x) {
 
 module.exports = {
     identity,
-    /*addb,
-    subb,
+    addb,
+    /*subb,
     mulb,
     minb,
     maxb,

@@ -34,6 +34,20 @@ function sub(...num) {
   });
 }
 
+function mul(...num) {
+  return num.reduce((cum, num) => {
+    return cum * num;
+  }, 0);
+}
+
+function min(...num) {
+  return Math.min(...num);
+}
+
+function max(...num) {
+  return Math.max(...num);
+}
+
 module.exports = {
   identity,
   addb,
@@ -43,9 +57,9 @@ module.exports = {
   maxb,
   add,
   sub,
-  // mul,
-  // min,
-  // max,
+  mul,
+  min,
+  max,
   // addRecurse,
   // mulRecurse,
   // minRecurse,

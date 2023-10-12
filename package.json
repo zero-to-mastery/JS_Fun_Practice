@@ -18,7 +18,7 @@
   "homepage": "https://github.com/hazamaswag/JS_Fun_Practice#readme",
   "devDependencies": {
     "chai": "^4.2.0",
-    "mocha": "^8.1.1",
+    "mocha": "^10.2.0",
     "mocha-sinon": "^2.1.2",
     "sinon": "^9.0.2"
   }

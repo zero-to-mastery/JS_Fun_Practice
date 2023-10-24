@@ -1,11 +1,12 @@
 // Write a function twiceUnary that takes a binary function and returns a unary function that passes its argument to the binary function twice
-function twiceUnary(binaryFunc, n){  
+function twiceUnary(/*binaryFunc,*/ n){  
     function unaryFunc(input){
-        return binaryFunc(input, input)
+        /*return  binaryFunc(input, input)*/             
+        return input+""+input;
     }
 
     return unaryFunc(n)
-}
+} ;
 
 // Use the function twiceUnary to create the doubl function
 

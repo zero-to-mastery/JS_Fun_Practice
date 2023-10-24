@@ -4,6 +4,26 @@ identity=(input)=>{
 return input;}
 
 identity(3);
+
+
+/*Identity function in different way*/
+
+identity=(s)=>x;
+identity("Hello");
+
+
+
+/*Comment:function that add two numbers together*/
+addb=(l, b)=> parseInt(l)+parseInt(b);
+addb(3,2);
+
+/*Comment:function in different form but add two numbers together*/
+add=function(a,b){return parseInt(a)+parseInt(b);}
+add(3,5);
+
+
+
+
 /*
 ```js
 module.exports = {

@@ -1,30 +1,31 @@
 // Write a function twiceUnary that takes a binary function and returns a unary function that passes its argument to the binary function twice
-function twiceUnary(binaryFunc, n){  
+/*function twiceUnary(binaryFunc, n){  
     function unaryFunc(input){
-        return binaryFunc(input, input)
+   function   binaryFunc(input, input){;}
+   return binaryFunc(input, input)
     }
 
     return unaryFunc(n)
 }
+*/
 
 // Use the function twiceUnary to create the doubl function
 
-function doubl(n){
+/*function doubl(n){
     const times2 = (num1, num2) => num1 + num2
 
     return twiceUnary(times2, n)
 
-}
+}*/
 
 // Use the function twiceUnary to create the square function
 
-function square(n){
+/*function square(n){
     const selfMult = (num1, num2) => num1 * num2
 
     return twiceUnary(selfMult, n)
 
-}
-
+}*/
 module.exports = {
     // identity,
     // addb,

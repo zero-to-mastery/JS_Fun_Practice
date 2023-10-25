@@ -1,5 +1,5 @@
-// Write a function twiceUnary that takes a binary function and returns a unary function that passes its argument to the /*binary function twice
-function twiceUnary(binaryFunc, n){  
+// Write a function twiceUnary that takes a binary function and returns a unary function that passes its argument to the binary function twice
+/*function twiceUnary(binaryFunc, n){  
     function unaryFunc(input){
    function   binaryFunc(input, input){;}
    return binaryFunc(input, input)

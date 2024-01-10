@@ -1914,7 +1914,7 @@ returns an `m` object
 ```js
 addmTwo(m(3), m(4)) // {value:7, source:"(3+4)"}
 
-addmTwo(m(1, m(Math.PI, 'pi'))) // {value:4.14159..., source:"(1+pi)"}
+addmTwo(m(1), m(Math.PI, 'pi')) // {value:4.14159..., source:"(1+pi)"}
 ```
 
 <a name="addm"></a>

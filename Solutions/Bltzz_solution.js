@@ -11,7 +11,7 @@ function _check(x, y) {
 }
 
 function _checkSingle(x) {
-    if (typeof x !== 'number')
+    if (typeof x !== 'number' || x === undefined)
         throw new TypeError(`${x} is not a number`);
 }
 
@@ -287,6 +287,16 @@ function accRecurse(func, initial){
     };    
 }
 
+/**
+ * fill(num) ⇒ array
+ * @param {func} function - Any function
+ * @returns {func} - The inverse of the function
+ */
+function fill(num) {
+    _checkSingle(num)
+    return Array(num).fill(num)
+}
+
 module.exports = {
     identity,
     addb,
@@ -306,5 +316,6 @@ module.exports = {
     not,
     acc,
     accPartial,
-    accRecurse
+    accRecurse,
+    fill
 }

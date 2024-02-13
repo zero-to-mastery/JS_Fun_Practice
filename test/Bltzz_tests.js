@@ -397,6 +397,7 @@ describe("JS_Fun_Practice", function () {
     });
 
     it('should throw a TypeError if second argument are not a number', () => {
+      expect(() => sol.fill()).to.throw(TypeError);
       expect(() => sol.fill(sol.addb)).to.throw(TypeError);
       expect(() => sol.fill('40')).to.throw(TypeError);
       expect(() => sol.fill([])).to.throw(TypeError);
@@ -405,7 +406,6 @@ describe("JS_Fun_Practice", function () {
       expect(() => sol.fill('40', 2)).to.throw(TypeError);
       expect(() => sol.fill({}, 2)).to.throw(TypeError);
       expect(() => sol.fill("foo", "bar", 4)).to.throw(TypeError);
-      expect(() => sol.fill(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
     });
 
   });

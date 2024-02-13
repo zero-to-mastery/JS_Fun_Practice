@@ -1,8 +1,17 @@
-const assert = require('chai').assert;
-const expect = require('chai').expect;
+const chai = require('chai');
+const sinonChai = require('sinon-chai');
+
+require('mocha-sinon');
+
+const assert = chai.assert;
+const expect = chai.expect;
+
+chai.use(sinonChai);
+
 const filename = 'Bltzz_solution';
 const sol = require('../Solutions/' + filename);
-require('mocha-sinon');
+
+
 
 
 describe("JS_Fun_Practice", function () {
@@ -65,7 +74,7 @@ describe("JS_Fun_Practice", function () {
       expect(() => sol.mulb('40', 2)).to.throw(TypeError);
       expect(() => sol.mulb([], 2)).to.throw(TypeError);
       expect(() => sol.mulb({}, 2)).to.throw(TypeError);
-      expect(() => sol.mulb("sfs", "b")).to.throw(TypeError);
+      expect(() => sol.mulb("foo", "bar")).to.throw(TypeError);
     });
 
   });
@@ -78,109 +87,330 @@ describe("JS_Fun_Practice", function () {
     });
 
     it('should throw a TypeError if arguments are not numbers', () => {
-      expect(() => sol.mulb(40, '2')).to.throw(TypeError);
-      expect(() => sol.mulb(40, [])).to.throw(TypeError);
-      expect(() => sol.mulb(40, {})).to.throw(TypeError);
-      expect(() => sol.mulb('40', 2)).to.throw(TypeError);
-      expect(() => sol.mulb([], 2)).to.throw(TypeError);
-      expect(() => sol.mulb({}, 2)).to.throw(TypeError);
-      expect(() => sol.mulb("sfs", "b")).to.throw(TypeError);
+      expect(() => sol.minb(40, '2')).to.throw(TypeError);
+      expect(() => sol.minb(40, [])).to.throw(TypeError);
+      expect(() => sol.minb(40, {})).to.throw(TypeError);
+      expect(() => sol.minb('40', 2)).to.throw(TypeError);
+      expect(() => sol.minb([], 2)).to.throw(TypeError);
+      expect(() => sol.minb({}, 2)).to.throw(TypeError);
+      expect(() => sol.minb("foo", "bar")).to.throw(TypeError);
+    });
+
+  });
+
+
+  describe("maxb(a,b)", function () {
+
+    it("takes two numbers and returns the larger one", function () {
+      assert.equal(sol.maxb(3, 4), 4);
+    });
+
+    it('should throw a TypeError if arguments are not numbers', () => {
+      expect(() => sol.maxb(40, '2')).to.throw(TypeError);
+      expect(() => sol.maxb(40, [])).to.throw(TypeError);
+      expect(() => sol.maxb(40, {})).to.throw(TypeError);
+      expect(() => sol.maxb('40', 2)).to.throw(TypeError);
+      expect(() => sol.maxb([], 2)).to.throw(TypeError);
+      expect(() => sol.maxb({}, 2)).to.throw(TypeError);
+      expect(() => sol.maxb("foo", "bar")).to.throw(TypeError);
+    });
+
+  });
+ 
+ 
+  describe("add(...nums)", function () {
+
+    it("is an add fuction that is generalized for any amount of arguments", function () {
+      assert.equal(sol.add(1, 2, 4), 7);
+    });
+
+    it('should throw a TypeError if arguments are not numbers', () => {
+      expect(() => sol.add(40, 41, '2')).to.throw(TypeError);
+      expect(() => sol.add(40, [], 12)).to.throw(TypeError);
+      expect(() => sol.add(40, {}, 42)).to.throw(TypeError);
+      expect(() => sol.add('40', 2)).to.throw(TypeError);
+      expect(() => sol.add([], 42, 2)).to.throw(TypeError);
+      expect(() => sol.add({}, 2)).to.throw(TypeError);
+      expect(() => sol.add("foo", "bar", 4)).to.throw(TypeError);
+      expect(() => sol.add(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
+      expect(() => sol.add()).to.throw('No arguments provided.');
+    });
+
+  });
+
+
+  describe("sub(...nums)", function () {
+
+    it("is a sub fuction that is generalized for any amount of arguments", function () {
+      assert.equal(sol.sub(1, 2, 4), -5);
+    });
+    
+    it('should throw a TypeError if arguments are not numbers', () => {
+      expect(() => sol.sub(40, 41, '2')).to.throw(TypeError);
+      expect(() => sol.sub(40, [], 12)).to.throw(TypeError);
+      expect(() => sol.sub(40, {}, 42)).to.throw(TypeError);
+      expect(() => sol.sub('40', 2)).to.throw(TypeError);
+      expect(() => sol.sub([], 42, 2)).to.throw(TypeError);
+      expect(() => sol.sub({}, 2)).to.throw(TypeError);
+      expect(() => sol.sub("foo", "bar", 4)).to.throw(TypeError);
+      expect(() => sol.sub(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
+      expect(() => sol.sub()).to.throw('No arguments provided.');
+    });
+
+  });
+
+
+  describe("mul(...nums)", function () {
+
+    it("is a mul fuction that is generalized for any amount of arguments", function () {
+      assert.equal(sol.mul(1, 2, 4), 8);
+    });
+    
+    it('should throw a TypeError if arguments are not numbers', () => {
+      expect(() => sol.mul(40, 41, '2')).to.throw(TypeError);
+      expect(() => sol.mul(40, [], 12)).to.throw(TypeError);
+      expect(() => sol.mul(40, {}, 42)).to.throw(TypeError);
+      expect(() => sol.mul('40', 2)).to.throw(TypeError);
+      expect(() => sol.mul([], 42, 2)).to.throw(TypeError);
+      expect(() => sol.mul({}, 2)).to.throw(TypeError);
+      expect(() => sol.mul("foo", "bar", 4)).to.throw(TypeError);
+      expect(() => sol.mul(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
+      expect(() => sol.mul()).to.throw('No arguments provided.');
+    });
+
+  });
+
+
+  describe("min(...nums)", function () {
+
+    it("is a min fuction that is generalized for any amount of arguments", function () {
+      assert.equal(sol.min(1, 2, 4), 1);
+    });
+    
+    it('should throw a TypeError if arguments are not numbers', () => {
+      expect(() => sol.min(40, 41, '2')).to.throw(TypeError);
+      expect(() => sol.min(40, [], 12)).to.throw(TypeError);
+      expect(() => sol.min(40, {}, 42)).to.throw(TypeError);
+      expect(() => sol.min('40', 2)).to.throw(TypeError);
+      expect(() => sol.min([], 42, 2)).to.throw(TypeError);
+      expect(() => sol.min({}, 2)).to.throw(TypeError);
+      expect(() => sol.min("foo", "bar", 4)).to.throw(TypeError);
+      expect(() => sol.min(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
+      expect(() => sol.min()).to.throw('No arguments provided.');
+    });
+
+  });
+
+
+  describe("max(...nums)", function () {
+
+    it("is a max fuction that is generalized for any amount of arguments", function () {
+      assert.equal(sol.max(1, 6, 4), 6);
+    });
+     
+    it('should throw a TypeError if arguments are not numbers', () => {
+      expect(() => sol.max(40, 41, '2')).to.throw(TypeError);
+      expect(() => sol.max(40, [], 12)).to.throw(TypeError);
+      expect(() => sol.max(40, {}, 42)).to.throw(TypeError);
+      expect(() => sol.max('40', 2)).to.throw(TypeError);
+      expect(() => sol.max([], 42, 2)).to.throw(TypeError);
+      expect(() => sol.max({}, 2)).to.throw(TypeError);
+      expect(() => sol.max("foo", "bar", 4)).to.throw(TypeError);
+      expect(() => sol.max(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
+      expect(() => sol.max()).to.throw('No arguments provided.');
+    });
+
+  });
+
+
+  describe("addRecurse(...nums)", function () {
+
+    it("is an add fuction that is generalized but uses recursion", function () {
+      assert.equal(sol.addRecurse(1, 2, 4), 7);
+      assert.equal(sol.addRecurse(), 0);
+    });
+
+    it('should throw a TypeError if arguments are not numbers', () => {
+      expect(() => sol.addRecurse(40, 41, '2')).to.throw(TypeError);
+      expect(() => sol.addRecurse(40, [], 12)).to.throw(TypeError);
+      expect(() => sol.addRecurse(40, {}, 42)).to.throw(TypeError);
+      expect(() => sol.addRecurse('40', 2)).to.throw(TypeError);
+      expect(() => sol.addRecurse([], 42, 2)).to.throw(TypeError);
+      expect(() => sol.addRecurse({}, 2)).to.throw(TypeError);
+      expect(() => sol.addRecurse("foo", "bar", 4)).to.throw(TypeError);
+      expect(() => sol.addRecurse(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
+    });
+
+  });
+
+
+  describe("mulRecurse(...nums)", function () {
+
+    it("is a mul fuction that is generalized but uses recursion", function () {
+      assert.equal(sol.mulRecurse(1, 2, 4), 8);
+    });
+
+    it('should throw a TypeError if arguments are not numbers', () => {
+      expect(() => sol.mulRecurse(40, 41, '2')).to.throw(TypeError);
+      expect(() => sol.mulRecurse(40, [], 12)).to.throw(TypeError);
+      expect(() => sol.mulRecurse(40, {}, 42)).to.throw(TypeError);
+      expect(() => sol.mulRecurse('40', 2)).to.throw(TypeError);
+      expect(() => sol.mulRecurse([], 42, 2)).to.throw(TypeError);
+      expect(() => sol.mulRecurse({}, 2)).to.throw(TypeError);
+      expect(() => sol.mulRecurse("foo", "bar", 4)).to.throw(TypeError);
+      expect(() => sol.mulRecurse(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
+    });
+
+  });
+  describe("minRecurse(...nums)", function () {
+  
+    // TODO: Nice addon: Count the function calls by wrapping recursive method in class function
+    // See: https://stackoverflow.com/questions/51699584/how-to-spy-on-a-recursive-function-in-javascript/51699585#51699585
+    it("is a min fuction that is generalized but uses recursion", function () {
+      assert.equal(sol.minRecurse(1, 2, 4), 1);
+      assert.equal(sol.minRecurse(3, 2, 1), 1);
+    });
+
+    it('should throw a TypeError if arguments are not numbers', () => {
+      expect(() => sol.minRecurse(40, 41, '2')).to.throw(TypeError);
+      expect(() => sol.minRecurse(40, [], 12)).to.throw(TypeError);
+      expect(() => sol.minRecurse(40, {}, 42)).to.throw(TypeError);
+      expect(() => sol.minRecurse('40', 2)).to.throw(TypeError);
+      expect(() => sol.minRecurse([], 42, 2)).to.throw(TypeError);
+      expect(() => sol.minRecurse({}, 2)).to.throw(TypeError);
+      expect(() => sol.minRecurse("foo", "bar", 4)).to.throw(TypeError);
+      expect(() => sol.minRecurse(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
     });
 
   });
 
   
-  describe("maxb(a,b)", function () {
-    it("takes two numbers and returns the larger one", function () {
-      assert.equal(sol.maxb(3, 4), 4);
+  describe("maxRecurse(...nums)", function () {
+    
+    it("is a max fuction that is generalized but uses recursion", function () {
+      assert.equal(sol.maxRecurse(1, 2, 4), 4);
     });
-  });
-  describe("add(...nums)", function () {
-    it("is an add fuction that is generalized for any amount of arguments", function () {
-      assert.equal(sol.add(1, 2, 4), 7);
-    });
-  });
-  describe("sub(...nums)", function () {
-    it("is a sub fuction that is generalized for any amount of arguments", function () {
-      assert.equal(sol.sub(1, 2, 4), -5);
-    });
-  });
-  describe("mul(...nums)", function () {
-    it("is a mul fuction that is generalized for any amount of arguments", function () {
-      assert.equal(sol.mul(1, 2, 4), 8);
-    });
-  });
-  describe("min(...nums)", function () {
-    it("is a min fuction that is generalized for any amount of arguments", function () {
-      assert.equal(sol.min(1, 2, 4), 1);
-    });
-  });
-  describe("max(...nums)", function () {
-    it("is a max fuction that is generalized for any amount of arguments", function () {
-      assert.equal(sol.max(1, 2, 4), 4);
-    });
-  });
-  describe("addRecurse(...nums)", function () {
-    it("is an add fuction that is generalized but uses recursion", function () {
-      assert.equal(sol.addRecurse(1, 2, 4), 7);
-    });
-  });
-  describe("mulRecurse(...nums)", function () {
-    it("is a mul fuction that is generalized but uses recursion", function () {
-      assert.equal(sol.mulRecurse(1, 2, 4), 8);
-    });
-  });
-  // describe("minRecurse(...nums)", function () {
-  //   it("is a min fuction that is generalized but uses recursion", function () {
-  //     assert.equal(sol.minRecurse(1, 2, 4), 1);
-  //   });
-  // });
-  // describe("maxRecurse(...nums)", function () {
-  //   it("is a max fuction that is generalized but uses recursion", function () {
-  //     assert.equal(sol.maxRecurse(1, 2, 4), 4);
-  //   });
-  // });
-  // describe("not(func)", function () {
-  //   it("takes a function and returns the negation of its result", function () {
-  //     const isOdd = (x) => x % 2 === 1;
-  //     const isEven = sol.not(isOdd);
-  //     assert.equal(isEven(1), false);
-  //     assert.equal(isEven(2), true);
-  //   });
-  // });
-  // describe("acc(func,initial)", function () {
-  //   it(`takes a function and an initial value and returns a function
-  //       that runs the initial function on each argument, accumulating the result`, function () {
-  //     let add = sol.acc(sol.addb, 0);
-  //     assert.equal(add(1, 2, 4), 7);
 
-  //     let mul = sol.acc(sol.mulb, 1);
-  //     assert.equal(mul(1, 2, 4), 8);
-  //   });
-  // });
-  // describe("accPartial(func,start,end)", function () {
-  //   it(`takes in a function, a start index, and an end index, and returns a function
-  //       that accumulates a subset of its arguments by applying the given function to
-  //       all elements between start and end`, function () {
-  //     const addSecondToThird = sol.accPartial(sol.add, 1, 3);
-  //     expect(addSecondToThird(1, 2, 4, 8)).to.deep.equal([1, 6, 8]);
-  //   });
-  // });
-  // describe("accRecurse(func,initial)", function () {
-  //   it(`does what acc does but uses recursion`, function () {
-  //     let add = sol.accRecurse(sol.addb, 0);
-  //     assert.equal(add(1, 2, 4), 7);
+    it('should throw a TypeError if arguments are not numbers', () => {
+      expect(() => sol.maxRecurse(40, 41, '2')).to.throw(TypeError);
+      expect(() => sol.maxRecurse(40, [], 12)).to.throw(TypeError);
+      expect(() => sol.maxRecurse(40, {}, 42)).to.throw(TypeError);
+      expect(() => sol.maxRecurse('40', 2)).to.throw(TypeError);
+      expect(() => sol.maxRecurse([], 42, 2)).to.throw(TypeError);
+      expect(() => sol.maxRecurse({}, 2)).to.throw(TypeError);
+      expect(() => sol.maxRecurse("foo", "bar", 4)).to.throw(TypeError);
+      expect(() => sol.maxRecurse(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
+    });
+ 
+  });
 
-  //     let mul = sol.accRecurse(sol.mulb, 1);
-  //     assert.equal(mul(1, 2, 4), 8);
-  //   });
-  // });
-  // describe("fill(num)", function () {
-  //   it(`takes a number and returns an array with that many numbers equal to the given
-  //       number`, function () {
-  //     expect(sol.fill(3)).to.deep.equal([3, 3, 3]);
-  //   });
-  // });
+
+  describe("not(func)", function () {
+    
+    it("takes a function and returns the negation of its result", function () {
+      const isOdd = (x) => x % 2 === 1;
+      const isEven = sol.not(isOdd);
+      assert.equal(isEven(1), false);
+      assert.equal(isEven(2), true);
+    });
+
+    it('should throw a TypeError if arguments are not a function', () => {
+      expect(() => sol.not(40, 41, '2')).to.throw(TypeError);
+    });
+
+  });
+
+
+  describe("acc(func,initial)", function () {
+   
+    it(`takes a function and an initial value and returns a function
+        that runs the initial function on each argument, accumulating the result`, function () {
+      let add = sol.acc(sol.addb, 0);
+      assert.equal(add(1, 2, 4), 7);
+
+      let mul = sol.acc(sol.mulb, 1);
+      assert.equal(mul(1, 2, 4), 8);
+    });
+
+    it('should throw a TypeError if first arguments are not a function', () => {
+      expect(() => sol.acc(40, 41, '2')).to.throw(TypeError);
+    });
+
+    it('should throw a TypeError if second argument are not a number', () => {
+      expect(() => sol.acc(sol.addb, "ds")).to.throw(TypeError);
+    });
+
+  });
+
+
+  describe("accPartial(func,start,end)", function () {
+
+    it(`takes in a function, a start index, and an end index, and returns a function
+        that accumulates a subset of its arguments by applying the given function to
+        all elements between start and end`, function () {
+      const addSecondToThird = sol.accPartial(sol.add, 1, 3);
+      expect(addSecondToThird(1, 2, 4, 8)).to.deep.equal([1, 6, 8]);
+
+      const subSecondToThird = sol.accPartial(sol.sub, 1, 3);
+      expect(subSecondToThird(1, 2, 4, 8)).to.deep.equal([1, -2, 8]);
+ 
+      const subSecondToFourth = sol.accPartial(sol.sub, 1, 4);
+      expect(subSecondToFourth(1, 2, 4, 6, 8)).to.deep.equal([1, -8, 8]);
+    });
+
+    it('should throw a TypeError if first arguments are not a function', () => {
+      expect(() => sol.accPartial(40, 41, '2')).to.throw(TypeError);
+    });
+
+    it('should throw a TypeError if second argument are not a number', () => {
+      expect(() => sol.accPartial(sol.addb, "ds")).to.throw(TypeError);
+    });
+
+  });
+
+
+  describe("accRecurse(func,initial)", function () {
+
+    it(`does what acc does but uses recursion`, function () {
+      let add = sol.accRecurse(sol.addb, 0);
+      assert.equal(add(1, 2, 4), 7);
+
+      let mul = sol.accRecurse(sol.mulb, 1);
+      assert.equal(mul(1, 2, 4), 8);
+    });
+
+    it('should throw a TypeError if first arguments are not a function', () => {
+      expect(() => sol.accRecurse(40, 41, '2')).to.throw(TypeError);
+    });
+
+    it('should throw a TypeError if second argument are not a number', () => {
+      expect(() => sol.accRecurse(sol.addb, "ds")).to.throw(TypeError);
+    });
+
+  });
+
+  describe("fill(num)", function () {
+
+    it(`takes a number and returns an array with that many numbers equal to the given
+        number`, function () {
+      expect(sol.fill(3)).to.deep.equal([3, 3, 3]);
+    });
+
+    it('should throw a TypeError if second argument are not a number', () => {
+      expect(() => sol.fill(sol.addb)).to.throw(TypeError);
+      expect(() => sol.fill('40')).to.throw(TypeError);
+      expect(() => sol.fill([])).to.throw(TypeError);
+      expect(() => sol.fill([], 12)).to.throw(TypeError);
+      expect(() => sol.fill({})).to.throw(TypeError);
+      expect(() => sol.fill('40', 2)).to.throw(TypeError);
+      expect(() => sol.fill({}, 2)).to.throw(TypeError);
+      expect(() => sol.fill("foo", "bar", 4)).to.throw(TypeError);
+      expect(() => sol.fill(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
+    });
+
+  });
+
+
   // describe("fillRecurse(num)", function () {
   //   it(`does what fill does but uses recursion`, function () {
   //     expect(sol.fillRecurse(3)).to.deep.equal([3, 3, 3]);

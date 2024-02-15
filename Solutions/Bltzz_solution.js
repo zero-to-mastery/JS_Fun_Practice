@@ -16,7 +16,7 @@ function _checkSingle(x) {
 }
 
 function _checkArray(...nums) {
-    if (nums.length === 0) {
+    if (nums.length === 0 || nums === undefined) {
         throw new Error('No arguments provided.');
     }
     nums.forEach(x => _checkSingle(x))
@@ -289,12 +289,107 @@ function accRecurse(func, initial){
 
 /**
  * fill(num) ⇒ array
- * @param {func} function - Any function
- * @returns {func} - The inverse of the function
+ * @param {num} function - Any number
+ * @returns {Array} - An num long array filled with num
  */
 function fill(num) {
     _checkSingle(num)
     return Array(num).fill(num)
+}
+
+/**
+ * fillRecurse(num) ⇒ array
+* @param {num} function - Any number
+ * @returns {Array} - An num long array filled with num
+ */
+function fillRecurse(num, result = []) {
+    _checkSingle(num)
+    // Break Condition: if num is 0, return the result array
+    if (num === 0) {
+        return result;
+    }
+    // Add the given number to the result array 
+    // as we decrease the number to make recursion possible, 
+    // add length of the result to always add the same number.
+    result.push(num + result.length);
+
+    // Call fillRecurse recursively with num - 1
+    return fillRecurse(num - 1, result);
+}
+
+/**
+ * set(...args) ⇒ array
+ * @param {num} function - Any number
+ * @returns {Array} - An num long array filled with num
+ */
+function set(...args) {
+    _checkArray(...args)
+    return Array.from(new Set(args))
+}
+
+
+/**
+ * identityf(x) ⇒ function
+ * @param {num} function - Any number
+ * @returns {Array} - An num long array filled with num
+ */
+function identityf(x) {
+    return function() {return x}
+}
+
+/**
+ * identityf(x) ⇒ function
+ * @param {x} - Anything
+ * @returns {function(x)} - A function that returns x
+ */
+function identityf(x) {
+    return function() {return x}
+}
+
+/**
+ * addf(a) ⇒ function
+ * @param {a} - Any number
+ * @returns {function} - A function that adds from two invocations
+ */
+function addf(a) {
+    _checkSingle(a);
+    return function(b) {
+        _checkSingle(b)
+        return a + b;
+    };
+}
+
+/**
+ * liftf(binary) ⇒ function
+ * @param {binary}function - Any binary function
+ * @returns {Array} - An num long array filled with num
+ */
+function liftf(binary) {
+    _checkFunction(binary)
+    return function(a){
+        _checkSingle(a)
+        return function(b){
+            _checkSingle(b)
+            return binary(a, b);
+        };
+    };
+}
+
+/**
+ * pure(x, y) ⇒ array
+ * @param {x} - Any number
+ * @param {y} - Any number
+ * @returns {Array} - An num long array filled with num
+ */
+function pure(x, y) {
+    _check(x, y)
+    var z;
+    function impure(x) {
+        y++;
+        z = x * y;
+    }
+    impure(x)
+    return [y, z]
 }
 
 module.exports = {
@@ -317,5 +412,11 @@ module.exports = {
     acc,
     accPartial,
     accRecurse,
-    fill
+    fill,
+    fillRecurse,
+    set,
+    identityf,
+    addf,
+    liftf,
+    pure
 }

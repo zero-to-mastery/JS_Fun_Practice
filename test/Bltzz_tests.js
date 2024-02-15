@@ -411,39 +411,107 @@ describe("JS_Fun_Practice", function () {
   });
 
 
-  // describe("fillRecurse(num)", function () {
-  //   it(`does what fill does but uses recursion`, function () {
-  //     expect(sol.fillRecurse(3)).to.deep.equal([3, 3, 3]);
-  //   });
-  // });
-  // describe("set(...args)", function () {
-  //   it(`is given a list of arguments and returns an array with all duplicates
-  //       removed`, function () {
-  //     expect(sol.set(1, 1, 1, 2, 2, 2)).to.deep.equal([1, 2]);
-  //   });
-  // });
-  // describe("identityf(x)", function () {
-  //   it(`takes an argument and returns a function that returns that argument`, function () {
-  //     assert.equal(sol.identityf(3)(), 3);
-  //   });
-  // });
-  // describe("addf(a)", function () {
-  //   it(`adds from two invocations`, function () {
-  //     assert.equal(sol.addf(3)(4), 7);
-  //   });
-  // });
-  // describe("liftf(binary)", function () {
-  //   it(`takes a binary function, and makes it callable with two invocations`, function () {
-  //     assert.equal(sol.liftf(sol.addb)(3)(4), 7);
-  //     assert.equal(sol.liftf(sol.mulb)(5)(6), 30);
-  //   });
-  // });
-  // describe("pure(x,y)", function () {
-  //   it(`is a wrapper arround the impure function impure`, function () {
-  //     expect(sol.pure(20, 5)).to.deep.equal([6, 120]);
-  //     expect(sol.pure(25, 6)).to.deep.equal([7, 175]);
-  //   });
-  // });
+  describe("fillRecurse(num)", function () {
+   
+    it(`does what fill does but uses recursion`, function () {
+      expect(sol.fillRecurse(3)).to.deep.equal([3, 3, 3]);
+    });
+
+    it('should throw a TypeError if second argument are not a number', () => {
+      expect(() => sol.fillRecurse()).to.throw(TypeError);
+      expect(() => sol.fillRecurse(sol.addb)).to.throw(TypeError);
+      expect(() => sol.fillRecurse('40')).to.throw(TypeError);
+      expect(() => sol.fillRecurse([])).to.throw(TypeError);
+      expect(() => sol.fillRecurse([])).to.throw(TypeError);
+      expect(() => sol.fillRecurse({})).to.throw(TypeError);
+      expect(() => sol.fillRecurse("foo")).to.throw(TypeError);
+    });
+
+  });
+  describe("set(...args)", function () {
+    
+    it(`is given a list of arguments and returns an array with all duplicates
+        removed`, function () {
+      expect(sol.set(1, 1, 1, 2, 2, 2)).to.deep.equal([1, 2]);
+    });
+
+    it('should throw a TypeError if second argument are not a number', () => {
+      expect(() => sol.set(sol.addb)).to.throw(TypeError);
+      expect(() => sol.set('40')).to.throw(TypeError);
+      expect(() => sol.set([])).to.throw(TypeError);
+      expect(() => sol.set([], 12)).to.throw(TypeError);
+      expect(() => sol.set({})).to.throw(TypeError);
+      expect(() => sol.set('40', 2)).to.throw(TypeError);
+      expect(() => sol.set({}, 2)).to.throw(TypeError);
+      expect(() => sol.set("foo", "bar", 4)).to.throw(TypeError);
+    });
+
+    it('should throw a No arguments provided error if second argument are not a number', () => {
+      expect(() => sol.set()).to.throw('No arguments provided.');
+    });
+
+  });
+
+  describe("identityf(x)", function () {
+
+    it(`takes an argument and returns a function that returns that argument`, function () {
+      assert.equal(sol.identityf(3)(), 3);
+    });
+  
+  });
+
+
+  describe("addf(a)", function () {
+
+    it(`adds from two invocations`, function () {
+      assert.equal(sol.addf(3)(4), 7);
+    });
+
+    it('should throw a TypeError if second argument are not a number', () => {
+      expect(() => sol.addf()).to.throw(TypeError);
+      expect(() => sol.addf(sol.addb)).to.throw(TypeError);
+      expect(() => sol.addf('40')).to.throw(TypeError);
+      expect(() => sol.addf([])).to.throw(TypeError);
+      expect(() => sol.addf([], 12)).to.throw(TypeError);
+      expect(() => sol.addf({})).to.throw(TypeError);
+      expect(() => sol.addf('40', 2)).to.throw(TypeError);
+      expect(() => sol.addf({}, 2)).to.throw(TypeError);
+      expect(() => sol.addf("foo", "bar", 4)).to.throw(TypeError);
+    });
+
+  });
+
+  describe("liftf(binary)", function () {
+
+    it(`takes a binary function, and makes it callable with two invocations`, function () {
+      assert.equal(sol.liftf(sol.addb)(3)(4), 7);
+      assert.equal(sol.liftf(sol.mulb)(5)(6), 30);
+    });
+
+    it('should throw a TypeError if second argument are not a number', () => {
+      expect(() => sol.liftf()).to.throw(TypeError);
+      expect(() => sol.liftf(sol.liftf(sol.addb)("foo")(4))).to.throw(TypeError);
+      expect(() => sol.liftf(sol.liftf(sol.addb)([])(4))).to.throw(TypeError);
+      expect(() => sol.liftf(sol.liftf(sol.addb)({})(4))).to.throw(TypeError);
+      expect(() => sol.liftf(sol.liftf(sol.addb)()(4))).to.throw(TypeError);
+      expect(() => sol.liftf(sol.liftf(sol.addb)(42)([]))).to.throw(TypeError);
+      expect(() => sol.liftf(sol.liftf(sol.addb)(42)({}))).to.throw(TypeError);
+      expect(() => sol.liftf(sol.liftf(sol.addb)(42)())).to.throw(TypeError);
+      expect(() => sol.liftf(sol.liftf(sol.addb)(sol.mulb)(4))).to.throw(TypeError);
+    });
+  
+  });
+
+  describe("pure(x,y)", function () {
+
+    it(`is a wrapper arround the impure function impure`, function () {
+      expect(sol.pure(20, 5)).to.deep.equal([6, 120]);
+      expect(sol.pure(25, 6)).to.deep.equal([7, 175]);
+    });
+
+  });
+
+
   // describe("curryb(binary, a)", function () {
   //   it(`takes a binary function and an argument, and returns a function that can take
   //       a second argument`, function () {

@@ -392,6 +392,81 @@ function pure(x, y) {
     return [y, z]
 }
 
+/**
+ * curryb(binary, a) ⇒ function
+ * @param {binary} function - Any number
+ * @param {a} - Any number
+ * @returns {function} - returns a function that can take a second argument
+ * 
+ *  */
+function curryb(binary, a) {
+    _checkFunction(binary)
+    return function(b) {
+        return binary(a, b)
+    }
+}
+
+/**
+ * curry(func, ...outer) ⇒ function
+ * @param {func} function - Any function
+ * @param {...outer} - Any list of args
+ * @returns {function} - returns a function that can take any list of args
+ * 
+ *  */
+function curry(func, ...outer) {
+    return function(...other) {
+        return func(...outer.concat(other));
+    }
+}
+
+
+
+/**
+ * inc(x) ⇒ number
+ * Without writting any new functions, show multiple ways to create the inc function
+ * 
+ * Other options:
+ * 1. 
+ * const inc = x => x + 1;
+ * 2. 
+ * const inc = function(x) {
+ *     return x + 1;
+ * };
+ * 
+ * @param {x} - Any number
+ * @returns {x + 1} - the stuff they asked for (x + 1). On nested calls: x + #of nests
+ * 
+ *  */
+function inc(x) {
+    return x + 1
+}
+
+/**
+ * twiceUnary(binary) ⇒ function
+ * 
+ * @param {binary} - Any binary function
+ * @returns {function} - a unary function that passes its argument to the binary function twice
+ * 
+ *  */
+function twiceUnary(binary) {
+    return function(b){
+        return binary(b, b)
+    }
+}
+
+/**
+ * doubl(x) ⇒ number
+ * 
+ * @param {x} - Any number
+ * @returns {function} - a unary function that passes its argument to the binary function twice
+ * 
+ *  */
+function doubl(x) {
+    _checkSingle(x);
+    return twiceUnary(add)(x)
+}
+
+
 module.exports = {
     identity,
     addb,
@@ -418,5 +493,10 @@ module.exports = {
     identityf,
     addf,
     liftf,
-    pure
+    pure,
+    curryb,
+    curry,
+    inc,
+    twiceUnary,
+    doubl
 }

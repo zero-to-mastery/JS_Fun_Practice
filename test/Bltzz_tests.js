@@ -512,38 +512,73 @@ describe("JS_Fun_Practice", function () {
   });
 
 
-  // describe("curryb(binary, a)", function () {
-  //   it(`takes a binary function and an argument, and returns a function that can take
-  //       a second argument`, function () {
-  //     assert.equal(sol.curryb(sol.addb, 3)(4), 7);
-  //     assert.equal(sol.curryb(sol.mulb, 5)(6), 30);
-  //   });
-  // });
-  // describe("curry(func, ...outer)", function () {
-  //   it(`is a curry function generalized for any amount of arguments`, function () {
-  //     assert.equal(sol.curry(sol.add, 1, 2, 4)(4, 2, 1), 14);
-  //     assert.equal(sol.curry(sol.sub, 1, 2, 4)(4, 2, 1), -12);
-  //     assert.equal(sol.curry(sol.mul, 1, 2, 4)(4, 2, 1), 64);
-  //   });
-  // });
-  // describe("inc(x)", function () {
-  //   it(`shows multiple ways to create the inc function`, function () {
-  //     assert.equal(sol.inc(5), 6);
-  //     assert.equal(sol.inc(sol.inc(5)), 7);
-  //   });
-  // });
-  // describe("twiceUnary(binary)", function () {
-  //   it(`takes a binary function and returns a unary function that passes its argument
-  //       to the binary function twice`, function () {
-  //     assert.equal(sol.twiceUnary(sol.addb)(11), 22);
-  //     assert.equal(sol.twiceUnary(sol.mulb)(11), 121);
-  //   });
-  // });
-  // describe("doubl(x)", function () {
-  //   it(`uses the function twiceUnary to create the doubl function`, function () {
-  //     assert.equal(sol.doubl(11), 22);
-  //   });
-  // });
+  describe("curryb(binary, a)", function () {
+
+    it(`takes a binary function and an argument, and returns a function that can take
+        a second argument`, function () {
+      assert.equal(sol.curryb(sol.addb, 3)(4), 7);
+      assert.equal(sol.curryb(sol.mulb, 5)(6), 30);
+    });
+
+    it('should throw a TypeError if second argument are not a number', () => {
+      expect(() => sol.curryb()).to.throw(TypeError);
+      expect(() => sol.curryb(sol.addb, 3)([])).to.throw(TypeError);
+      expect(() => sol.curryb(sol.addb, 3)({})).to.throw(TypeError);
+      expect(() => sol.curryb(sol.addb, 3)()).to.throw(TypeError);
+      expect(() => sol.curryb(sol.addb, 'foo')(4)).to.throw(TypeError);
+      expect(() => sol.curryb(sol.addb, [])(4)).to.throw(TypeError);
+      expect(() => sol.curryb(sol.addb, {})(4)).to.throw(TypeError);
+      expect(() => sol.curryb([], 3)(4)).to.throw(TypeError);
+      expect(() => sol.curryb({}, 3)(4)).to.throw(TypeError);
+      expect(() => sol.curryb('foo', 3)(4)).to.throw(TypeError);
+      expect(() => sol.curryb(3)(4)).to.throw(TypeError);
+      expect(() => sol.curryb([])(4)).to.throw(TypeError);
+    });
+
+  });
+
+
+  describe("curry(func, ...outer)", function () {
+
+    it(`is a curry function generalized for any amount of arguments`, function () {
+      assert.equal(sol.curry(sol.add, 1, 2, 4)(4, 2, 1), 14);
+      assert.equal(sol.curry(sol.sub, 1, 2, 4)(4, 2, 1), -12);
+      assert.equal(sol.curry(sol.mul, 1, 2, 4)(4, 2, 1), 64);
+    });
+
+  });
+
+
+  describe("inc(x)", function () {
+  
+    it(`shows multiple ways to create the inc function`, function () {
+      assert.equal(sol.inc(5), 6);
+      assert.equal(sol.inc(sol.inc(5)), 7);
+      assert.equal(sol.inc(sol.inc(sol.inc(5))), 8);
+    });
+  
+  });
+
+
+  describe("twiceUnary(binary)", function () {
+
+    it(`takes a binary function and returns a unary function that passes its argument
+        to the binary function twice`, function () {
+      assert.equal(sol.twiceUnary(sol.addb)(11), 22);
+      assert.equal(sol.twiceUnary(sol.mulb)(11), 121);
+    });
+
+  });
+
+  
+  describe("doubl(x)", function () {
+
+    it(`uses the function twiceUnary to create the doubl function`, function () {
+      assert.equal(sol.doubl(11), 22);
+    });
+
+  });
+
   // describe("square(x)", function () {
   //   it(`uses the function twiceUnary to create the square function`, function () {
   //     assert.equal(sol.square(11), 121);

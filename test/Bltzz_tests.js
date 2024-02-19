@@ -579,50 +579,70 @@ describe("JS_Fun_Practice", function () {
 
   });
 
-  // describe("square(x)", function () {
-  //   it(`uses the function twiceUnary to create the square function`, function () {
-  //     assert.equal(sol.square(11), 121);
-  //   });
-  // });
-  // describe("twice(x)", function () {
-  //   it(`is a twice function generalized for any amount of arguments`, function () {
-  //     assert.equal(sol.twice(sol.add)(1, 2, 4), 14);
-  //   });
-  // });
-  // describe("reverseb(binary)", function () {
-  //   it(`reverses the arguments of a binary function`, function () {
-  //     assert.equal(sol.reverseb(sol.subb)(3, 2), -1);
-  //   });
-  // });
-  // describe("reverse(func)", function () {
-  //   it(`is a reverse function generalized for any amount of arguments`, function () {
-  //     assert.equal(sol.reverse(sol.sub)(1, 2, 4), 1);
-  //   });
-  // });
-  // describe("composeuTwo(unary1,unary2)", function () {
-  //   it(`takes two unary functions and returns a unary function that calls them
-  //       both`, function () {
-  //     assert.equal(sol.composeuTwo(sol.doubl, sol.square)(5), 100);
-  //   });
-  // });
-  // describe("composeu(...funcs)", function () {
-  //   it(`is a compose function generalized for any amount of arguments`, function () {
-  //     assert.equal(
-  //       sol.composeu(
-  //         sol.doubl,
-  //         sol.square,
-  //         sol.identity,
-  //         sol.curry(sol.add, 1, 2)
-  //       )(5),
-  //       103
-  //     );
-  //   });
-  // });
-  // describe("composeb(binary1,binary2)", function () {
-  //   it(`takes two binary functions and returns a function that calls them both`, function () {
-  //     assert.equal(sol.composeb(sol.addb, sol.mulb)(2, 3, 7), 35);
-  //   });
-  // });
+  describe("square(x)", function () {
+   
+    it(`uses the function twiceUnary to create the square function`, function () {
+      assert.equal(sol.square(11), 121);
+    });
+  
+  });
+  
+  describe("twice(x)", function () {
+   
+    it(`is a twice function generalized for any amount of arguments`, function () {
+      assert.equal(sol.twice(sol.add)(1, 2, 4), 14);
+    });
+
+  });
+
+  describe("reverseb(binary)", function () {
+  
+    it(`reverses the arguments of a binary function`, function () {
+      assert.equal(sol.reverseb(sol.subb)(3, 2), -1);
+    });
+  
+  });
+  
+  describe("reverse(func)", function () {
+  
+    it(`is a reverse function generalized for any amount of arguments`, function () {
+      assert.equal(sol.reverse(sol.sub)(1, 2, 4), 1);
+    });
+  
+  });
+
+  describe("composeuTwo(unary1,unary2)", function () {
+
+    it(`takes two unary functions and returns a unary function that calls them
+        both`, function () {
+      assert.equal(sol.composeuTwo(sol.doubl, sol.square)(5), 100);
+    });
+
+  });
+  
+  describe("composeu(...funcs)", function () {
+  
+    it(`is a compose function generalized for any amount of arguments`, function () {
+      assert.equal(
+        sol.composeu(
+          sol.doubl,
+          sol.square,
+          sol.identity,
+          sol.curry(sol.add, 1, 2)
+        )(5),
+        103
+      );
+    });
+  
+  });
+  
+  describe("composeb(binary1,binary2)", function () {
+   
+    it(`takes two binary functions and returns a function that calls them both`, function () {
+      assert.equal(sol.composeb(sol.addb, sol.mulb)(2, 3, 7), 35);
+    });
+ 
+  });
   // describe("composeTwo(func1,func2)", function () {
   //   it(`takes two functions and returns a function that calls them both`, function () {
   //     assert.equal(sol.composeTwo(sol.add, sol.square)(2, 3, 7), 144);

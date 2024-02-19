@@ -458,7 +458,7 @@ function twiceUnary(binary) {
  * doubl(x) ⇒ number
  * 
  * @param {x} - Any number
- * @returns {function} - a unary function that passes its argument to the binary function twice
+ * @returns {function} - Use the function twiceUnary to return the double of x
  * 
  *  */
 function doubl(x) {
@@ -466,6 +466,99 @@ function doubl(x) {
     return twiceUnary(add)(x)
 }
 
+/**
+ * square(x) ⇒ number
+ * 
+ * @param {x} - Any number
+ * @returns {function} - Use the function twiceUnary to return x square
+ * 
+ *  */
+function square(x) {
+    _checkSingle(x);
+    return twiceUnary(mul)(x)
+}
+
+/**
+ * twice(x) ⇒ any
+ * 
+ * @param {x} function - the add function
+ * @returns {function} - Use the function twiceUnary to return x square
+ * 
+ *  */
+function twice(x) {
+    return function(...args){
+        return 2 * x(...args)
+    }
+}
+
+
+/**
+ * reverseb(binary) ⇒ function
+ * 
+ * @param {binary} function - any binary function
+ * @returns {function} - Use the function twiceUnary to return x square
+ * 
+ *  */
+function reverseb(binary) {
+    return function(...args){
+        return binary(...args.reverse())
+    }
+}
+
+/**
+ * reverse(func) ⇒ function
+ * 
+ * @param {func} function - any function
+ * @returns {function} - Use the function twiceUnary to return x square
+ * 
+ *  */
+function reverse(binary) {
+    return function(...args){
+        return reverseb(binary)(...args)
+    }
+}
+
+/**
+ * composeuTwo(unary1, unary2) ⇒ function
+ * 
+ * @param {unary1} function - any unary function
+ * @param {unary2} function - any unary function
+ * @returns {function} - Use the function twiceUnary to return x square
+ * 
+ *  */
+function composeuTwo(unary1, unary2) {
+    return function(arg){
+        return unary2(unary1(arg))
+    }
+}
+
+/**
+ * composeu(...funcs) ⇒ any
+ * 
+ * @param {...funcs} function - an array of functions
+ * @returns {function} - Use the function twiceUnary to return x square
+ * 
+ *  */
+function composeu(...funcs) {
+    return function(arg){
+        return funcs.reduce((result, func) => func(result), arg);
+    }
+}
+
+
+/**
+ * composeb(binary1, binary2) ⇒ function
+ * 
+ * @param {binary1} function - any unary function
+ * @param {binary2} function - any unary function
+ * @returns {function} - Use the function twiceUnary to return x square
+ * 
+ *  */
+function composeb(binary1, binary2) {
+    return function(...arg){
+        return binary2(binary1(arg[0], arg[1]), arg[2])
+    }
+}
 
 module.exports = {
     identity,
@@ -498,5 +591,12 @@ module.exports = {
     curry,
     inc,
     twiceUnary,
-    doubl
+    doubl,
+    square, 
+    twice,
+    reverseb,
+    reverse,
+    composeuTwo,
+    composeu,
+    composeb
 }

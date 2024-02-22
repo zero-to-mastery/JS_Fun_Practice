@@ -232,6 +232,7 @@ describe('JS_Fun_Practice', () => {
       expect(() => sol.mulRecurse(4, 5, 6, 7, 8, 9, 10, 11, '12')).to.throw(TypeError);
     });
   });
+
   describe('minRecurse(...nums)', () => {
     // TODO: Nice addon: Count the function calls by wrapping recursive method in class function
     // See: https://stackoverflow.com/questions/51699584/how-to-spy-on-a-recursive-function-in-javascript/51699585#51699585
@@ -563,94 +564,105 @@ describe('JS_Fun_Practice', () => {
       assert.equal(sol.composeb(sol.addb, sol.mulb)(2, 3, 7), 35);
     });
   });
-  // describe("composeTwo(func1,func2)", function () {
-  //   it(`takes two functions and returns a function that calls them both`, function () {
-  //     assert.equal(sol.composeTwo(sol.add, sol.square)(2, 3, 7), 144);
-  //   });
-  // });
-  // describe("compose(...funcs)", function () {
-  //   it(`takes any amount of functions and returns a function that takes any amount of
-  //       arguments and gives them to the first function, then that result to the
-  //       second function and so on`, function () {
-  //     assert.equal(
-  //       sol.compose(sol.add, sol.doubl, sol.fill, sol.max)(0, 1, 2),
-  //       6
-  //     );
-  //   });
-  // });
-  // describe("limitb(binary, lmt)", function () {
-  //   it(`allows a binary function to be called a limited number of times`, function () {
-  //     let addlmtb = sol.limitb(sol.addb, 1);
-  //     assert.equal(addlmtb(3, 4), 7);
-  //     assert.equal(addlmtb(3, 5), undefined);
-  //   });
-  // });
-  // describe("limit(func, lmt)", function () {
-  //   it(`allows a function that is generalized for any amount of arguments
-  //       to be called a limited number of times`, function () {
-  //     let addlmt = sol.limit(sol.add, 1);
-  //     assert.equal(addlmt(1, 2, 4), 7);
-  //     assert.equal(addlmt(3, 5, 9, 2), undefined);
-  //   });
-  // });
-  // describe("genFrom(x)", function () {
-  //   it(`produces a generator that will produces a series of values`, function () {
-  //     let index = sol.genFrom(0);
-  //     assert.equal(index.next().value, 0);
-  //     assert.equal(index.next().value, 1);
-  //     assert.equal(index.next().value, 2);
-  //   });
-  // });
-  // describe("genTo(x)", function () {
-  //   it(`takes a generator and an end limit, and returns a generator that will
-  //       produce numbers up to that limit`, function () {
-  //     let index = sol.genTo(sol.genFrom(1), 3);
-  //     assert.equal(index.next().value, 1);
-  //     assert.equal(index.next().value, 2);
-  //     assert.equal(index.next().value, undefined);
-  //   });
-  // });
-  // describe("genFromTo(x)", function () {
-  //   it(`produces a generator that will produce values in a range`, function () {
-  //     let index = sol.genFromTo(0, 3);
-  //     assert.equal(index.next().value, 0);
-  //     assert.equal(index.next().value, 1);
-  //     assert.equal(index.next().value, 2);
-  //     assert.equal(index.next().value, undefined);
-  //   });
-  // });
-  // describe("elementGen(array,gen)", function () {
-  //   it(`takes an array and a generator and returns a generator that will produce
-  //       elements from the array`, function () {
-  //     let ele = sol.elementGen(["a", "b", "c", "d"], sol.genFromTo(1, 3));
-  //     assert.equal(ele.next().value, "b");
-  //     assert.equal(ele.next().value, "c");
-  //     assert.equal(ele.next().value, undefined);
-  //   });
-  // });
-  // describe("element(array,gen)", function () {
-  //   it(`is a modified elementGen function so that the generator argument is optional.
-  //       If a generator is not provided, then each of the elements of the array will
-  //       be produced.`, function () {
-  //     let ele = sol.element(["a", "b", "c", "d"]);
-  //     assert.equal(ele.next().value, "a");
-  //     assert.equal(ele.next().value, "b");
-  //     assert.equal(ele.next().value, "c");
-  //     assert.equal(ele.next().value, "d");
-  //     assert.equal(ele.next().value, undefined);
-  //   });
-  // });
-  // describe("collect(gen,array)", function () {
-  //   it(`takes a generator and an array and produces a function that will collect the
-  //       results in the array`, function () {
-  //     let array = [];
-  //     let col = sol.collect(sol.genFromTo(0, 2), array);
-  //     assert.equal(col.next().value, 0);
-  //     assert.equal(col.next().value, 1);
-  //     assert.equal(col.next().value, undefined);
-  //     expect(array).to.deep.equal([0, 1]);
-  //   });
-  // });
+
+  describe('composeTwo(func1,func2)', () => {
+    it('takes two functions and returns a function that calls them both', () => {
+      assert.equal(sol.composeTwo(sol.add, sol.square)(2, 3, 7), 144);
+    });
+  });
+
+  describe('compose(...funcs)', () => {
+    it(`takes any amount of functions and returns a function that takes any amount of
+        arguments and gives them to the first function, then that result to the
+        second function and so on`, () => {
+      assert.equal(
+        sol.compose(sol.add, sol.doubl, sol.fill, sol.max)(0, 1, 2), 6);
+    });
+  });
+
+  describe('limitb(binary, lmt)', () => {
+    it('allows a binary function to be called a limited number of times', () => {
+      const addlmtb = sol.limitb(sol.addb, 1);
+      assert.equal(addlmtb(3, 4), 7);
+      assert.equal(addlmtb(3, 5), undefined);
+    });
+  });
+
+  describe('limit(func, lmt)', () => {
+    it(`allows a function that is generalized for any amount of arguments
+        to be called a limited number of times`, () => {
+      const addlmt = sol.limit(sol.add, 1);
+      assert.equal(addlmt(1, 2, 4), 7);
+      assert.equal(addlmt(3, 5, 9, 2), undefined);
+    });
+  });
+
+  describe('genFrom(x)', () => {
+    it('produces a generator that will produces a series of values', () => {
+      const index = sol.genFrom(0);
+      assert.equal(index.next().value, 0);
+      assert.equal(index.next().value, 1);
+      assert.equal(index.next().value, 2);
+    });
+  });
+
+  describe('genTo(x)', () => {
+    it(`takes a generator and an end limit, and returns a generator that will
+        produce numbers up to that limit`, () => {
+      const index = sol.genTo(sol.genFrom(1), 3);
+      assert.equal(index.next().value, 1);
+      assert.equal(index.next().value, 2);
+      assert.equal(index.next().value, undefined);
+    });
+  });
+
+  describe('genFromTo(x)', () => {
+    it('produces a generator that will produce values in a range', () => {
+      const index = sol.genFromTo(0, 3);
+      assert.equal(index.next().value, 0);
+      assert.equal(index.next().value, 1);
+      assert.equal(index.next().value, 2);
+      assert.equal(index.next().value, undefined);
+    });
+    it('throws and error if start is greater than end', () => {
+      const index = sol.genFromTo(3, 1);
+      expect(() => index.next().value).to.throw('Start must not be greater than end');
+    });
+  });
+
+  describe('elementGen(array,gen)', () => {
+    it(`takes an array and a generator and returns a generator that will produce
+        elements from the array`, () => {
+      const ele = sol.elementGen(['a', 'b', 'c', 'd'], sol.genFromTo(1, 3));
+      assert.equal(ele.next().value, 'b');
+      assert.equal(ele.next().value, 'c');
+      assert.equal(ele.next().value, undefined);
+    });
+  });
+
+  describe('element(array,gen)', () => {
+    it(`is a modified elementGen function so that the generator argument is optional.
+        If a generator is not provided, then each of the elements of the array will
+        be produced.`, () => {
+      const ele = sol.element(['a', 'b', 'c', 'd']);
+      assert.equal(ele.next().value, 'a');
+      assert.equal(ele.next().value, 'b');
+      assert.equal(ele.next().value, 'c');
+      assert.equal(ele.next().value, 'd');
+      assert.equal(ele.next().value, undefined);
+    });
+  });
+  describe('collect(gen,array)', () => {
+    it(`takes a generator and an array and produces a function that will collect the
+        results in the array`, () => {
+      const array = [];
+      const col = sol.collect(sol.genFromTo(0, 2), array);
+      assert.equal(col.next().value, 0);
+      assert.equal(col.next().value, 1);
+      assert.equal(col.next().value, undefined);
+      expect(array).to.deep.equal([0, 1]);
+    });
+  });
   // describe("filter(gen,predicate)", function () {
   //   it(`takes a generator and a predicate and produces a generator that produces only
   //       the values approved by the predicate`, function () {

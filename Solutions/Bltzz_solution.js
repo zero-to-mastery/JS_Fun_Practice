@@ -239,13 +239,13 @@ function acc(func, initial) {
   return function accumFunc(...args) {
     return args.reduce((accumulator, current) => func(accumulator, current), initial);
   };
-//   return function accumFunc(...args) {
-//     let x = initial;
-//     for (const i of args) {
-//       x = func(x, i);
-//     }
-//     return x;
-//   };
+  //   return function accumFunc(...args) {
+  //     let x = initial;
+  //     for (const i of args) {
+  //       x = func(x, i);
+  //     }
+  //     return x;
+  //   };
 }
 
 /**
@@ -525,7 +525,7 @@ function composeuTwo(unary1, unary2) {
  * composeu(...funcs) ⇒ any
  *
  * @param {...funcs} function - an array of functions
- * @returns {function} - Use the function twiceUnary to return x square
+ * @returns {function} - composes a generic amount of functions
  *
  *  */
 function composeu(...funcs) {
@@ -538,15 +538,194 @@ function composeu(...funcs) {
 /**
  * composeb(binary1, binary2) ⇒ function
  *
- * @param {binary1} function - any unary function
- * @param {binary2} function - any unary function
- * @returns {function} - Use the function twiceUnary to return x square
+ * @param {binary1} function - any binary function
+ * @param {binary2} function - any binary function
+ * @returns {function} - composes two functions to a single one that calls both (binary)
  *
  *  */
 function composeb(binary1, binary2) {
   return function composeBArgs(...arg) {
     return binary2(binary1(arg[0], arg[1]), arg[2]);
   };
+}
+
+/**
+ * composeTwo(func1, func2) ⇒ function
+ *
+ * @param {func1} function - any function
+ * @param {func2} function - any function
+ * @returns {function} - composes two functions to a single one that calls both
+ *      (independend of arg length)
+ *
+ *  */
+function composeTwo(func1, func2) {
+  return function composeBArgs(...arg) {
+    return func2(func1(...arg));
+  };
+}
+
+/**
+ * compose(...funcs) ⇒ function
+ *
+ * @param {...funcs} function - any list of function
+ * @returns {function} - composes any amount functions to a single one that calls all of them
+ *       (independend of arg length)
+ *
+ *  */
+// max(fill(double(add(...args))))
+function compose(...funcs) {
+  // It returns a new function that will apply each function in the array from right to left
+  return function applyFromRightToLeft(...args) {
+    // This reduce function iterates over the functions array
+    return funcs.reduce((result, fn) => {
+      // If the result is not an array, convert it to an array
+      const argsArray = Array.isArray(result) ? result : [result];
+      // Apply the current function to the arguments (result or [result])
+      return fn(...argsArray);
+    }, args); // Initial arguments are passed to the first function
+  };
+}
+
+/**
+ * limitb(binary, lmt) ⇒ function
+ *
+ * @param {binary} function - any function
+ * @param {lmt} number - any limit (integer)
+ * @returns {function} - returns a function that can be calles lmt times
+ *
+ *  */
+function limitb(binary, lmt) {
+  let callCount = 0;
+  return function limitedBinary(arg1, arg2) {
+    callCount += 1; // to be lint compliant
+    return (callCount <= lmt) ? binary(arg1, arg2) : undefined;
+    // one could also do this without the extra line for incrementing the counter
+    // return (++callCount <= lmt) ? binary(arg1, arg2) : undefined;
+  };
+}
+
+/**
+ * limit(func, lmt) ⇒ function
+ *
+ * @param {func} function - any function
+ * @param {lmt} number - any limit (integer)
+ * @returns {function} - returns a function that can be calles lmt times
+ *
+ *  */
+function limit(func, lmt) {
+  let callCount = 0;
+  return function limitedBinary(...args) {
+    callCount += 1; // to be lint compliant
+    return (callCount <= lmt) ? func(...args) : undefined;
+    // one could also do this without the extra line for incrementing the counter
+    // return (++callCount <= lmt) ? func(...args) : undefined;
+  };
+}
+
+/**
+ * genFrom(x) ⇒ function
+ *
+ * @param {x} number - any integer
+ * @returns {number} - the count of how often it has been called + x
+ *
+ *  */
+function* genFrom(x) {
+  let currentValue = x;
+  while (true) {
+    yield currentValue;
+    currentValue += 1;
+  }
+}
+
+/**
+ * genTo(gen, lmt) ⇒ function
+ *
+ * @param {gen} function - the generator
+ * @param {lmt} number - any integer
+ *
+ *  */
+function* genTo(gen, lmt) {
+  let lim = lmt - 1;
+  let next = gen.next();
+
+  while (!next.done && lim > 0) {
+    yield next.value;
+    lim -= 1;
+    next = gen.next();
+  }
+}
+
+/**
+ * genFromTo(start, end) ⇒ function
+ *
+ * @param {start} number - any integer
+ * @param {end} number - any integer
+ *
+ *  */
+function* genFromTo(start, end) {
+  if (start >= end) throw Error('Start must not be greater than end');
+  let currentValue = start;
+  while (currentValue < end) {
+    yield currentValue;
+    currentValue += 1;
+  }
+  return undefined;
+}
+
+/**
+ * elementGen(array, gen) ⇒ function
+ *
+ * @param {array} array - any array
+ * @param {gen} function* - the generator func
+ * @returns {function} - returns a generator that will produce elements from the array
+ *
+ *  */
+function* elementGen(array, gen) {
+  while (true) {
+    const index = gen.next().value;
+    // If the generator function reaches the end, break the loop
+    if (index === undefined) {
+      break;
+    }
+    yield array[index];
+  }
+}
+
+/**
+ * element(array, gen) ⇒ function
+ *
+ * @param {array} array - any array
+ * @param {gen} function* - the generator func
+ * @returns {function} - returns a generator that will produce elements from the array
+ *
+ *  */
+function* element(array, gen) {
+  let currentValue = 0;
+  while (true) {
+    yield array[currentValue];
+    currentValue += 1;
+  }
+}
+
+
+/**
+ * collect(gen, array) ⇒ function
+ *
+ * @param {array} array - any array
+ * @param {gen} function* - the generator func
+ * @returns {function} - returns a generator that will produce elements from the array
+ *
+ *  */
+function* collect(gen, array) {
+  while (true) {
+    const index = gen.next().value;
+    // If the generator function reaches the end, break the loop
+    if (index === undefined) {
+      break;
+    }
+    array[index] = index;
+    yield array[index];
+  }
 }
 
 module.exports = {
@@ -588,4 +767,14 @@ module.exports = {
   composeuTwo,
   composeu,
   composeb,
+  composeTwo,
+  compose,
+  limitb,
+  limit,
+  genFrom,
+  genTo,
+  genFromTo,
+  elementGen,
+  element,
+  collect,
 };

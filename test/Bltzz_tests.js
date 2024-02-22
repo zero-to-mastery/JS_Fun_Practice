@@ -663,51 +663,51 @@ describe('JS_Fun_Practice', () => {
       expect(array).to.deep.equal([0, 1]);
     });
   });
-  // describe("filter(gen,predicate)", function () {
-  //   it(`takes a generator and a predicate and produces a generator that produces only
-  //       the values approved by the predicate`, function () {
-  //     let fil = sol.filter(sol.genFromTo(0, 5), (val) => val % 3 === 0);
-  //     assert.equal(fil.next().value, 0);
-  //     assert.equal(fil.next().value, 3);
-  //     assert.equal(fil.next().value, undefined);
-  //   });
-  // });
-  // describe("filterTail(gen,predicate)", function () {
-  //   it(`uses tail-recursion to perform the filtering`, function () {
-  //     let fil = sol.filterTail(sol.genFromTo(0, 5), (val) => val % 3 === 0);
-  //     assert.equal(fil.next().value, 0);
-  //     assert.equal(fil.next().value, 3);
-  //     assert.equal(fil.next().value, undefined);
-  //   });
-  // });
-  // describe("concatTwo(gen1,gen2)", function () {
-  //   it(`takes two generators and produces a generator that combines the sequences`, function () {
-  //     let con = sol.concatTwo(sol.genFromTo(0, 3), sol.genFromTo(0, 2));
-  //     assert.equal(con.next().value, 0);
-  //     assert.equal(con.next().value, 1);
-  //     assert.equal(con.next().value, 2);
-  //     assert.equal(con.next().value, 0);
-  //     assert.equal(con.next().value, 1);
-  //     assert.equal(con.next().value, undefined);
-  //   });
-  // });
-  // describe("concat(...gens)", function () {
-  //   it(`is generalized for any amount of arguments`, function () {
-  //     let con = sol.concat(
-  //       sol.genFromTo(0, 3),
-  //       sol.genFromTo(0, 2),
-  //       sol.genFromTo(5, 7)
-  //     );
-  //     assert.equal(con.next().value, 0);
-  //     assert.equal(con.next().value, 1);
-  //     assert.equal(con.next().value, 2);
-  //     assert.equal(con.next().value, 0);
-  //     assert.equal(con.next().value, 1);
-  //     assert.equal(con.next().value, 5);
-  //     assert.equal(con.next().value, 6);
-  //     assert.equal(con.next().value, undefined);
-  //   });
-  // });
+  describe('filter(gen,predicate)', () => {
+    it(`takes a generator and a predicate and produces a generator that produces only
+        the values approved by the predicate`, () => {
+      const fil = sol.filter(sol.genFromTo(0, 5), val => val % 3 === 0);
+      assert.equal(fil.next().value, 0);
+      assert.equal(fil.next().value, 3);
+      assert.equal(fil.next().value, undefined);
+    });
+  });
+  describe('filterTail(gen,predicate)', () => {
+    it('uses tail-recursion to perform the filtering', () => {
+      const fil = sol.filterTail(sol.genFromTo(0, 5), val => val % 3 === 0);
+      assert.equal(fil.next().value, 0);
+      assert.equal(fil.next().value, 3);
+      assert.equal(fil.next().value, undefined);
+    });
+  });
+  describe('concatTwo(gen1,gen2)', () => {
+    it('takes two generators and produces a generator that combines the sequences', () => {
+      const con = sol.concatTwo(sol.genFromTo(0, 3), sol.genFromTo(0, 2));
+      assert.equal(con.next().value, 0);
+      assert.equal(con.next().value, 1);
+      assert.equal(con.next().value, 2);
+      assert.equal(con.next().value, 0);
+      assert.equal(con.next().value, 1);
+      assert.equal(con.next().value, undefined);
+    });
+  });
+  describe('concat(...gens)', () => {
+    it('is generalized for any amount of arguments', () => {
+      const con = sol.concat(
+        sol.genFromTo(0, 3),
+        sol.genFromTo(0, 2),
+        sol.genFromTo(5, 7),
+      );
+      assert.equal(con.next().value, 0);
+      assert.equal(con.next().value, 1);
+      assert.equal(con.next().value, 2);
+      assert.equal(con.next().value, 0);
+      assert.equal(con.next().value, 1);
+      assert.equal(con.next().value, 5);
+      assert.equal(con.next().value, 6);
+      assert.equal(con.next().value, undefined);
+    });
+  });
   // describe("concatTail(...gens)", function () {
   //   it(`uses tail-recursion to perform the concating`, function () {
   //     let con = sol.concatTail(

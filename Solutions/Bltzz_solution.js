@@ -717,15 +717,102 @@ function* element(array, gen) {
  *
  *  */
 function* collect(gen, array) {
+  const arrCopy = array;
   while (true) {
     const index = gen.next().value;
     // If the generator function reaches the end, break the loop
     if (index === undefined) {
       break;
     }
-    array[index] = index;
-    yield array[index];
+    arrCopy[index] = index;
+    yield arrCopy[index];
   }
+}
+
+/**
+ * filter(gen, predicate) ⇒ function
+ *
+ * @param {gen} function - any generator function
+ * @param {predicate} function* - the predicate
+ * @returns {function} - produces a generator that produces only the values
+ *      approved by the predicate
+ *
+ *  */
+function* filter(gen, predicate) {
+  let result;
+  while (true) {
+    result = gen.next();
+    if (result.done) break;
+
+    const index = result.value;
+    if (predicate(index)) {
+      yield index;
+    }
+  }
+}
+
+/**
+ * filterTail(gen, predicate) ⇒ function
+ *
+ * @param {gen} function - any generator function
+ * @param {predicate} function - the predicate
+ * @returns {function} - same as filter() but with tail-recursion to perform the filtering
+ *
+ *  */
+function* filterTail(gen, predicate) {
+  const { done, value } = gen.next();
+  if (done) {
+    return;
+  }
+  if (predicate(value)) {
+    yield value;
+  }
+  yield* filterTail(gen, predicate);
+}
+
+/**
+ * concatTwo(gen1, gen2) ⇒ function
+ *
+ * @param {gen1} function - any generator function
+ * @param {gen2} function* - any generator function
+ * @returns {function} - contatenated generators
+ *
+ *  */
+function* concatTwo(gen1, gen2) {
+  let result;
+  while (true) {
+    result = gen1.next();
+    if (result.done) break;
+
+    yield result.value;
+  }
+
+  while (true) {
+    result = gen2.next();
+    if (result.done) break;
+
+    yield result.value;
+  }
+}
+
+/**
+ * concat(...gens) ⇒ function
+ *
+ * @param {...gens} function - any number of generator functions
+ * @returns {function} - contatenated generators
+ *
+ *  */
+function* concat(...gens) {
+    const concatenated = gens.flatMap(gen => [...gen]);
+    yield* concatenated;
+//   for (const gen of gens) {
+//     let result;
+//     while (true) {
+//       result = gen.next();
+//       if (result.done) break;
+//       yield result.value;
+//     }
+//   }
 }
 
 module.exports = {
@@ -777,4 +864,8 @@ module.exports = {
   elementGen,
   element,
   collect,
+  filter,
+  filterTail,
+  concatTwo,
+  concat,
 };

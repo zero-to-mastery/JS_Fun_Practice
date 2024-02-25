@@ -21,8 +21,5 @@
     "mocha": "^10.2.0",
     "mocha-sinon": "^2.1.2",
     "sinon": "^9.0.2"
-  },
-  "dependencies": {
-    "sinon-chai": "^3.7.0"
   }
 }

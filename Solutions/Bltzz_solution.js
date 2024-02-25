@@ -1112,6 +1112,195 @@ function expn(value) {
   return undefined;
 }
 
+/**
+ * addg(value) ⇒ number | undefined
+ *
+ * @param {value} let - an array of any
+ * @returns the result of the operation
+ */
+function addg(value) {
+  let tmpSum = value || 0;
+  if (value === undefined) return undefined;
+
+  return function adder(arg) {
+    if (arg === undefined) return tmpSum;
+    tmpSum += arg;
+    return adder;
+  };
+}
+
+/**
+ * liftg(binary) ⇒ function
+ *
+ * @param {binary} function - a binary function
+ * @returns a function that takes one addtl value and executes the
+ *          binary on the result and the value
+ */
+function liftg(binary) {
+  let tmpRes = 0;
+  let iterations = 0;
+  if (binary === undefined) return undefined;
+
+  return function executor(arg) {
+    if (arg === undefined && iterations === 0) return undefined;
+    if (arg === undefined) return tmpRes;
+    tmpRes = (iterations === 0) ? arg : binary(tmpRes, arg);
+    iterations += 1;
+    return executor;
+  };
+}
+
+/**
+ * arrayg(value) ⇒ array
+ *
+ * @param {value} number - any number
+ * @returns an array holding all args from earlier invocations
+ */
+function arrayg(value) {
+  const tmpRes = value === undefined ? [] : [value];
+  if (value === undefined) return tmpRes;
+  return function executor(arg) {
+    if (arg === undefined) return tmpRes;
+    tmpRes.push(arg);
+    return executor;
+  };
+}
+
+/**
+ * continuizeu(unary) ⇒ function
+ *
+ * @param {unary} function - any unary function
+ * @returns a function that takes a callback and an argument
+ */
+function continuizeu(unary) {
+  return function executor(callback, arg) {
+    callback(unary(arg));
+  };
+}
+
+/**
+ * continuize(func) ⇒ function
+ *
+ * @param {func} function - any unary function
+ * @returns a function that takes a callback and arguments
+ */
+function continuize(func) {
+  return function executor(callback, ...args) {
+    callback(func(...args));
+  };
+}
+
+/**
+ * vector() ⇒ function
+ *
+ * @returns a vector object
+ */
+function vector() {
+  return {
+    secretArray: [],
+    append: function append(arg) {
+      this.secretArray.push(arg);
+    },
+    store: function store(pos, arg) {
+      this.secretArray[pos] = arg;
+    },
+    get: function get(pos) {
+      return this.secretArray[pos];
+    },
+  };
+}
+
+/**
+ * exploitVector(v) ⇒ function
+ *
+ * @param {v} object - any vector object
+ * @returns the secret array of the vector object
+ */
+function exploitVector(v) {
+  return v.secretArray;
+}
+
+/**
+ * vectorSafe() ⇒ function
+ *
+ * @returns a vector object that denies direct variable access
+ */
+function vectorSafe() {
+  class Vector {
+    #secretArray = [];
+
+    append(arg) {
+      this.#secretArray.push(arg);
+    }
+
+    store(pos, arg) {
+      this.#secretArray[pos] = arg;
+    }
+
+    get(pos) {
+      return this.#secretArray[pos];
+    }
+  }
+  return new Vector();
+}
+
+/**
+ * pubsub()
+ *
+ * @returns an object with publish/subscribe functionality
+ */
+function pubsub() {
+  class PubSub {
+    #callback;
+
+    subscribe(callback) {
+      this.#callback = callback;
+    }
+
+    publish(text) {
+      this.#callback(text);
+    }
+  }
+  return new PubSub();
+}
+
+/**
+ * mapRecurse(array, callback) ⇒ array
+ *
+ * @param {array} array - any array of numbers
+ * @param {callback} function - the callback function
+ * @returns an a transformation for each element of a given array, recursively
+ *
+ * */
+function mapRecurse(array, callback) {
+  if (array.length === 0) {
+    return [];
+  }
+  // Recursive case: process the first element and concatenate the result with the rest of the array
+  return [callback(array[0])].concat(mapRecurse(array.slice(1), callback));
+}
+
+/**
+ * filterRecurse(array, predicate) ⇒ array
+ *
+ * @param {array} array - any array of numbers
+ * @param {callback} function - the callback function
+ * @returns an a transformation for each element of a given array, recursively
+ *
+ * */
+function filterRecurse(array, predicate) {
+  if (array.length === 0) {
+    return [];
+  }
+  const firstElement = array[0];
+  // Recursive case: process the first element and concatenate the result with the rest of the array
+  const filteredRest = filterRecurse(array.slice(1), predicate);
+  // Check if the first element satisfies the predicate
+  if (predicate(firstElement)) {
+    return [firstElement].concat(filteredRest);
+  }
+  return filteredRest;
+}
 
 module.exports = {
   identity,
@@ -1182,4 +1371,15 @@ module.exports = {
   liftm,
   exp,
   expn,
+  addg,
+  liftg,
+  arrayg,
+  continuizeu,
+  continuize,
+  vector,
+  exploitVector,
+  vectorSafe,
+  pubsub,
+  mapRecurse,
+  filterRecurse,
 };

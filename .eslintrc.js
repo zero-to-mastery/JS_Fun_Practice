@@ -14,5 +14,8 @@ module.exports = {
     ],
     "rules": {
       "no-underscore-dangle": 0,
-    }
+    },
+    "parserOptions": {
+      "ecmaVersion": 13,
+    },
   };

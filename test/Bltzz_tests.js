@@ -912,111 +912,129 @@ describe('JS_Fun_Practice', () => {
         sol.expn([Math.sqrt, [sol.add, [sol.square, 3], [sol.square, 4]]]),
         5,
       );
-      // assert.equal(sol.expn(34), 34);
+      assert.equal(sol.expn(34), 34);
     });
   });
-  // describe("addg(value)", function () {
-  //   it(`adds from many invocations, until it sees an empty invocation`, function () {
-  //     assert.equal(sol.addg(), undefined);
-  //     assert.equal(sol.addg(2)(), 2);
-  //     assert.equal(sol.addg(2)(7)(), 9);
-  //     assert.equal(sol.addg(3)(0)(4)(), 7);
-  //     assert.equal(sol.addg(1)(2)(4)(8)(), 15);
-  //   });
-  // });
-  // describe("liftg(value)", function () {
-  //   it(`will take a binary function and apply it to many invocations`, function () {
-  //     assert.equal(sol.liftg(sol.mulb)(), undefined);
-  //     assert.equal(sol.liftg(sol.mulb)(3)(), 3);
-  //     assert.equal(sol.liftg(sol.mulb)(3)(0)(4)(), 0);
-  //     assert.equal(sol.liftg(sol.mulb)(1)(2)(4)(8)(), 64);
-  //   });
-  // });
-  // describe("arrayg(value)", function () {
-  //   it(`will build an array from many invocations`, function () {
-  //     expect(sol.arrayg()).to.deep.equal([]);
-  //     expect(sol.arrayg(3)()).to.deep.equal([3]);
-  //     expect(sol.arrayg(3)(4)(5)()).to.deep.equal([3, 4, 5]);
-  //   });
-  // });
-  // describe("continuizeu(unary)", function () {
-  //   beforeEach(function () {
-  //     this.sinon.stub(console, "log");
-  //   });
 
-  //   it(`takes a unary function and returns a function
-  //          that takes a callback and an argument`, function () {
-  //     sol.continuizeu(Math.sqrt)(console.log, 81);
-  //     expect(console.log.calledOnce).to.be.true;
-  //     expect(console.log.calledWith(9)).to.be.true;
-  //   });
-  // });
-  // describe("continuize(any)", function () {
-  //   beforeEach(function () {
-  //     this.sinon.stub(console, "log");
-  //   });
+  describe('addg(value)', () => {
+    it('adds from many invocations, until it sees an empty invocation', () => {
+      assert.equal(sol.addg(), undefined);
+      assert.equal(sol.addg(2)(), 2);
+      assert.equal(sol.addg(2)(7)(), 9);
+      assert.equal(sol.addg(3)(0)(4)(), 7);
+      assert.equal(sol.addg(1)(2)(4)(8)(), 15);
+    });
+  });
 
-  //   it(`takes a function and returns a function
-  //      that takes a callback and an argument`, function () {
-  //     sol.continuize(sol.mul)(console.log, 81, 4, 2);
-  //     expect(console.log.calledOnce).to.be.true;
-  //     expect(console.log.calledWith(648)).to.be.true;
-  //   });
-  // });
-  // describe("vector()", function () {
-  //   it(`is an array wrapper object with methods get, store, and append, such that an
-  //       attacker cannot get access to the private array`, function () {
-  //     let v = sol.vector();
-  //     v.append(7);
-  //     v.store(1, 8);
-  //     assert.equal(v.get(0), 7);
-  //     assert.equal(v.get(1), 8);
-  //   });
-  // });
-  // describe("exploitVector()", function () {
-  //   it(`accesses array outside of vector`, function () {
-  //     let v = sol.vector();
-  //     v.append(1);
-  //     v.append(2);
-  //     expect(sol.exploitVector(v)).to.deep.equal([1, 2]);
-  //   });
-  // });
-  // describe("vectorSafe()", function () {
-  //   it(`can't access array outside of vector`, function () {
-  //     let v = sol.vectorSafe();
-  //     v.append(1);
-  //     v.append(2);
-  //     expect(sol.exploitVector(v)).to.deep.equal(undefined);
-  //   });
-  // });
-  // describe("pubsub()", function () {
-  //   beforeEach(function () {
-  //     this.sinon.stub(console, "log");
-  //   });
+  describe('liftg(value)', () => {
+    it('will take a binary function and apply it to many invocations', () => {
+      assert.equal(sol.liftg(sol.mulb)(), undefined);
+      assert.equal(sol.liftg(sol.mulb)(3)(), 3);
+      assert.equal(sol.liftg(sol.mulb)(3)(0)(4)(), 0);
+      assert.equal(sol.liftg(sol.mulb)(1)(2)(4)(8)(), 64);
+    });
+  });
 
-  //   it(`makes a publish/subscribe object. It will reliably deliver all publications
-  //       to all subscribers in the right order`, function () {
-  //     let ps = sol.pubsub();
-  //     ps.subscribe(console.log);
-  //     ps.publish("It works!");
+  describe('arrayg(value)', () => {
+    it('will build an array from many invocations', () => {
+      expect(sol.arrayg()).to.deep.equal([]);
+      expect(sol.arrayg(3)()).to.deep.equal([3]);
+      expect(sol.arrayg(3)(4)(5)()).to.deep.equal([3, 4, 5]);
+    });
+  });
 
-  //     expect(console.log.calledOnce).to.be.true;
-  //     expect(console.log.calledWith("It works!")).to.be.true;
-  //   });
-  // });
-  // describe("mapRecurse(array, predicate)", function () {
-  //   it(`performs a transformation for each element of a given array, recursively`, function () {
-  //     expect(sol.mapRecurse([1, 2, 3, 4], (x) => x * 2)).to.deep.equal([
-  //       2, 4, 6, 8,
-  //     ]);
-  //   });
-  // });
-  // describe("filterRecurse(array, predicate)", function () {
-  //   it(`takes in an array and a predicate function and returns a new array by
-  //       filtering out all items using the predicate, recursively.`, function () {
-  //     expect(sol.filterRecurse([1, 2, 3, 4], (x) => x % 2 === 0)).to.deep.equal(
-  //       [2, 4]
-  //     );
-  //   });
-  // });
+  describe('continuizeu(unary)', () => {
+    beforeEach(function invocation() {
+      this.sinon.stub(console, 'log');
+    });
+    it(`takes a unary function and returns a function
+    that takes a callback and an argument`, () => {
+      sol.continuizeu(Math.sqrt)(console.log, 81); // eslint-disable-line no-console
+      expect(console.log.calledOnce).to.be.true; // eslint-disable-line
+      // no-console, no-unused-expressions
+      expect(console.log.calledWith(9)).to.be.true; // eslint-disable-line
+      // no-console, no-unused-expressions
+    });
+  });
+
+  describe('continuize(any)', () => {
+    beforeEach(function invocation() {
+      this.sinon.stub(console, 'log');
+    });
+
+    it(`takes a function and returns a function
+       that takes a callback and an argument`, () => {
+      sol.continuize(sol.mul)(console.log, 81, 4, 2);// eslint-disable-line
+      // no-console, no-unused-expressions
+      expect(console.log.calledOnce).to.be.true;// eslint-disable-line
+      // no-console, no-unused-expressions
+      expect(console.log.calledWith(648)).to.be.true;// eslint-disable-line
+      // no-console, no-unused-expressions
+    });
+  });
+
+  describe('vector()', () => {
+    it(`is an array wrapper object with methods get, store, and append, such that an
+        attacker cannot get access to the private array`, () => {
+      const v = sol.vector();
+      v.append(7);
+      v.store(1, 8);
+      assert.equal(v.get(0), 7);
+      assert.equal(v.get(1), 8);
+    });
+  });
+
+  describe('exploitVector()', () => {
+    it('accesses array outside of vector', () => {
+      const v = sol.vector();
+      v.append(1);
+      v.append(2);
+      expect(sol.exploitVector(v)).to.deep.equal([1, 2]);
+    });
+  });
+
+  describe('vectorSafe()', () => {
+    it('can\'t access array outside of vector', () => {
+      const v = sol.vectorSafe();
+      v.append(1);
+      v.append(2);
+      expect(sol.exploitVector(v)).to.deep.equal(undefined);
+    });
+  });
+
+  describe('pubsub()', () => {
+    beforeEach(function invocation() {
+      this.sinon.stub(console, 'log');
+    });
+
+    it(`makes a publish/subscribe object. It will reliably deliver all publications
+        to all subscribers in the right order`, () => {
+      const ps = sol.pubsub();
+      ps.subscribe(console.log);// eslint-disable-line
+      // no-console, no-unused-expressions
+      ps.publish('It works!');
+
+      expect(console.log.calledOnce).to.be.true;// eslint-disable-line
+      // no-console, no-unused-expressions
+      expect(console.log.calledWith("It works!")).to.be.true;// eslint-disable-line
+      // no-console, no-unused-expressions
+    });
+  });
+
+  describe('mapRecurse(array, predicate)', () => {
+    it('performs a transformation for each element of a given array, recursively', () => {
+      expect(sol.mapRecurse([1, 2, 3, 4], x => x * 2)).to.deep.equal([
+        2, 4, 6, 8,
+      ]);
+    });
+  });
+
+  describe('filterRecurse(array, predicate)', () => {
+    it(`takes in an array and a predicate function and returns a new array by
+        filtering out all items using the predicate, recursively.`, () => {
+      expect(sol.filterRecurse([1, 2, 3, 4], x => x % 2 === 0)).to.deep.equal(
+        [2, 4],
+      );
+    });
+  });
 });

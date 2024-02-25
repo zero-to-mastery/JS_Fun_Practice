@@ -971,7 +971,7 @@ function extract(array, prop) {
  *
  * @param {value} function - any function
  * @param {source} let - optional: the source parameter
- * @returns {obj} - an object 
+ * @returns {obj} - an object
  */
 function m(value, source) {
   return {
@@ -985,15 +985,15 @@ function m(value, source) {
  *
  * @param {m1} function - any m function
  * @param {m2} function - any other m function
- * @returns {obj} - an object 
- * 
+ * @returns {obj} - an object
+ *
  * */
 function addmTwo(m1, m2) {
-  m1Source = (m1.source === undefined) ? m1.value.toString() : m1.source;
-  m2Source = (m2.source === undefined) ? m2.value.toString() : m2.source;
+  const m1Source = (m1.source === undefined) ? m1.value.toString() : m1.source;
+  const m2Source = (m2.source === undefined) ? m2.value.toString() : m2.source;
   return {
     value: m1.value + m2.value,
-    source: "(" + m1Source + "+" + m2Source + ")"
+    source: `(${m1Source}+${m2Source})`,
   };
 }
 
@@ -1002,15 +1002,15 @@ function addmTwo(m1, m2) {
  *
  * @param {m1} obj - any m function
  * @param {m2} obj - any other m function
- * @returns {obj} - an object 
- * 
+ * @returns {obj} - an object
+ *
  * */
 function addm(...ms) {
   const value = ms.reduce((sum, current) => sum + current.value, 0);
-  const source = ms.map(current => (current.source === undefined ? current.value : current.source)).join("+");
+  const source = ms.map(current => (current.source === undefined ? current.value : current.source)).join('+');
   return {
     value,
-    source: `(${source})`
+    source: `(${source})`,
   };
 }
 
@@ -1019,16 +1019,16 @@ function addm(...ms) {
  *
  * @param {binary} function - any function
  * @param {m2} function - any other m function
- * @returns {obj} - an object 
- * 
+ * @returns {obj} - an object
+ *
  * */
 function liftmbM(binary, op) {
-  return function(m1, m2){
+  return function innerCall(m1, m2) {
     return {
       value: binary(m1.value, m2.value),
-      source: "(" +  (m1.source === undefined ? m1.value : m1.source) + op + (m2.source === undefined ? m2.value : m2.source) + ")"
-    }
-  }
+      source: `(${m1.source === undefined ? m1.value : m1.source}${op}${m2.source === undefined ? m2.value : m2.source})`,
+    };
+  };
 }
 
 /**
@@ -1037,15 +1037,15 @@ function liftmbM(binary, op) {
  * @param {binary} function - any binary function
  * @param {op} let - the concatenator
  * @returns {obj} - an object with the func applied
- * 
+ *
  * */
 function liftmb(binary, op) {
-  return function(arg1, arg2){
+  return function innerCall(arg1, arg2) {
     return {
       value: binary(arg1, arg2),
-      source: "(" +  arg1.toString() + op + arg2.toString() + ")"
-    }
-  }
+      source: `(${arg1.toString()}${op}${arg2.toString()})`,
+    };
+  };
 }
 
 /**
@@ -1054,31 +1054,31 @@ function liftmb(binary, op) {
  * @param {func} function - any function
  * @param {op} let - the concatenator
  * @returns {obj} - an object with the func applied
- * 
+ *
  * */
 function liftm(func, op) {
-  return function (...args) {
+  return function innerCall(...args) {
     const initialValue = (func === addb) ? 0 : 1;
     const processedArgs = args.map(arg => (typeof arg === 'object' ? arg.value : arg));
-    const value = processedArgs.reduce((acc, current) => func(acc, current), initialValue);
+    const value = processedArgs.reduce((arg1, arg2) => func(arg1, arg2), initialValue);
     const source = args.map(arg => (typeof arg === 'object' ? arg.source || arg.value : arg)).join(op);
 
     return {
       value,
-      source: `(${source})`
+      source: `(${source})`,
     };
   };
 }
 
 /**
  * exp(value) ⇒ any
- * 
+ *
  * @param {value} array - an array of any
  * @returns the result of the operation
  */
-function exp(value){
-  if (typeof value[0] === 'function'){
-    const result = value.slice(1).reduce((acc, num) => acc * num, 1);
+function exp(value) {
+  if (typeof value[0] === 'function') {
+    const result = value.slice(1).reduce((arg1, arg2) => arg1 * arg2, 1);
     return result;
   }
   return value;
@@ -1086,11 +1086,11 @@ function exp(value){
 
 /**
  * expn(value) ⇒ any
- * 
+ *
  * @param {value} array - a nested array of any
  * @returns the result of the operation
  */
-function expn(value){
+function expn(value) {
   if (typeof value === 'number') {
     // If the element is a number, return it as is
     return value;
@@ -1102,16 +1102,14 @@ function expn(value){
     if (typeof operator === 'function') {
       // If the first element is a function, apply it to the evaluated operands
       return operator(...operands);
-    } else {
-      // If the first element is not a function, handle it accordingly
-      console.error("Invalid expression - the first element is not a function.");
-      return undefined;
     }
-  } else {
-    // If the element is neither a number nor an array, handle it accordingly
-    console.error("Invalid expression - unexpected element type.");
+    // If the first element is not a function, handle it accordingly
+    // console.error('Invalid expression - the first element is not a function.');
     return undefined;
   }
+  // If the element is neither a number nor an array, handle it accordingly
+  // console.error('Invalid expression - unexpected element type.');
+  return undefined;
 }
 
 
@@ -1178,10 +1176,10 @@ module.exports = {
   extract,
   m,
   addmTwo,
-  addm, 
+  addm,
   liftmbM,
-  liftmb, 
-  liftm, 
-  exp, 
-  expn
+  liftmb,
+  liftm,
+  exp,
+  expn,
 };

@@ -834,83 +834,83 @@ describe('JS_Fun_Practice', () => {
       });
     });
   });
-  describe("addmTwo(m1,m2)", function () {
-    it(`adds two m objects and returns an m object`, function () {
+  describe('addmTwo(m1,m2)', () => {
+    it('adds two m objects and returns an m object', () => {
       expect(sol.addmTwo(sol.m(3), sol.m(4))).to.deep.equal({
         value: 7,
-        source: "(3+4)",
+        source: '(3+4)',
       });
-      expect(sol.addmTwo(sol.m(1), sol.m(Math.PI, "pi"))).to.deep.equal({
+      expect(sol.addmTwo(sol.m(1), sol.m(Math.PI, 'pi'))).to.deep.equal({
         value: Math.PI + 1,
-        source: "(1+pi)",
+        source: '(1+pi)',
       });
     });
   });
 
-  describe("addm(...ms)", function () {
+  describe('addm(...ms)', () => {
     it(`is a function that is generalized for any amount of arguments that adds m
-        objects and returns an m object`, function () {
+        objects and returns an m object`, () => {
       expect(sol.addm(sol.m(1), sol.m(2), sol.m(4))).to.deep.equal({
         value: 7,
-        source: "(1+2+4)",
+        source: '(1+2+4)',
       });
     });
   });
 
-  describe("liftmbM(binary, op)", function () {
+  describe('liftmbM(binary, op)', () => {
     it(`takes a binary function and a string and returns a function that acts on m
-        objects`, function () {
-      expect(sol.liftmbM(sol.addb, "+")(sol.m(3), sol.m(4))).to.deep.equal({
+        objects`, () => {
+      expect(sol.liftmbM(sol.addb, '+')(sol.m(3), sol.m(4))).to.deep.equal({
         value: 7,
-        source: "(3+4)",
+        source: '(3+4)',
       });
-      expect(sol.liftmbM(sol.mulb, "*")(sol.m(3), sol.m(4))).to.deep.equal({
+      expect(sol.liftmbM(sol.mulb, '*')(sol.m(3), sol.m(4))).to.deep.equal({
         value: 12,
-        source: "(3*4)",
+        source: '(3*4)',
       });
     });
   });
 
-  describe("liftmb(binary, op)", function () {
+  describe('liftmb(binary, op)', () => {
     it(`is a modified function liftmbM that can accept arguments that are either numbers
-        or m objects`, function () {
-      expect(sol.liftmb(sol.addb, "+")(3, 4)).to.deep.equal({
+        or m objects`, () => {
+      expect(sol.liftmb(sol.addb, '+')(3, 4)).to.deep.equal({
         value: 7,
-        source: "(3+4)",
+        source: '(3+4)',
       });
     });
   });
 
-  describe("liftm(func, op)", function () {
+  describe('liftm(func, op)', () => {
     it(`is a modified function liftmbM that is generalized for any amount of arguments
-        that can accept arguments that are either numbers or m objects`, function () {
-      expect(sol.liftm(sol.addb, "+")(sol.m(3), sol.m(4))).to.deep.equal({
+        that can accept arguments that are either numbers or m objects`, () => {
+      expect(sol.liftm(sol.addb, '+')(sol.m(3), sol.m(4))).to.deep.equal({
         value: 7,
-        source: "(3+4)",
+        source: '(3+4)',
       });
-      expect(sol.liftm(sol.mulb, "*")(sol.m(3), sol.m(4))).to.deep.equal({
+      expect(sol.liftm(sol.mulb, '*')(sol.m(3), sol.m(4))).to.deep.equal({
         value: 12,
-        source: "(3*4)",
+        source: '(3*4)',
       });
-      expect(sol.liftm(sol.mulb, "*")(3, 4)).to.deep.equal({
+      expect(sol.liftm(sol.mulb, '*')(3, 4)).to.deep.equal({
         value: 12,
-        source: "(3*4)",
+        source: '(3*4)',
       });
     });
   });
 
-  describe("exp(value)", function () {
-    it(`evaluates simple array expressions`, function () {
+  describe('exp(value)', () => {
+    it('evaluates simple array expressions', () => {
       assert.equal(sol.exp([sol.mul, 1, 2, 4]), 8);
       assert.equal(sol.exp(42), 42);
     });
   });
-  
-  describe("expn(value)", function () {
-    it(`is a modified exp that can evaluate nested array expressions`, function () {
+
+  describe('expn(value)', () => {
+    it('is a modified exp that can evaluate nested array expressions', () => {
       assert.equal(
         sol.expn([Math.sqrt, [sol.add, [sol.square, 3], [sol.square, 4]]]),
-        5
+        5,
       );
       // assert.equal(sol.expn(34), 34);
     });

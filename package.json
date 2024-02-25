@@ -4,7 +4,6 @@
   "description": "A testing utility for the fun javascript functions",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint **/Bltzz_*.js",
     "test": "mocha || true"
   },
   "repository": {
@@ -19,9 +18,6 @@
   "homepage": "https://github.com/hazamaswag/JS_Fun_Practice#readme",
   "devDependencies": {
     "chai": "^4.2.0",
-    "eslint": "^8.56.0",
-    "eslint-config-airbnb-base": "^11.2.0",
-    "eslint-plugin-import": "^2.8.0",
     "mocha": "^10.2.0",
     "mocha-sinon": "^2.1.2",
     "sinon": "^9.0.2"

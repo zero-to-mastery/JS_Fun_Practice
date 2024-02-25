@@ -652,6 +652,7 @@ describe('JS_Fun_Practice', () => {
       assert.equal(ele.next().value, undefined);
     });
   });
+
   describe('collect(gen,array)', () => {
     it(`takes a generator and an array and produces a function that will collect the
         results in the array`, () => {
@@ -663,6 +664,7 @@ describe('JS_Fun_Practice', () => {
       expect(array).to.deep.equal([0, 1]);
     });
   });
+
   describe('filter(gen,predicate)', () => {
     it(`takes a generator and a predicate and produces a generator that produces only
         the values approved by the predicate`, () => {
@@ -672,6 +674,7 @@ describe('JS_Fun_Practice', () => {
       assert.equal(fil.next().value, undefined);
     });
   });
+
   describe('filterTail(gen,predicate)', () => {
     it('uses tail-recursion to perform the filtering', () => {
       const fil = sol.filterTail(sol.genFromTo(0, 5), val => val % 3 === 0);
@@ -680,6 +683,7 @@ describe('JS_Fun_Practice', () => {
       assert.equal(fil.next().value, undefined);
     });
   });
+
   describe('concatTwo(gen1,gen2)', () => {
     it('takes two generators and produces a generator that combines the sequences', () => {
       const con = sol.concatTwo(sol.genFromTo(0, 3), sol.genFromTo(0, 2));
@@ -691,6 +695,7 @@ describe('JS_Fun_Practice', () => {
       assert.equal(con.next().value, undefined);
     });
   });
+
   describe('concat(...gens)', () => {
     it('is generalized for any amount of arguments', () => {
       const con = sol.concat(
@@ -708,178 +713,208 @@ describe('JS_Fun_Practice', () => {
       assert.equal(con.next().value, undefined);
     });
   });
-  // describe("concatTail(...gens)", function () {
-  //   it(`uses tail-recursion to perform the concating`, function () {
-  //     let con = sol.concatTail(
-  //       sol.genFromTo(0, 3),
-  //       sol.genFromTo(0, 2),
-  //       sol.genFromTo(5, 7)
-  //     );
-  //     assert.equal(con.next().value, 0);
-  //     assert.equal(con.next().value, 1);
-  //     assert.equal(con.next().value, 2);
-  //     assert.equal(con.next().value, 0);
-  //     assert.equal(con.next().value, 1);
-  //     assert.equal(con.next().value, 5);
-  //     assert.equal(con.next().value, 6);
-  //     assert.equal(con.next().value, undefined);
-  //   });
-  // });
-  // describe("gensymf(symbol)", function () {
-  //   it(`makes a function that generates unique symbols`, function () {
-  //     let genG = sol.gensymf("G");
-  //     let genH = sol.gensymf("H");
-  //     assert.equal(genG.next().value, "G1");
-  //     assert.equal(genH.next().value, "H1");
-  //     assert.equal(genG.next().value, "G2");
-  //     assert.equal(genH.next().value, "H2");
-  //   });
-  // });
-  // describe("gensymff(unary, seed)", function () {
-  //   it(`takes a unary function and a seed and returns a gensymf`, function () {
-  //     let gensymf = sol.gensymff(sol.inc, 0);
-  //     let genG = gensymf("G");
-  //     let genH = gensymf("H");
-  //     assert.equal(genG.next().value, "G1");
-  //     assert.equal(genH.next().value, "H1");
-  //     assert.equal(genG.next().value, "G2");
-  //     assert.equal(genH.next().value, "H2");
-  //   });
-  // });
-  // describe("fibonaccif(first, second)", function () {
-  //   it(`returns a generator that will return the next fibonacci number`, function () {
-  //     let fib = sol.fibonaccif(0, 1);
-  //     assert.equal(fib.next().value, 0);
-  //     assert.equal(fib.next().value, 1);
-  //     assert.equal(fib.next().value, 1);
-  //     assert.equal(fib.next().value, 2);
-  //     assert.equal(fib.next().value, 3);
-  //     assert.equal(fib.next().value, 5);
-  //     assert.equal(fib.next().value, 8);
-  //   });
-  // });
-  // describe("counter(i)", function () {
-  //   it(`returns an object containing two functions that implement an up/down counter,
-  //       hiding the counter`, function () {
-  //     let obj = sol.counter(10);
-  //     let { up, down } = obj;
-  //     assert.equal(up(), 11);
-  //     assert.equal(down(), 10);
-  //     assert.equal(down(), 9);
-  //     assert.equal(up(), 10);
-  //   });
-  // });
-  // describe("revocableb(binary)", function () {
-  //   it(`takes a binary function, and returns an object containing an invoke function
-  //       that can invoke a function and a revoke function that disables the invoke
-  //       function`, function () {
-  //     let rev = sol.revocableb(sol.addb);
-  //     assert.equal(rev.invoke(3, 4), 7);
-  //     rev.revoke();
-  //     assert.equal(rev.invoke(5, 7), undefined);
-  //   });
-  // });
-  // describe("revocable(binary)", function () {
-  //   it(`takes a function that is generalized for any amount of arguments, and returns
-  //       an object containing an invoke function that can invoke a function and a revoke
-  //       function that disables the invoke function`, function () {
-  //     let rev = sol.revocable(sol.add);
-  //     assert.equal(rev.invoke(3, 4), 7);
-  //     rev.revoke();
-  //     assert.equal(rev.invoke(5, 7), undefined);
-  //   });
-  // });
-  // describe("extract(array,prop)", function () {
-  //   it(`takes an array of objects and an object property name and converts each object
-  //       in the array by extracting that property`, function () {
-  //     let people = [{ name: "john" }, { name: "bob" }];
-  //     expect(sol.extract(people, "name")).to.deep.equal(["john", "bob"]);
-  //   });
-  // });
-  // describe("m(value,source)", function () {
-  //   it(`takes a value and an optional source string and returns them in an object`, function () {
-  //     expect(sol.m(1)).to.deep.equal({ value: 1, source: "1" });
-  //     expect(sol.m(Math.PI, "pi")).to.deep.equal({
-  //       value: Math.PI,
-  //       source: "pi",
-  //     });
-  //   });
-  // });
-  // describe("addmTwo(m1,m2)", function () {
-  //   it(`adds two m objects and returns an m object`, function () {
-  //     expect(sol.addmTwo(sol.m(3), sol.m(4))).to.deep.equal({
-  //       value: 7,
-  //       source: "(3+4)",
-  //     });
-  //     expect(sol.addmTwo(sol.m(1), sol.m(Math.PI, "pi"))).to.deep.equal({
-  //       value: Math.PI + 1,
-  //       source: "(1+pi)",
-  //     });
-  //   });
-  // });
-  // describe("addm(...ms)", function () {
-  //   it(`is a function that is generalized for any amount of arguments that adds m
-  //       objects and returns an m object`, function () {
-  //     expect(sol.addm(sol.m(1), sol.m(2), sol.m(4))).to.deep.equal({
-  //       value: 7,
-  //       source: "(1+2+4)",
-  //     });
-  //   });
-  // });
-  // describe("liftmbM(binary, op)", function () {
-  //   it(`takes a binary function and a string and returns a function that acts on m
-  //       objects`, function () {
-  //     expect(sol.liftmbM(sol.addb, "+")(sol.m(3), sol.m(4))).to.deep.equal({
-  //       value: 7,
-  //       source: "(3+4)",
-  //     });
-  //     expect(sol.liftmbM(sol.mulb, "*")(sol.m(3), sol.m(4))).to.deep.equal({
-  //       value: 12,
-  //       source: "(3*4)",
-  //     });
-  //   });
-  // });
-  // describe("liftmb(binary, op)", function () {
-  //   it(`is a modified function liftmbM that can accept arguments that are either numbers
-  //       or m objects`, function () {
-  //     expect(sol.liftmb(sol.addb, "+")(3, 4)).to.deep.equal({
-  //       value: 7,
-  //       source: "(3+4)",
-  //     });
-  //   });
-  // });
-  // describe("liftm(func, op)", function () {
-  //   it(`is a modified function liftmbM that is generalized for any amount of arguments
-  //       that can accept arguments that are either numbers or m objects`, function () {
-  //     expect(sol.liftm(sol.addb, "+")(sol.m(3), sol.m(4))).to.deep.equal({
-  //       value: 7,
-  //       source: "(3+4)",
-  //     });
-  //     expect(sol.liftm(sol.mulb, "*")(sol.m(3), sol.m(4))).to.deep.equal({
-  //       value: 12,
-  //       source: "(3*4)",
-  //     });
-  //     expect(sol.liftm(sol.mulb, "*")(3, 4)).to.deep.equal({
-  //       value: 12,
-  //       source: "(3*4)",
-  //     });
-  //   });
-  // });
-  // describe("exp(value)", function () {
-  //   it(`evaluates simple array expressions`, function () {
-  //     assert.equal(sol.exp([sol.mul, 1, 2, 4]), 8);
-  //     assert.equal(sol.exp(42), 42);
-  //   });
-  // });
-  // describe("expn(value)", function () {
-  //   it(`is a modified exp that can evaluate nested array expressions`, function () {
-  //     assert.equal(
-  //       sol.expn([Math.sqrt, [sol.add, [sol.square, 3], [sol.square, 4]]]),
-  //       5
-  //     );
-  //     // assert.equal(sol.expn(34), 34);
-  //   });
-  // });
+
+  describe('concatTail(...gens)', () => {
+    it('uses tail-recursion to perform the concating', () => {
+      const con = sol.concatTail(
+        sol.genFromTo(0, 3),
+        sol.genFromTo(0, 2),
+        sol.genFromTo(5, 7),
+      );
+      assert.equal(con.next().value, 0);
+      assert.equal(con.next().value, 1);
+      assert.equal(con.next().value, 2);
+      assert.equal(con.next().value, 0);
+      assert.equal(con.next().value, 1);
+      assert.equal(con.next().value, 5);
+      assert.equal(con.next().value, 6);
+      assert.equal(con.next().value, undefined);
+    });
+  });
+
+  describe('gensymf(symbol)', () => {
+    it('makes a function that generates unique symbols', () => {
+      const genG = sol.gensymf('G');
+      const genH = sol.gensymf('H');
+      assert.equal(genG.next().value, 'G1');
+      assert.equal(genH.next().value, 'H1');
+      assert.equal(genG.next().value, 'G2');
+      assert.equal(genH.next().value, 'H2');
+      assert.equal(genG.next().value, 'G3');
+      assert.equal(genH.next().value, 'H3');
+      assert.equal(genG.next().value, 'G4');
+      assert.equal(genH.next().value, 'H4');
+      assert.equal(genG.next().value, 'G5');
+      assert.equal(genH.next().value, 'H5');
+      assert.equal(genG.next().value, 'G6');
+      assert.equal(genH.next().value, 'H6');
+    });
+  });
+
+  describe('gensymff(unary, seed)', () => {
+    it('takes a unary function and a seed and returns a gensymf', () => {
+      const gensymf = sol.gensymff(sol.inc, 0);
+      const genG = gensymf('G');
+      const genH = gensymf('H');
+      assert.equal(genG.next().value, 'G1');
+      assert.equal(genH.next().value, 'H1');
+      assert.equal(genG.next().value, 'G2');
+      assert.equal(genH.next().value, 'H2');
+    });
+  });
+
+  describe('fibonaccif(first, second)', () => {
+    it('returns a generator that will return the next fibonacci number', () => {
+      const fib = sol.fibonaccif(0, 1);
+      assert.equal(fib.next().value, 0);
+      assert.equal(fib.next().value, 1);
+      assert.equal(fib.next().value, 1);
+      assert.equal(fib.next().value, 2);
+      assert.equal(fib.next().value, 3);
+      assert.equal(fib.next().value, 5);
+      assert.equal(fib.next().value, 8);
+    });
+    it('returns a generator that will return the next fibonacci number with different start val', () => {
+      const fib = sol.fibonaccif(1, 2);
+      assert.equal(fib.next().value, 1);
+      assert.equal(fib.next().value, 2);
+      assert.equal(fib.next().value, 3);
+      assert.equal(fib.next().value, 5);
+      assert.equal(fib.next().value, 8);
+    });
+  });
+
+  describe('counter(i)', () => {
+    it(`returns an object containing two functions that implement an up/down counter,
+        hiding the counter`, () => {
+      const obj = sol.counter(10);
+      const { up, down } = obj;
+      assert.equal(up(), 11);
+      assert.equal(down(), 10);
+      assert.equal(down(), 9);
+      assert.equal(up(), 10);
+    });
+  });
+
+  describe('revocableb(binary)', () => {
+    it(`takes a binary function, and returns an object containing an invoke function
+        that can invoke a function and a revoke function that disables the invoke
+        function`, () => {
+      const rev = sol.revocableb(sol.addb);
+      assert.equal(rev.invoke(3, 4), 7);
+      rev.revoke();
+      assert.equal(rev.invoke(5, 7), undefined);
+    });
+  });
+
+  describe('revocable(binary)', () => {
+    it(`takes a function that is generalized for any amount of arguments, and returns
+        an object containing an invoke function that can invoke a function and a revoke
+        function that disables the invoke function`, () => {
+      const rev = sol.revocable(sol.add);
+      assert.equal(rev.invoke(3, 4), 7);
+      rev.revoke();
+      assert.equal(rev.invoke(5, 7), undefined);
+    });
+  });
+
+  describe('extract(array,prop)', () => {
+    it(`takes an array of objects and an object property name and converts each object
+        in the array by extracting that property`, () => {
+      const people = [{ name: 'john' }, { name: 'bob' }];
+      expect(sol.extract(people, 'name')).to.deep.equal(['john', 'bob']);
+    });
+  });
+  describe('m(value,source)', () => {
+    it('takes a value and an optional source string and returns them in an object', () => {
+      expect(sol.m(1)).to.deep.equal({ value: 1, source: '1' });
+      expect(sol.m(Math.PI, 'pi')).to.deep.equal({
+        value: Math.PI,
+        source: 'pi',
+      });
+    });
+  });
+  describe("addmTwo(m1,m2)", function () {
+    it(`adds two m objects and returns an m object`, function () {
+      expect(sol.addmTwo(sol.m(3), sol.m(4))).to.deep.equal({
+        value: 7,
+        source: "(3+4)",
+      });
+      expect(sol.addmTwo(sol.m(1), sol.m(Math.PI, "pi"))).to.deep.equal({
+        value: Math.PI + 1,
+        source: "(1+pi)",
+      });
+    });
+  });
+
+  describe("addm(...ms)", function () {
+    it(`is a function that is generalized for any amount of arguments that adds m
+        objects and returns an m object`, function () {
+      expect(sol.addm(sol.m(1), sol.m(2), sol.m(4))).to.deep.equal({
+        value: 7,
+        source: "(1+2+4)",
+      });
+    });
+  });
+
+  describe("liftmbM(binary, op)", function () {
+    it(`takes a binary function and a string and returns a function that acts on m
+        objects`, function () {
+      expect(sol.liftmbM(sol.addb, "+")(sol.m(3), sol.m(4))).to.deep.equal({
+        value: 7,
+        source: "(3+4)",
+      });
+      expect(sol.liftmbM(sol.mulb, "*")(sol.m(3), sol.m(4))).to.deep.equal({
+        value: 12,
+        source: "(3*4)",
+      });
+    });
+  });
+
+  describe("liftmb(binary, op)", function () {
+    it(`is a modified function liftmbM that can accept arguments that are either numbers
+        or m objects`, function () {
+      expect(sol.liftmb(sol.addb, "+")(3, 4)).to.deep.equal({
+        value: 7,
+        source: "(3+4)",
+      });
+    });
+  });
+
+  describe("liftm(func, op)", function () {
+    it(`is a modified function liftmbM that is generalized for any amount of arguments
+        that can accept arguments that are either numbers or m objects`, function () {
+      expect(sol.liftm(sol.addb, "+")(sol.m(3), sol.m(4))).to.deep.equal({
+        value: 7,
+        source: "(3+4)",
+      });
+      expect(sol.liftm(sol.mulb, "*")(sol.m(3), sol.m(4))).to.deep.equal({
+        value: 12,
+        source: "(3*4)",
+      });
+      expect(sol.liftm(sol.mulb, "*")(3, 4)).to.deep.equal({
+        value: 12,
+        source: "(3*4)",
+      });
+    });
+  });
+
+  describe("exp(value)", function () {
+    it(`evaluates simple array expressions`, function () {
+      assert.equal(sol.exp([sol.mul, 1, 2, 4]), 8);
+      assert.equal(sol.exp(42), 42);
+    });
+  });
+  
+  describe("expn(value)", function () {
+    it(`is a modified exp that can evaluate nested array expressions`, function () {
+      assert.equal(
+        sol.expn([Math.sqrt, [sol.add, [sol.square, 3], [sol.square, 4]]]),
+        5
+      );
+      // assert.equal(sol.expn(34), 34);
+    });
+  });
   // describe("addg(value)", function () {
   //   it(`adds from many invocations, until it sees an empty invocation`, function () {
   //     assert.equal(sol.addg(), undefined);

@@ -803,8 +803,8 @@ function* concatTwo(gen1, gen2) {
  *
  *  */
 function* concat(...gens) {
-    const concatenated = gens.flatMap(gen => [...gen]);
-    yield* concatenated;
+  const concatenated = gens.flatMap(gen => [...gen]);
+  yield* concatenated;
 //   for (const gen of gens) {
 //     let result;
 //     while (true) {
@@ -814,6 +814,306 @@ function* concat(...gens) {
 //     }
 //   }
 }
+
+/**
+ * concatTail(...gens) ⇒ function
+ *
+ * @param {...gens} function - any list of generator functions
+ * @returns {function} - same as concat() but with tail-recursion to perform the filtering
+ *
+ *  */
+function* concatTail(...gens) {
+  if (gens.length === 0) {
+    return;
+  }
+
+  const [firstGen, ...remainingGens] = gens;
+  yield* firstGen;
+  yield* concatTail(...remainingGens);
+}
+
+/**
+ * gensymf(symbol) ⇒ function
+ *
+ * @param {symbol} let - any character
+ * @returns {function} - a function that returns unique symbols
+ *
+ *  */
+function* gensymf(symbol) {
+  const usedValues = [];
+  while (true) {
+    let cntr = 1;
+    while (usedValues.includes(symbol + cntr)) {
+      cntr += 1;
+    }
+    usedValues[cntr - 1] = symbol + cntr;
+    yield symbol + cntr;
+  }
+}
+
+/**
+ * gensymff(unary, seed) ⇒ function
+ *
+ * @param {unary} function - any generator function
+ * @param {seed} - the seed
+ * @returns {function} - a function that returns unique symbols
+ *
+ *  */
+function gensymff(unary, seed) {
+  return function* gensymfInner(symbol) {
+    let cntr = seed;
+    while (true) {
+      const result = unary(cntr);
+      cntr += 1;
+      yield symbol + result;
+    }
+  };
+}
+
+/**
+ * fibonaccif(first, second) ⇒ function
+ *
+ * @param {first} int - start val
+ * @param {second} int - next fibonacci element
+ * @returns {function} - the next fibonacci element
+ *
+ *  */
+function* fibonaccif(first, second) {
+  let n1 = first;
+  let n2 = second;
+  let nextTerm = 0;
+  while (true) {
+    yield n1;
+    nextTerm = n1 + n2;
+    n1 = n2;
+    n2 = nextTerm;
+  }
+}
+
+/**
+ * counter(i) ⇒ object
+ *
+ * @param {i} int - the start pos
+ * @returns {up} - function counts +1
+ * @returns {down} - functions counts -1
+ */
+function counter(i) {
+  let cntr = i;
+  return {
+    up() {
+      cntr += 1;
+      return cntr;
+    },
+    down() {
+      cntr -= 1;
+      return cntr;
+    },
+  };
+}
+
+/**
+ * revocableb(binary) ⇒ object
+ *
+ * @param {binary} function - any binary function
+ * @returns {invoke} - function invokes binary
+ * @returns {revoke} - function disables binary
+ */
+function revocableb(binary) {
+  let isAllowed = true;
+  return {
+    invoke(arg1, arg2) {
+      return isAllowed ? binary(arg1, arg2) : undefined;
+    },
+    revoke() {
+      isAllowed = false;
+    },
+  };
+}
+
+/**
+ * revocable(func) ⇒ object
+ *
+ * @param {func} function - any function
+ * @returns {invoke} - function invokes generic func
+ * @returns {revoke} - function disables function
+ */
+function revocable(func) {
+  let isAllowed = true;
+  return {
+    invoke(...args) {
+      return isAllowed ? func(...args) : undefined;
+    },
+    revoke() {
+      isAllowed = false;
+    },
+  };
+}
+
+/**
+ * extract(array, prop) ⇒ array
+ *
+ * @param {array} array - any array
+ * @param {prop} let - any peroperty name
+ * @returns {array} - an array with the extracted prop values
+ *
+ */
+function extract(array, prop) {
+  const property = prop;
+  const extractedValues = [];
+  array.forEach((obj) => {
+    if (obj[property] !== undefined) extractedValues.push(obj[property]);
+  });
+  return extractedValues;
+}
+
+/**
+ * m(value, source) ⇒ object
+ *
+ * @param {value} function - any function
+ * @param {source} let - optional: the source parameter
+ * @returns {obj} - an object 
+ */
+function m(value, source) {
+  return {
+    value,
+    source: (source === undefined) ? value.toString() : source,
+  };
+}
+
+/**
+ * addmTwo(m1, m2) ⇒ object
+ *
+ * @param {m1} function - any m function
+ * @param {m2} function - any other m function
+ * @returns {obj} - an object 
+ * 
+ * */
+function addmTwo(m1, m2) {
+  m1Source = (m1.source === undefined) ? m1.value.toString() : m1.source;
+  m2Source = (m2.source === undefined) ? m2.value.toString() : m2.source;
+  return {
+    value: m1.value + m2.value,
+    source: "(" + m1Source + "+" + m2Source + ")"
+  };
+}
+
+/**
+ * addm(...ms) ⇒ object
+ *
+ * @param {m1} obj - any m function
+ * @param {m2} obj - any other m function
+ * @returns {obj} - an object 
+ * 
+ * */
+function addm(...ms) {
+  const value = ms.reduce((sum, current) => sum + current.value, 0);
+  const source = ms.map(current => (current.source === undefined ? current.value : current.source)).join("+");
+  return {
+    value,
+    source: `(${source})`
+  };
+}
+
+/**
+ * liftmbM(binary, op) ⇒ object
+ *
+ * @param {binary} function - any function
+ * @param {m2} function - any other m function
+ * @returns {obj} - an object 
+ * 
+ * */
+function liftmbM(binary, op) {
+  return function(m1, m2){
+    return {
+      value: binary(m1.value, m2.value),
+      source: "(" +  (m1.source === undefined ? m1.value : m1.source) + op + (m2.source === undefined ? m2.value : m2.source) + ")"
+    }
+  }
+}
+
+/**
+ * liftmb(binary, op) ⇒ object
+ *
+ * @param {binary} function - any binary function
+ * @param {op} let - the concatenator
+ * @returns {obj} - an object with the func applied
+ * 
+ * */
+function liftmb(binary, op) {
+  return function(arg1, arg2){
+    return {
+      value: binary(arg1, arg2),
+      source: "(" +  arg1.toString() + op + arg2.toString() + ")"
+    }
+  }
+}
+
+/**
+ * liftm(func, op) ⇒ object
+ *
+ * @param {func} function - any function
+ * @param {op} let - the concatenator
+ * @returns {obj} - an object with the func applied
+ * 
+ * */
+function liftm(func, op) {
+  return function (...args) {
+    const initialValue = (func === addb) ? 0 : 1;
+    const processedArgs = args.map(arg => (typeof arg === 'object' ? arg.value : arg));
+    const value = processedArgs.reduce((acc, current) => func(acc, current), initialValue);
+    const source = args.map(arg => (typeof arg === 'object' ? arg.source || arg.value : arg)).join(op);
+
+    return {
+      value,
+      source: `(${source})`
+    };
+  };
+}
+
+/**
+ * exp(value) ⇒ any
+ * 
+ * @param {value} array - an array of any
+ * @returns the result of the operation
+ */
+function exp(value){
+  if (typeof value[0] === 'function'){
+    const result = value.slice(1).reduce((acc, num) => acc * num, 1);
+    return result;
+  }
+  return value;
+}
+
+/**
+ * expn(value) ⇒ any
+ * 
+ * @param {value} array - a nested array of any
+ * @returns the result of the operation
+ */
+function expn(value){
+  if (typeof value === 'number') {
+    // If the element is a number, return it as is
+    return value;
+  } else if (Array.isArray(value)) {
+    // If the element is an array, recursively evaluate its contents
+    const operator = value[0];
+    const operands = value.slice(1).map(expn);
+
+    if (typeof operator === 'function') {
+      // If the first element is a function, apply it to the evaluated operands
+      return operator(...operands);
+    } else {
+      // If the first element is not a function, handle it accordingly
+      console.error("Invalid expression - the first element is not a function.");
+      return undefined;
+    }
+  } else {
+    // If the element is neither a number nor an array, handle it accordingly
+    console.error("Invalid expression - unexpected element type.");
+    return undefined;
+  }
+}
+
 
 module.exports = {
   identity,
@@ -868,4 +1168,20 @@ module.exports = {
   filterTail,
   concatTwo,
   concat,
+  concatTail,
+  gensymf,
+  gensymff,
+  fibonaccif,
+  counter,
+  revocableb,
+  revocable,
+  extract,
+  m,
+  addmTwo,
+  addm, 
+  liftmbM,
+  liftmb, 
+  liftm, 
+  exp, 
+  expn
 };

@@ -19,16 +19,6 @@ function add (...nums){
     return sum;
 };
 
-// function sub(...nums){
-//     const array = [...nums];
-//     let diff = 0;
-//     for (let i = 0; i<array.length; i++){
-//         if(array[i+1]){
-//             diff += array[i] - array[i+1];
-//         }
-//     }
-//     return diff;
-// }
 
 function mul(...nums){
     const array = [...nums];
@@ -50,9 +40,16 @@ function min(...nums){
     return !smallest ? "No arguments were passed" : smallest;
 }
 
-
-
-// https://github.com/zero-to-mastery/JS_Fun_Practice
+function max(...nums){
+    const array = [...nums];
+    let maxNum = array[0];
+    for(let i = 0; i<array.length; i++){
+        if(array[i] > maxNum){
+            maxNum = array[i];
+        }
+    }
+    return maxNum && typeof maxNum === "number"? maxNum : "Invalid input";
+}
 
 
 
@@ -67,7 +64,7 @@ module.exports = {
     // sub,
     mul,
     min,
-    // max,
+    max,
     // addRecurse,
     // mulRecurse,
     // minRecurse,

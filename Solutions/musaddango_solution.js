@@ -26,7 +26,7 @@ function mul(...nums){
     for (let i = 0; i<array.length; i++){
         mult *= array[i];
     }
-    return array.length !==0 ? mult: "No arguments were passed";
+    return mult;
 }
 
 function min(...nums){
@@ -37,7 +37,7 @@ function min(...nums){
             smallest = array[i];
         }
     }
-    return !smallest ? "No arguments were passed" : smallest;
+    return smallest;
 }
 
 function max(...nums){
@@ -48,7 +48,7 @@ function max(...nums){
             maxNum = array[i];
         }
     }
-    return maxNum && typeof maxNum === "number"? maxNum : "Invalid input";
+    return maxNum;
 }
 
 

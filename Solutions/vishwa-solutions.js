@@ -66,6 +66,129 @@ const mulRecurse =(...nums)=>{
 //     return Math.min(nums[0],)
 // }
 // ;
+
+const not=(func)=>!func;
+// const isOdd = x=>x%2===1;
+// console.log(not(isOdd(2)));
+
+const acc=(func,initial)=>{
+    return function(...args){
+        return func(...args,initial);
+    }
+}
+// let addr = acc(mul, 10)
+// console.log(addr(1,2,4))
+
+const fill=(num)=>{
+    let arr =[];
+    for(let i=0;i<num;i++){
+        arr.push(num);
+    }
+    return arr;
+}
+// console.log(fill(5));
+
+const set=(...args)=>{
+    let arr =[...args];
+    let obj ={}
+    arr.forEach((num)=>{
+        obj[num] = (obj[num] || 0)+1;
+    })
+    let keyArr = Object.keys(obj);
+    return keyArr.map(key=>Number(key));
+}
+// console.log(set(1,1,1,2,2,2))
+
+//alternate for set function
+const alSet = (...args)=>{
+    let arr = [...args];
+    let setr = new Set(arr);
+    return [...setr];
+}
+
+const identityf=(x)=>{
+    return function(){
+        return x;
+    }
+}
+// let three = identityf(3)
+// console.log(three());
+
+const addf=(a)=>{
+    return function(b){
+        return a+b;
+    }
+}
+// console.log(addf(3)(4));
+
+const liftf=(func)=>{
+    return function(a){
+        return function(b){
+            return func(a,b);
+        }
+    }
+}
+// let ad = liftf(addb);
+// console.log(ad(3)(4));
+
+const pure=(x,y)=>{
+    return [y+=1,mulb(x,y)]
+}
+// console.log(pure(20,5))
+
+const curryb=(func,x)=>{
+    return function(y){
+        return func(x,y)
+    }
+}
+// console.log(curryb(mulb,5)(6));
+
+const curry=(func,...args)=>{
+    return function(...args1){
+        let ar =[...args,...args1]
+       return func(...args,...args1);
+    }
+}
+// console.log(curry(mul,1,2,4)(4,2,1));
+
+const inc=(x)=>x+1;
+// console.log(inc(inc(5)));
+
+const twiceUnary=(func)=>{
+    return function(x){
+        return func(x,x);
+    }
+}
+// console.log(twiceUnary(mulb)(11));
+
+const doubl=(x)=>twiceUnary(addb)(x);
+// console.log(doubl(11));
+
+const square=x=>twiceUnary(mulb)(x);
+// console.log(square(11));
+
+const twice=func=>{
+    return function(...args){
+        return func(...args,...args);
+    }
+}
+// console.log(twice(mul)(1,2,4));
+
+const reverseb=func=>{
+    return function(x,y){
+        return func(y,x);
+    }
+}
+// console.log(reverseb(subb)(3,2));
+
+const reverse=func=>{
+    return function(...args){
+
+        return func(...args.reverse());
+    }
+}
+// console.log(reverse(sub)(1,2,4));
+
 module.exports = {
     identity,
     addb,
@@ -82,26 +205,26 @@ module.exports = {
     mulRecurse,
     // minRecurse,
     // maxRecurse,
-    // not,
-    // acc,
+    not,
+    acc,
     // accPartial,
     // accRecurse,
-    // fill,
+    fill,
     // fillRecurse,
-    // set,
-    // identityf,
-    // addf,
-    // liftf,
-    // pure,
-    // curryb,
-    // curry,
-    // inc,
-    // twiceUnary,
-    // doubl,
-    // square,
-    // twice,
-    // reverseb,
-    // reverse,
+    set,
+    identityf,
+    addf,
+    liftf,
+    pure,
+    curryb,
+    curry,
+    inc,
+    twiceUnary,
+    doubl,
+    square,
+    twice,
+    reverseb,
+    reverse,
     // composeuTwo,
     // composeu,
     // composeb,

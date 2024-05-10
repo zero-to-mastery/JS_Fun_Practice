@@ -189,6 +189,64 @@ const reverse=func=>{
 }
 // console.log(reverse(sub)(1,2,4));
 
+const composeuTwo=(func1,func2)=>{
+    return function(x){
+        return func2(func1(x));
+    }
+}
+// console.log(composeuTwo(doubl,square)(5));
+
+const composeb=(func1,func2)=>{
+    return function(a,b,c){
+        return func2(func1(a,b),c);
+    }
+}
+// console.log(composeb(addb,mulb)(2,3,7));
+
+const composeTwo=(func1,func2)=>{
+    return function(...args){
+        return func2(func1(...args));
+    }
+}
+// console.log(composeTwo(add,square)(2,3,7,5));
+
+// const compose=(...funcs)=>{
+//     return function(...args){
+//         return funcs.reduce((acc,fun)=>fun(acc),...args);
+//     }
+// }
+// console.log(compose(add,doubl,fill,max)(0,1,2));
+
+const limitb=(func,lim)=>{
+    let count =0;
+    return function(x,y){
+        if(count<lim){
+            count++;
+            return func(x,y);
+        }else{
+            return undefined;
+        }
+    }
+}
+// let adr = limitb(addb,2);
+// console.log(adr(3,4));
+// console.log(adr(3,4));
+
+const limit=(func,lmt)=>{
+    let count=0;
+    return function(...x){
+        if(count<lmt){
+            count++;
+            return func(...x);
+        }else{
+            return undefined;
+        }
+    }
+}
+// let adr = limit(add,1);
+// console.log(adr(1,2,3,4));
+// console.log(adr(1,2,3,4,5));
+
 module.exports = {
     identity,
     addb,
@@ -225,13 +283,13 @@ module.exports = {
     twice,
     reverseb,
     reverse,
-    // composeuTwo,
+    composeuTwo,
     // composeu,
-    // composeb,
-    // composeTwo,
+    composeb,
+    composeTwo,
     // compose,
-    // limitb,
-    // limit,
+    limitb,
+    limit,
     // genFrom,
     // genTo,
     // genFromTo,

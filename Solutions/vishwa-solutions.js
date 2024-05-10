@@ -61,11 +61,29 @@ const mulRecurse =(...nums)=>{
 }
 // console.log(mulRecurse(1,2,4));
 
-// const minRecurse=(...nums)=>{
-//     if(nums.length===1) return nums[0];
-//     return Math.min(nums[0],)
-// }
-// ;
+const minRecurse=(...nums)=>{
+    // console.log(nums);
+    if(nums.length === 1){
+        return nums[0];
+    } 
+    const firstNumber = nums[0];
+    const remainingNumbers = nums.slice(1);
+    const minOfRemaining = minRecurse(...remainingNumbers);
+    return Math.min(firstNumber,minOfRemaining);
+};
+// console.log(minRecurse(1,2,4));
+
+const maxRecurse=(...nums)=>{
+    // console.log(nums);
+    if(nums.length === 1){
+        return nums[0];
+    } 
+    const firstNumber = nums[0];
+    const remainingNumbers = nums.slice(1);
+    const maxOfRemaining = maxRecurse(...remainingNumbers);
+    return Math.max(firstNumber,maxOfRemaining);
+};
+// console.log(maxRecurse(1,2,4));
 
 const not=(func)=>!func;
 // const isOdd = x=>x%2===1;
@@ -79,6 +97,13 @@ const acc=(func,initial)=>{
 // let addr = acc(mul, 10)
 // console.log(addr(1,2,4))
 
+const accPartial=(func,start,end)=>{
+    return function(...args){
+        return func(...args.slice(start+1,end));
+    }
+}
+// console.log(accPartial(add,1,3)(1,2,4,8));
+
 const fill=(num)=>{
     let arr =[];
     for(let i=0;i<num;i++){
@@ -87,6 +112,15 @@ const fill=(num)=>{
     return arr;
 }
 // console.log(fill(5));
+
+// const fillRecurse=(num)=>{
+//     if(num===0) return [];
+
+//     const res = fillRecurse(num-1);
+//     res.push(count);
+//     return res;
+// };
+// console.log(fillRecurse(3));
 
 const set=(...args)=>{
     let arr =[...args];
@@ -261,11 +295,11 @@ module.exports = {
     max,
     addRecurse,
     mulRecurse,
-    // minRecurse,
-    // maxRecurse,
+    minRecurse,
+    maxRecurse,
     not,
     acc,
-    // accPartial,
+    accPartial,
     // accRecurse,
     fill,
     // fillRecurse,

@@ -37,15 +37,28 @@ const min=(...nums)=>{
 // console.log(min(1,2,4));
 
 const max=(...nums)=>{
-    let maxNum = nums[0];
+    // console.log(nums);
+    let ar = [...nums];
+    let passedNestedArr = false;
     for(let i=0;i<nums.length;i++){
-        if(nums[i]>maxNum){
-            maxNum=nums[i];
+        if(Array.isArray(nums[i])){
+            passedNestedArr = true;
+        }else{
+            passedNestedArr=false;
+        }
+    }
+    if(passedNestedArr){
+       ar= ar.flat(1);
+    }
+    let maxNum = ar[0];
+    for(let i=0;i<ar.length;i++){
+        if(ar[i]>maxNum){
+            maxNum=ar[i];
         }
     }
     return maxNum;
 }
-// console.log(max(1,2,4));
+// console.log(max([1,2,4]));
 
 const addRecurse=(...nums)=>{
     if(nums.length==1){
@@ -113,13 +126,13 @@ const fill=(num)=>{
 }
 // console.log(fill(5));
 
-// const fillRecurse=(num)=>{
-//     if(num===0) return [];
-
-//     const res = fillRecurse(num-1);
-//     res.push(count);
-//     return res;
-// };
+const fillRecurse=(num,arr=[])=>{
+    if(arr.length===num) return arr;
+    else{
+        arr.push(num)
+        return fillRecurse(num,arr)
+    }
+};
 // console.log(fillRecurse(3));
 
 const set=(...args)=>{
@@ -230,6 +243,17 @@ const composeuTwo=(func1,func2)=>{
 }
 // console.log(composeuTwo(doubl,square)(5));
 
+const composeu=(...funcs)=>{
+    return function(arg){
+    let result = funcs[0](arg);
+    for(let i=1;i<funcs.length;i++){
+            result = funcs[i](result);
+        }
+        return result;
+    }
+}
+// console.log(composeu(doubl,square,identity,curry(add,1,2))(5));
+
 const composeb=(func1,func2)=>{
     return function(a,b,c){
         return func2(func1(a,b),c);
@@ -244,11 +268,16 @@ const composeTwo=(func1,func2)=>{
 }
 // console.log(composeTwo(add,square)(2,3,7,5));
 
-// const compose=(...funcs)=>{
-//     return function(...args){
-//         return funcs.reduce((acc,fun)=>fun(acc),...args);
-//     }
-// }
+const compose=(...funcs)=>{
+    // console.log('fun:',...funcs);
+    return function(...args){
+        let result = funcs[0](...args);
+        for(let i=1;i<funcs.length;i++){
+            result=funcs[i](result);
+        }
+        return result;
+    }
+}
 // console.log(compose(add,doubl,fill,max)(0,1,2));
 
 const limitb=(func,lim)=>{
@@ -281,6 +310,230 @@ const limit=(func,lmt)=>{
 // console.log(adr(1,2,3,4));
 // console.log(adr(1,2,3,4,5));
 
+function* genFrom(x){
+    for(let i=0;i<3;i++){
+        yield x+i;
+    }
+}
+// let index = genFrom(0)
+// console.log(index.next().value);
+// console.log(index.next().value);
+// console.log(index.next().value);
+
+const counter=i=>{
+    let count =i;
+    return {
+        up(){
+            return ++count;
+        },
+        down(){
+            return --count;
+        }
+    }
+}
+
+const counterTwo=i=>{
+    let count=i;
+    function up(){
+        return ++count;
+    }
+    function down(){
+        return --count;
+    }
+    return {up,down};
+}
+// let obj = counterTwo(10)
+// let {up,down}=obj;
+// console.log(up());
+// console.log(down());
+// console.log(down());
+// console.log(up());
+
+const revocableb=func=>{
+    let invocable = true;
+    function invoke(x,y){
+        if(invocable){
+            return func(x,y);
+        }else{
+            return undefined;
+        }
+    }
+    function revoke(){
+        invocable=false;
+    }
+    return {invoke,revoke};
+}
+// let rev = revocableb(addb);
+// console.log(rev.invoke(30,4));
+// rev.revoke();
+// console.log(rev.invoke(5,7));
+
+const revocable=func=>{
+    let invocable = true;
+    function invoke(...x){
+        if(invocable){
+            return func(...x);
+        }else{
+            return undefined;
+        }
+    }
+    function revoke(){
+        invocable=false;
+    }
+    return {invoke,revoke};
+}
+// let rev = revocable(add);
+// console.log(rev.invoke(1,2,3,4));
+// rev.revoke()
+// console.log(rev.invoke(1,3,5,7));
+
+const extract=(array,prop)=>{
+    let rtn =[];
+    for(let obj of array){
+        rtn.push(obj[prop]);
+    }
+    return rtn;
+}
+// let people = [{ name: 'john' }, { name: 'bob' }]
+// let names = extract(people, 'name')
+// console.log(names);
+
+const m=(value,source=value)=>{
+    return {
+        value:value,
+        source:`${source}`
+    }
+}
+// console.log(m(Math.PI,'pi'));
+
+const addmTwo=(m1,m2)=>{
+    return{
+        value:m1.value+m2.value,
+        source:`(${m1.source}+${m2.source})`
+    }
+}
+// console.log(addmTwo(m(1),m(Math.PI,'pi')));
+
+const addm=(...ms)=>{
+    const value=ms.reduce((acc,m)=>acc+m.value,0);
+    let source='';
+    ms.forEach(m=>{
+        source+=m.source+'+';
+    })
+    let newSource=source.split('').slice(0,source.length-1).join('')
+    return {
+        value:value,
+        source:`(${newSource})`
+    }
+}
+// console.log(addm(m(1),m(2),m(4)))
+
+const liftmbM=(func,op)=>{
+    return function(m1,m2){
+        return {
+            value:func(m1.value,m2.value),
+            source:`(${m1.value}${op}${m2.value})`
+        }
+    }
+}
+// console.log(liftmbM(mul,'*')(m(3),m(4)));
+
+const liftmb=(func,op)=>{
+    return (x,y)=>{
+        return{
+            value:func(x,y),
+            source:`${x}${op}${y}`
+        }
+    }
+}
+// console.log(liftmb(addb,'+')(3,4));
+
+const liftm=(func,op)=>{
+    return function(...ms){
+        let valArr = [];
+        ms.forEach(m=>valArr.push(m.value));
+        let source='';
+    ms.forEach(m=>{
+        source+=m.source+`${op}`;
+    })
+    let newSource=source.split('').slice(0,source.length-1).join('')
+    return{
+        value:func(...valArr),
+        source:`(${newSource})`
+    }
+    }
+}
+// console.log(liftm(add,'+')(m(3),m(4),m(5),m(6)));
+
+const exp=(val)=>{
+    if(Array.isArray(val)){
+        let funcAtIndex =0;
+        for(let i=0;i<val.length;i++){
+            if(typeof val[i] === 'function'){
+                funcAtIndex=i;
+            }
+        }
+        let toPassArr1 = val.slice(0,funcAtIndex)
+        let toPassArr2 =val.slice(funcAtIndex+1,val.length);
+        return val[funcAtIndex](...toPassArr1,...toPassArr2);
+    }else{
+        return val;
+    }
+}
+// console.log(exp([mul,1,2,4]));
+
+const expn=value=>{
+    if(Array.isArray(value)){
+        const [func,...args]=value.map(expn);
+        return func(...args);
+    }else{
+        return value;
+    }
+}
+// console.log(expn([Math.sqrt,[add,[square,3],[square,4]]]));
+
+const continuizeu=func=>{
+    return (callback,arg)=>{
+        return callback(func(arg));
+    }
+}
+// console.log(continuizeu(Math.sqrt)(console.log,81));
+
+const continuize=func=>{
+    return (callback,...args)=>{
+        return callback(func(...args));
+    }
+}
+// console.log(continuize(mul)(console.log,81,4,2));
+
+const vector=()=>{
+    const arr=[];
+    function append(x){
+        arr.push(x);
+    }
+    function get(x){
+        return arr[x]
+    }
+    function store(index,arg){
+        arr.splice(index,0,arg);
+    }
+    return {append,get,store};
+}
+
+const vector1=()=>{
+    let arr =[];
+    return{
+        append:(x)=>arr.push(x),
+        get:(x)=>arr[x],
+        store:(idx,arg)=>arr[idx]=arg
+    }
+}
+// let v=vector();
+// v.append(7)
+// v.store(1,8)
+// v.store(2,8)
+// console.log(v.get(0),v.get(1),v.get(2));
+
 module.exports = {
     identity,
     addb,
@@ -302,7 +555,7 @@ module.exports = {
     accPartial,
     // accRecurse,
     fill,
-    // fillRecurse,
+    fillRecurse,
     set,
     identityf,
     addf,
@@ -318,13 +571,13 @@ module.exports = {
     reverseb,
     reverse,
     composeuTwo,
-    // composeu,
+    composeu,
     composeb,
     composeTwo,
-    // compose,
+    compose,
     limitb,
     limit,
-    // genFrom,
+    genFrom,
     // genTo,
     // genFromTo,
     // elementGen,
@@ -338,27 +591,28 @@ module.exports = {
     // gensymf,
     // gensymff,
     // fibonaccif,
-    // counter,
-    // revocableb,
-    // revocable,
-    // extract,
-    // m,
-    // addmTwo,
-    // addm,
-    // liftmbM,
-    // liftmb,
-    // liftm,
-    // exp,
-    // expn,
+    counter,
+    revocableb,
+    revocable,
+    extract,
+    m,
+    addmTwo,
+    addm,
+    liftmbM,
+    liftmb,
+    liftm,
+    exp,
+    expn,
     // addg,
     // liftg,
     // arrayg,
-    // continuizeu,
-    // continuize,
-    // vector,
+    continuizeu,
+    continuize,
+    vector,
     // exploitVector,
     // vectorSafe,
     // pubsub,
     // mapRecurse,
     // filterRecurse,
 };
+// console.log(Object.keys(module.exports).length);

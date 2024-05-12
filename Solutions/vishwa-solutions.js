@@ -7,7 +7,7 @@ const addb=(a,b)=>a+b;
 const subb=(a,b)=>a-b;
 // console.log(subb(3,4));
 
-const mulb=(a,b)=>a*b;
+const mulb=(a,b=1)=>a*b;
 // console.log(mulb(3,4));
 
 const minb=(a,b)=>Math.min(a,b);
@@ -116,6 +116,16 @@ const accPartial=(func,start,end)=>{
     }
 }
 // console.log(accPartial(add,1,3)(1,2,4,8));
+
+// const accRecurse=(func,initial)=>{
+//     return function accT(...args){
+//         if(args.length===0) return initial;
+//         else{
+//             return accT(func(initial,args[0]),...args.slice(1));
+//         }
+//     }
+// }
+// console.log(accRecurse(mul,0)(1,2,4));
 
 const fill=(num)=>{
     let arr =[];
@@ -311,14 +321,158 @@ const limit=(func,lmt)=>{
 // console.log(adr(1,2,3,4,5));
 
 function* genFrom(x){
-    for(let i=0;i<3;i++){
-        yield x+i;
+    while(true){
+        yield x;
+        x++;
     }
 }
 // let index = genFrom(0)
 // console.log(index.next().value);
 // console.log(index.next().value);
 // console.log(index.next().value);
+
+const genTo=(gen,lmt)=>{
+    return{
+        next(){
+            const value=gen.next().value;
+            if(value!==undefined && value<lmt){
+                return {value};
+            }else{
+                return {done:true};
+            }
+        }
+    }
+}
+// let l =genTo(genFrom(1),3)
+// console.log(l.next().value)
+// console.log(l.next().value)
+// console.log(l.next().value)
+
+const genFromToAlternative=(start,end)=>{
+    return genTo(genFrom(start),end);
+}
+
+const genFromTo=(start,end)=>{
+    return {
+        next(){
+            if(start<end){
+                return{value:start++,done:false};
+            }else{
+                return {done:true};
+            }
+        }
+    }
+}
+
+// let index = genFromTo(0,3);
+// console.log(index.next().value);
+// console.log(index.next().value);
+// console.log(index.next().value);
+// console.log(index.next().value);
+
+const elementGen=(array,gen)=>{
+    return{
+        next(){
+            const idx = gen.next().value;
+            return {value:array[idx]}
+        }
+    }
+}
+// let e = elementGen(['a', 'b', 'c', 'd'], genFromTo(1, 3))
+// console.log(e.next().value);
+// console.log(e.next().value);
+// console.log(e.next().value);
+
+const element=(array,gen=undefined)=>{
+    let i=0;
+    return {
+        next(){
+            if(gen===undefined){
+                return {value:array[i++]};
+            }else{
+                const idx = gen.next().value;
+            return {value:array[idx]}
+            }
+        }
+    } 
+}
+// let e = element(['a','b','c','d'])
+// console.log(e.next().value);
+// console.log(e.next().value);
+// console.log(e.next().value);
+// console.log(e.next().value);
+// console.log(e.next().value);
+
+const collect=(gen,array)=>{
+    return{
+        next(){
+            const value = gen.next().value;
+            if(value===0 || value) array.push(value);
+            return {value};
+        }
+    }
+}
+// let array = []
+// let col = collect(genFromTo(0, 5), array)
+// console.log(col.next().value);
+// console.log(col.next().value);
+// console.log(col.next().value);
+// console.log(array);
+
+function* filter(gen,predicate){
+    let next = gen.next();
+    while(!next.done){
+        if(predicate(next.value)){
+            yield next.value;
+        }
+        next=gen.next();
+    }
+}
+
+// let third = (val) => val % 3 === 0
+// let fil = filter(genFromTo(0, 5), third)
+// console.log(fil.next().value);
+// console.log(fil.next().value);
+// console.log(fil.next().value);
+
+function* concatTwo(gen1,gen2){
+    let nx1 = gen1.next();
+    while(!nx1.done){
+        yield nx1.value;
+        nx1=gen1.next();
+    }
+    let nx2 = gen2.next();
+    while(!nx2.done){
+        yield nx2.value;
+        nx2=gen2.next();
+    }
+}
+// let con = concatTwo(genFromTo(0, 3), genFromTo(0, 2))
+// console.log(con.next().value);
+// console.log(con.next().value);
+// console.log(con.next().value);
+// console.log(con.next().value);
+// console.log(con.next().value);
+// console.log(con.next().value);
+
+function* concat(...gens){
+    for(let gen of gens){
+        let nex = gen.next();
+        while(!nex.done){
+            yield nex.value;
+            nex = gen.next();
+        }
+    }
+}
+// let con = concat(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7))
+// console.log(con.next().value);
+// console.log(con.next().value);
+// console.log(con.next().value);
+// console.log(con.next().value);
+// console.log(con.next().value);
+// console.log(con.next().value);
+// console.log(con.next().value);
+// console.log(con.next().value);
 
 const counter=i=>{
     let count =i;
@@ -492,6 +646,46 @@ const expn=value=>{
 }
 // console.log(expn([Math.sqrt,[add,[square,3],[square,4]]]));
 
+const addg=value=>{
+    if(value===undefined)return;
+    return function addNxt(nxtVal){
+        if(nxtVal!==undefined){
+            value+=nxtVal;
+            return addNxt;
+        }
+        return value;
+    }
+
+}
+// console.log(addg(2)(2)());
+
+const liftg=func=>{
+    let val =undefined;
+    return function computeNxt(nxtVal){
+        if(nxtVal===undefined)return val;
+        else if(nxtVal!==undefined){
+            val=func(nxtVal,val);
+            return computeNxt;
+        }
+
+    }
+}
+// console.log(liftg(mulb)(1)(2)(4)(8)());
+
+const arrayg=value=>{
+    if(value===undefined)return [];
+    let rtn =[];
+    rtn.push(value);
+    return function pushVal(val){
+        if(val!==undefined){
+            rtn.push(val);
+            return pushVal;
+        }
+        return rtn;
+    }
+}
+// console.log(arrayg(3)(4)(5)());
+
 const continuizeu=func=>{
     return (callback,arg)=>{
         return callback(func(arg));
@@ -533,6 +727,52 @@ const vector1=()=>{
 // v.store(1,8)
 // v.store(2,8)
 // console.log(v.get(0),v.get(1),v.get(2));
+
+const exploitVector=v=>{
+    
+     v.append=function(v){
+        return this.arr;
+     }
+     return v.append();
+}
+// let v=vector()
+// v.append(1)
+// console.log(exploitVector(v));
+// let v1 = exploitVector(v)
+// v.append(2)
+
+const vectorSafe=()=>{
+    let arr=[];
+    return{
+        append:function(x){
+            arr.push(x)
+        },
+        get:function(x){
+            return arr[x];
+        },
+        store:function(idx,val){
+            arr[idx]=val;
+        }
+    }
+}
+// let v = vectorSafe()
+// v.append(1)
+// console.log(exploitVector(v));
+
+const pubsub=()=>{
+    let func = null;
+    return{
+        subscribe:function(callback){
+            func=callback;
+        },
+        publish:function(str){
+            return func(str)
+        }
+    }
+}
+// let ps =pubsub()
+// ps.subscribe(console.log)
+// console.log(ps.publish('it works'));
 
 module.exports = {
     identity,
@@ -578,15 +818,15 @@ module.exports = {
     limitb,
     limit,
     genFrom,
-    // genTo,
-    // genFromTo,
-    // elementGen,
-    // element,
-    // collect,
-    // filter,
+    genTo,
+    genFromTo,
+    elementGen,
+    element,
+    collect,
+    filter,
     // filterTail,
-    // concatTwo,
-    // concat,
+    concatTwo,
+    concat,
     // concatTail,
     // gensymf,
     // gensymff,
@@ -603,16 +843,16 @@ module.exports = {
     liftm,
     exp,
     expn,
-    // addg,
-    // liftg,
-    // arrayg,
+    addg,
+    liftg,
+    arrayg,
     continuizeu,
     continuize,
     vector,
-    // exploitVector,
-    // vectorSafe,
-    // pubsub,
+    exploitVector,
+    vectorSafe,
+    pubsub,
     // mapRecurse,
     // filterRecurse,
 };
-// console.log(Object.keys(module.exports).length);
+console.log(Object.keys(module.exports).length);

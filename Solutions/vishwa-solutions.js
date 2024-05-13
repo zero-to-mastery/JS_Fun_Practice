@@ -474,6 +474,58 @@ function* concat(...gens){
 // console.log(con.next().value);
 // console.log(con.next().value);
 
+function* gensymf(symbol){
+    let i=0;
+    while(true){
+    yield `${symbol}${++i}`;
+    }
+}
+// let g = gensymf('G')
+// let h = gensymf('H')
+// console.log(g.next().value);
+// console.log(h.next().value);
+// console.log(g.next().value);
+// console.log(h.next().value);
+
+const gensymff=(unary,seed)=>{
+    return function*(symbol){
+        let i=unary(seed); //scoped the i for correct results
+        while(true){
+            yield `${symbol}${i}`;
+            i=unary(i);        
+        }
+    }
+}
+// let gensym = gensymff(inc, 0)
+// let genG = gensym('G')
+// let genH = gensym('H')
+// console.log(genG.next().value);
+// console.log(genH.next().value);
+// console.log(genG.next().value);
+// console.log(genH.next().value);
+// console.log(genG.next().value);
+// console.log(genH.next().value);
+
+function* fibonaccif(first,second){
+    yield first;
+    yield second;
+    let sum = 0;
+    while(true){
+        sum = first+second;
+        first=second;
+        second=sum;
+        yield sum;
+    }
+}
+// let fb = fibonaccif(0,1)
+// console.log(fb.next().value);
+// console.log(fb.next().value);
+// console.log(fb.next().value);
+// console.log(fb.next().value);
+// console.log(fb.next().value);
+// console.log(fb.next().value);
+// console.log(fb.next().value);
+
 const counter=i=>{
     let count =i;
     return {
@@ -774,6 +826,27 @@ const pubsub=()=>{
 // ps.subscribe(console.log)
 // console.log(ps.publish('it works'));
 
+const mapRecurse=(array,callback)=>{
+    if(array.length===0){
+        return [];
+    }else{
+        const onFirstElement = callback(array[0]);
+        const remaining = mapRecurse(array.splice(1),callback);
+        return [onFirstElement,...remaining];
+    }
+}
+// console.log(mapRecurse([1,2,3,4],(x)=>x*2));
+
+const filterRecurse =(array,predicate)=>{
+    if(array.length===0)return [];
+    else{
+        const onFirstElement = predicate(array[0]) ? array[0] : [];
+        const remaining = filterRecurse(array.slice(1),predicate);
+        return [onFirstElement,...remaining].flat(1);
+    }
+}
+// console.log(filterRecurse([1,2,3,4],(x)=>x%2===0));
+
 module.exports = {
     identity,
     addb,
@@ -828,9 +901,9 @@ module.exports = {
     concatTwo,
     concat,
     // concatTail,
-    // gensymf,
-    // gensymff,
-    // fibonaccif,
+    gensymf,
+    gensymff,
+    fibonaccif,
     counter,
     revocableb,
     revocable,
@@ -852,7 +925,7 @@ module.exports = {
     exploitVector,
     vectorSafe,
     pubsub,
-    // mapRecurse,
-    // filterRecurse,
+    mapRecurse,
+    filterRecurse,
 };
 // console.log(Object.keys(module.exports).length);

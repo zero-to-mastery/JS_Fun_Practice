@@ -15,4 +15,7 @@ if (op === 1, 2, 3){
 } 
 }
 
-
+fishy = [1, 2, 3, 4, 5]
+for (fish of fishy) {
+    console.log('This is fishy:' ,fish)
+}

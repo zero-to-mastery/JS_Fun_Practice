@@ -4,7 +4,7 @@
   "description": "A testing utility for the fun javascript functions",
   "main": "index.js",
   "scripts": {
-    "test": "mocha || true"
+    "test": "vitest"
   },
   "repository": {
     "type": "git",
@@ -20,6 +20,7 @@
     "chai": "^4.2.0",
     "mocha": "^10.2.0",
     "mocha-sinon": "^2.1.2",
-    "sinon": "^9.0.2"
+    "sinon": "^9.0.2",
+    "vitest": "^2.1.4"
   }
 }

@@ -1,5 +1,3 @@
-This was a contribution project where I wrote 70+ different Javascript functions. My file is listed [[here](https://github.com/ebarr10/JS_Fun_Practice/blob/master/Solutions/ebarr10_complete_solutions.js)]
-
 # js-function-fun
 
 A list of small & fun functional programming exercises in JavaScript.
@@ -11,11 +9,13 @@ Please see [CONTRIBUTING](CONTRIBUTING.md).
 ## Testing
 
 ### To test the functions:
+
 1. Run <code>npm install</code> to install the dependencies (need node.js for npm). If you don't have node please visit the [Node JS](https://nodejs.org/en/) website to download. It is recommended to download the LTS version.
 2. Change <code>filename</code> in <code>test/tests.js</code> to the name of your solution file (optional).
 3. Make sure your solution file is in the <code>Solutions</code> folder.
 4. Make sure your function names match the ones listed below as you're coding them.
 5. At the bottom of your solution file, copy and paste the following code:
+
 ```js
 module.exports = {
     identity,
@@ -248,11 +248,12 @@ function <code>impure</code></p>
 
 ```js
 function impure(x) {
-  y++;
-  z = x * y;
+    y++;
+    z = x * y;
 }
 
-var y = 5, z;
+var y = 5,
+    z;
 
 impure(20);
 z; // 120
@@ -541,13 +542,13 @@ something like this:</p>
 
 ```js
 let vector = () => {
-  let array = []
-  return {
-    append: (v) => array.push(v),
-    get: (i) => array[i],
-    store: (i, v) => array[i] = v
-  }
-}
+    let array = [];
+    return {
+        append: (v) => array.push(v),
+        get: (i) => array[i],
+        store: (i, v) => (array[i] = v),
+    };
+};
 ```
 
 <p>Can you spot any security concerns with
@@ -600,7 +601,7 @@ that argument
 **Example**
 
 ```js
-identity(3) // 3
+identity(3); // 3
 ```
 
 <a name="addb"></a>
@@ -619,7 +620,7 @@ their sum
 **Example**
 
 ```js
-addb(3, 4) // 3 + 4 = 7
+addb(3, 4); // 3 + 4 = 7
 ```
 
 <a name="subb"></a>
@@ -638,7 +639,7 @@ their difference
 **Example**
 
 ```js
-subb(3, 4) // 3 - 4 = -1
+subb(3, 4); // 3 - 4 = -1
 ```
 
 <a name="mulb"></a>
@@ -657,7 +658,7 @@ their product
 **Example**
 
 ```js
-mulb(3, 4) // 3 * 4 = 12
+mulb(3, 4); // 3 * 4 = 12
 ```
 
 <a name="minb"></a>
@@ -676,7 +677,7 @@ the smaller one
 **Example**
 
 ```js
-minb(3, 4) // 3
+minb(3, 4); // 3
 ```
 
 <a name="maxb"></a>
@@ -695,7 +696,7 @@ the larger one
 **Example**
 
 ```js
-maxb(3, 4) // 4
+maxb(3, 4); // 4
 ```
 
 <a name="add"></a>
@@ -713,7 +714,7 @@ amount of arguments
 **Example**
 
 ```js
-add(1, 2, 4) // 1 + 2 + 4 = 7
+add(1, 2, 4); // 1 + 2 + 4 = 7
 ```
 
 <a name="sub"></a>
@@ -731,7 +732,7 @@ amount of arguments
 **Example**
 
 ```js
-sub(1, 2, 4) // 1 - 2 - 4 = -5
+sub(1, 2, 4); // 1 - 2 - 4 = -5
 ```
 
 <a name="mul"></a>
@@ -749,7 +750,7 @@ amount of arguments
 **Example**
 
 ```js
-mul(1, 2, 4) // 1 * 2 * 4 = 8
+mul(1, 2, 4); // 1 * 2 * 4 = 8
 ```
 
 <a name="min"></a>
@@ -767,7 +768,7 @@ amount of arguments
 **Example**
 
 ```js
-min(1, 2, 4) // 1
+min(1, 2, 4); // 1
 ```
 
 <a name="max"></a>
@@ -785,7 +786,7 @@ amount of arguments
 **Example**
 
 ```js
-max(1, 2, 4) // 4
+max(1, 2, 4); // 4
 ```
 
 <a name="addRecurse"></a>
@@ -803,7 +804,7 @@ but uses recursion
 **Example**
 
 ```js
-addRecurse(1, 2, 4) // 1 + 2 + 4 = 7
+addRecurse(1, 2, 4); // 1 + 2 + 4 = 7
 ```
 
 <a name="mulRecurse"></a>
@@ -821,7 +822,7 @@ but uses recursion
 **Example**
 
 ```js
-mulRecurse(1, 2, 4) // 1 * 2 * 4 = 8
+mulRecurse(1, 2, 4); // 1 * 2 * 4 = 8
 ```
 
 <a name="minRecurse"></a>
@@ -839,7 +840,7 @@ but uses recursion
 **Example**
 
 ```js
-minRecurse(1, 2, 4) // 1
+minRecurse(1, 2, 4); // 1
 ```
 
 <a name="maxRecurse"></a>
@@ -857,7 +858,7 @@ but uses recursion
 **Example**
 
 ```js
-maxRecurse(1, 2, 4) // 4
+maxRecurse(1, 2, 4); // 4
 ```
 
 <a name="not"></a>
@@ -875,10 +876,10 @@ the negation of its result
 **Example**
 
 ```js
-const isOdd = (x) => x % 2 === 1
-const isEven = not(isOdd)
-isEven(1) // false
-isEven(2) // true
+const isOdd = (x) => x % 2 === 1;
+const isEven = not(isOdd);
+isEven(1); // false
+isEven(2); // true
 ```
 
 <a name="acc"></a>
@@ -901,11 +902,11 @@ result
 **Example**
 
 ```js
-let add = acc(addb, 0)
-add(1, 2, 4) // 7
+let add = acc(addb, 0);
+add(1, 2, 4); // 7
 
-let mul = acc(mulb, 1)
-mul(1, 2, 4) // 8
+let mul = acc(mulb, 1);
+mul(1, 2, 4); // 8
 ```
 
 <a name="accPartial"></a>
@@ -929,8 +930,8 @@ between start and end.
 **Example**
 
 ```js
-const addSecondToThird = accPartial(add, 1, 3)
-addSecondToThird(1, 2, 4, 8) // [ 1, 6, 8 ]
+const addSecondToThird = accPartial(add, 1, 3);
+addSecondToThird(1, 2, 4, 8); // [ 1, 6, 8 ]
 ```
 
 <a name="accRecurse"></a>
@@ -948,11 +949,11 @@ does what `acc` does but uses recursion
 **Example**
 
 ```js
-let add = accRecurse(addb, 0)
-add(1, 2, 4) // 7
+let add = accRecurse(addb, 0);
+add(1, 2, 4); // 7
 
-let mul = accRecurse(mulb, 1)
-mul(1, 2, 4) // 8
+let mul = accRecurse(mulb, 1);
+mul(1, 2, 4); // 8
 ```
 
 <a name="fill"></a>
@@ -972,7 +973,7 @@ number
 **Example**
 
 ```js
-fill(3) // [ 3, 3, 3 ]
+fill(3); // [ 3, 3, 3 ]
 ```
 
 <a name="fillRecurse"></a>
@@ -989,7 +990,7 @@ does what `fill` does but uses recursion
 **Example**
 
 ```js
-fillRecurse(3) // [ 3, 3, 3 ]
+fillRecurse(3); // [ 3, 3, 3 ]
 ```
 
 <a name="set"></a>
@@ -1008,7 +1009,7 @@ all duplicates removed
 **Example**
 
 ```js
-let oneAndTwo = set(1, 1, 1, 2, 2, 2) // [ 1, 2 ]
+let oneAndTwo = set(1, 1, 1, 2, 2, 2); // [ 1, 2 ]
 ```
 
 <a name="identityf"></a>
@@ -1027,8 +1028,8 @@ returns that argument
 **Example**
 
 ```js
-let three = identityf(3)
-three() // 3
+let three = identityf(3);
+three(); // 3
 ```
 
 <a name="addf"></a>
@@ -1045,7 +1046,7 @@ adds from two invocations
 **Example**
 
 ```js
-addf(3)(4) // 7
+addf(3)(4); // 7
 ```
 
 <a name="liftf"></a>
@@ -1064,10 +1065,10 @@ invocations
 **Example**
 
 ```js
-let addf = liftf(addb)
-addf(3)(4) // 7
+let addf = liftf(addb);
+addf(3)(4); // 7
 
-liftf(mulb)(5)(6) // 30
+liftf(mulb)(5)(6); // 30
 ```
 
 <a name="pure"></a>
@@ -1080,11 +1081,12 @@ function `impure`
 
 ```js
 function impure(x) {
-  y++;
-  z = x * y;
+    y++;
+    z = x * y;
 }
 
-var y = 5, z;
+var y = 5,
+    z;
 
 impure(20);
 z; // 120
@@ -1103,8 +1105,8 @@ z; // 175
 **Example**
 
 ```js
-pure(20, 5) // [ 6, 120 ]
-pure(25, 6) // [ 7, 175 ]
+pure(20, 5); // [ 6, 120 ]
+pure(25, 6); // [ 7, 175 ]
 ```
 
 <a name="curryb"></a>
@@ -1125,10 +1127,10 @@ second argument
 **Example**
 
 ```js
-let add3 = curryb(addb, 3)
-add3(4) // 7
+let add3 = curryb(addb, 3);
+add3(4); // 7
 
-curryb(mulb, 5)(6) // 30
+curryb(mulb, 5)(6); // 30
 ```
 
 <a name="curry"></a>
@@ -1167,8 +1169,8 @@ function
 **Example**
 
 ```js
-inc(5) // 6
-inc(inc(5)) // 7
+inc(5); // 6
+inc(inc(5)); // 7
 ```
 
 <a name="twiceUnary"></a>
@@ -1188,11 +1190,11 @@ the binary function twice
 **Example**
 
 ```js
-let doubl = twiceUnary(addb)
-doubl(11) // 22
+let doubl = twiceUnary(addb);
+doubl(11); // 22
 
-let square = twiceUnary(mulb)
-square(11) // 121
+let square = twiceUnary(mulb);
+square(11); // 121
 ```
 
 <a name="doubl"></a>
@@ -1209,7 +1211,7 @@ create the `doubl` function
 **Example**
 
 ```js
-doubl(11) // 22
+doubl(11); // 22
 ```
 
 <a name="square"></a>
@@ -1226,7 +1228,7 @@ create the `square` function
 **Example**
 
 ```js
-square(11) // 121
+square(11); // 121
 ```
 
 <a name="twice"></a>
@@ -1244,8 +1246,8 @@ of arguments
 **Example**
 
 ```js
-let doubleSum = twice(add)
-doubleSum(1, 2, 4) // 1 + 2 + 4 + 1 + 2 + 4 = 14
+let doubleSum = twice(add);
+doubleSum(1, 2, 4); // 1 + 2 + 4 + 1 + 2 + 4 = 14
 ```
 
 <a name="reverseb"></a>
@@ -1263,8 +1265,8 @@ binary function
 **Example**
 
 ```js
-let bus = reverseb(subb)
-bus(3, 2) // -1
+let bus = reverseb(subb);
+bus(3, 2); // -1
 ```
 
 <a name="reverse"></a>
@@ -1282,7 +1284,7 @@ of arguments
 **Example**
 
 ```js
-reverse(sub)(1, 2, 4) // 4 - 2 - 1 = 1
+reverse(sub)(1, 2, 4); // 4 - 2 - 1 = 1
 ```
 
 <a name="composeuTwo"></a>
@@ -1302,7 +1304,7 @@ calls them both
 **Example**
 
 ```js
-composeuTwo(doubl, square)(5) // (5 * 2)^2 = 100
+composeuTwo(doubl, square)(5); // (5 * 2)^2 = 100
 ```
 
 <a name="composeu"></a>
@@ -1320,7 +1322,7 @@ of arguments
 **Example**
 
 ```js
-composeu(doubl, square, identity, curry(add, 1, 2))(5) // (5 * 2)^2 + 1 + 2 = 103
+composeu(doubl, square, identity, curry(add, 1, 2))(5); // (5 * 2)^2 + 1 + 2 = 103
 ```
 
 <a name="composeb"></a>
@@ -1340,7 +1342,7 @@ them both
 **Example**
 
 ```js
-composeb(addb, mulb)(2, 3, 7) // (2 + 3) * 7 = 35
+composeb(addb, mulb)(2, 3, 7); // (2 + 3) * 7 = 35
 ```
 
 <a name="composeTwo"></a>
@@ -1359,7 +1361,7 @@ function that calls them both
 **Example**
 
 ```js
-composeTwo(add, square)(2, 3, 7, 5) // (2 + 3 + 7 + 5)^2 = 289
+composeTwo(add, square)(2, 3, 7, 5); // (2 + 3 + 7 + 5)^2 = 289
 ```
 
 <a name="compose"></a>
@@ -1381,8 +1383,8 @@ and so on
 **Example**
 
 ```js
-const f = compose(add, doubl, fill, max)
-f(0, 1, 2)
+const f = compose(add, doubl, fill, max);
+f(0, 1, 2);
 // add(0, 1, 2) -> 3
 // doubl(3) -> 6
 // fill(6) -> [ 6, 6, 6, 6, 6, 6 ]
@@ -1406,9 +1408,9 @@ of times
 **Example**
 
 ```js
-let addLmtb = limitb(addb, 1)
-addLmtb(3, 4) // 7
-addLmtb(3, 5) // undefined
+let addLmtb = limitb(addb, 1);
+addLmtb(3, 4); // 7
+addLmtb(3, 5); // undefined
 ```
 
 <a name="limit"></a>
@@ -1427,9 +1429,9 @@ of arguments
 **Example**
 
 ```js
-let addLmt = limit(add, 1)
-addLmt(1, 2, 4) // 7
-addLmt(3, 5, 9, 2) // undefined
+let addLmt = limit(add, 1);
+addLmt(1, 2, 4); // 7
+addLmt(3, 5, 9, 2); // undefined
 ```
 
 <a name="genFrom"></a>
@@ -1447,11 +1449,11 @@ produces a series of values. Follows the [iterator protocol](https://developer.m
 **Example**
 
 ```js
-let index = genFrom(0)
+let index = genFrom(0);
 
-index.next().value // 0
-index.next().value // 1
-index.next().value // 2
+index.next().value; // 0
+index.next().value; // 1
+index.next().value; // 2
 ```
 
 <a name="genTo"></a>
@@ -1472,11 +1474,11 @@ to that limit
 **Example**
 
 ```js
-let index = genTo(genFrom(1), 3)
+let index = genTo(genFrom(1), 3);
 
-index.next().value // 1
-index.next().value // 2
-index.next().value // undefined
+index.next().value; // 1
+index.next().value; // 2
+index.next().value; // undefined
 ```
 
 <a name="genFromTo"></a>
@@ -1495,11 +1497,11 @@ produce values in a range
 **Example**
 
 ```js
-let index = genFromTo(0, 3)
-index.next().value // 0
-index.next().value // 1
-index.next().value // 2
-index.next().value // undefined
+let index = genFromTo(0, 3);
+index.next().value; // 0
+index.next().value; // 1
+index.next().value; // 2
+index.next().value; // undefined
 ```
 
 <a name="elementGen"></a>
@@ -1519,11 +1521,11 @@ produce elements from the array
 **Example**
 
 ```js
-let ele = elementGen(['a', 'b', 'c', 'd'], genFromTo(1, 3))
+let ele = elementGen(["a", "b", "c", "d"], genFromTo(1, 3));
 
-ele.next().value // 'b'
-ele.next().value // 'c'
-ele.next().value // undefined
+ele.next().value; // 'b'
+ele.next().value; // 'c'
+ele.next().value; // undefined
 ```
 
 <a name="element"></a>
@@ -1545,13 +1547,13 @@ will be produced.
 **Example**
 
 ```js
-let ele = element(['a', 'b', 'c', 'd'])
+let ele = element(["a", "b", "c", "d"]);
 
-ele.next().value // 'a'
-ele.next().value // 'b'
-ele.next().value // 'c'
-ele.next().value // 'd'
-ele.next().value // undefined
+ele.next().value; // 'a'
+ele.next().value; // 'b'
+ele.next().value; // 'c'
+ele.next().value; // 'd'
+ele.next().value; // undefined
 ```
 
 <a name="collect"></a>
@@ -1571,13 +1573,13 @@ in the array
 **Example**
 
 ```js
-let array = []
-let col = collect(genFromTo(0, 2), array)
+let array = [];
+let col = collect(genFromTo(0, 2), array);
 
-col.next().value // 0
-col.next().value // 1
-col.next().value // undefined
-array // [0, 1]
+col.next().value; // 0
+col.next().value; // 1
+col.next().value; // undefined
+array; // [0, 1]
 ```
 
 <a name="filter"></a>
@@ -1597,12 +1599,12 @@ values approved by the predicate
 **Example**
 
 ```js
-let third = (val) => val % 3 === 0
-let fil = filter(genFromTo(0, 5), third)
+let third = (val) => val % 3 === 0;
+let fil = filter(genFromTo(0, 5), third);
 
-fil.next().value // 0
-fil.next().value // 3
-fil.next().value // undefined
+fil.next().value; // 0
+fil.next().value; // 3
+fil.next().value; // undefined
 ```
 
 <a name="filterTail"></a>
@@ -1620,12 +1622,12 @@ tail-recursion to perform the filtering
 **Example**
 
 ```js
-let third = (val) => val % 3 === 0
-let fil = filterTail(genFromTo(0, 5), third)
+let third = (val) => val % 3 === 0;
+let fil = filterTail(genFromTo(0, 5), third);
 
-fil.next().value // 0
-fil.next().value // 3
-fil.next().value // undefined
+fil.next().value; // 0
+fil.next().value; // 3
+fil.next().value; // undefined
 ```
 
 <a name="concatTwo"></a>
@@ -1644,13 +1646,13 @@ that combines the sequences
 **Example**
 
 ```js
-let con = concatTwo(genFromTo(0, 3), genFromTo(0, 2))
-con.next().value // 0
-con.next().value // 1
-con.next().value // 2
-con.next().value // 0
-con.next().value // 1
-con.next().value // undefined
+let con = concatTwo(genFromTo(0, 3), genFromTo(0, 2));
+con.next().value; // 0
+con.next().value; // 1
+con.next().value; // 2
+con.next().value; // 0
+con.next().value; // 1
+con.next().value; // undefined
 ```
 
 <a name="concat"></a>
@@ -1668,15 +1670,15 @@ of arguments
 **Example**
 
 ```js
-let con = concat(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7))
-con.next().value // 0
-con.next().value // 1
-con.next().value // 2
-con.next().value // 0
-con.next().value // 1
-con.next().value // 5
-con.next().value // 6
-con.next().value // undefined
+let con = concat(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7));
+con.next().value; // 0
+con.next().value; // 1
+con.next().value; // 2
+con.next().value; // 0
+con.next().value; // 1
+con.next().value; // 5
+con.next().value; // 6
+con.next().value; // undefined
 ```
 
 <a name="concatTail"></a>
@@ -1693,15 +1695,15 @@ tail-recursion to perform the concating
 **Example**
 
 ```js
-let con = concatTail(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7))
-con.next().value // 0
-con.next().value // 1
-con.next().value // 2
-con.next().value // 0
-con.next().value // 1
-con.next().value // 5
-con.next().value // 6
-con.next().value // undefined
+let con = concatTail(genFromTo(0, 3), genFromTo(0, 2), genFromTo(5, 7));
+con.next().value; // 0
+con.next().value; // 1
+con.next().value; // 2
+con.next().value; // 0
+con.next().value; // 1
+con.next().value; // 5
+con.next().value; // 6
+con.next().value; // undefined
 ```
 
 <a name="gensymf"></a>
@@ -1719,13 +1721,13 @@ unique symbols
 **Example**
 
 ```js
-let genG = gensymf('G')
-let genH = gensymf('H')
+let genG = gensymf("G");
+let genH = gensymf("H");
 
-genG.next().value // 'G1'
-genH.next().value // 'H1'
-genG.next().value // 'G2'
-genH.next().value // 'H2'
+genG.next().value; // 'G1'
+genH.next().value; // 'H1'
+genG.next().value; // 'G2'
+genH.next().value; // 'H2'
 ```
 
 <a name="gensymff"></a>
@@ -1744,14 +1746,14 @@ seed and returns a `gensymf`
 **Example**
 
 ```js
-let gensymf = gensymff(inc, 0)
-let genG = gensymf('G')
-let genH = gensymf('H')
+let gensymf = gensymff(inc, 0);
+let genG = gensymf("G");
+let genH = gensymf("H");
 
-genG.next().value // 'G1'
-genH.next().value // 'H1'
-genG.next().value // 'G2'
-genH.next().value // 'H2'
+genG.next().value; // 'G1'
+genH.next().value; // 'H1'
+genG.next().value; // 'G2'
+genH.next().value; // 'H2'
 ```
 
 <a name="fibonaccif"></a>
@@ -1770,14 +1772,14 @@ return the next fibonacci number
 **Example**
 
 ```js
-let fib = fibonaccif(0, 1)
-fib.next().value // 0
-fib.next().value // 1
-fib.next().value // 1
-fib.next().value // 2
-fib.next().value // 3
-fib.next().value // 5
-fib.next().value // 8
+let fib = fibonaccif(0, 1);
+fib.next().value; // 0
+fib.next().value; // 1
+fib.next().value; // 1
+fib.next().value; // 2
+fib.next().value; // 3
+fib.next().value; // 5
+fib.next().value; // 8
 ```
 
 <a name="counter"></a>
@@ -1797,13 +1799,13 @@ the counter
 **Example**
 
 ```js
-let obj = counter(10)
-let { up, down } = obj
+let obj = counter(10);
+let { up, down } = obj;
 
-up() // 11
-down() // 10
-down() // 9
-up() // 10
+up(); // 11
+down(); // 10
+down(); // 9
+up(); // 10
 ```
 
 <a name="revocableb"></a>
@@ -1824,11 +1826,11 @@ that disables the `invoke` function
 **Example**
 
 ```js
-let rev = revocableb(addb)
+let rev = revocableb(addb);
 
-rev.invoke(3, 4) // 7
-rev.revoke()
-rev.invoke(5, 7) // undefined
+rev.invoke(3, 4); // 7
+rev.revoke();
+rev.invoke(5, 7); // undefined
 ```
 
 <a name="revocable"></a>
@@ -1846,11 +1848,11 @@ arguments
 **Example**
 
 ```js
-let rev = revocable(add)
+let rev = revocable(add);
 
-rev.invoke(3, 4) // 7
-rev.revoke()
-rev.invoke(5, 7) // undefined
+rev.invoke(3, 4); // 7
+rev.revoke();
+rev.invoke(5, 7); // undefined
 ```
 
 <a name="extract"></a>
@@ -1871,8 +1873,8 @@ extracting that property
 **Example**
 
 ```js
-let people = [{ name: 'john' }, { name: 'bob' }]
-let names = extract(people, 'name') // ['john', 'bob']
+let people = [{ name: "john" }, { name: "bob" }];
+let names = extract(people, "name"); // ['john', 'bob']
 ```
 
 <a name="m"></a>
@@ -1893,9 +1895,9 @@ object
 **Example**
 
 ```js
-m(1) // {value:1, source:"1"}
+m(1); // {value:1, source:"1"}
 
-m(Math.PI, 'pi') // {value:3.14159..., source:"pi"}
+m(Math.PI, "pi"); // {value:3.14159..., source:"pi"}
 ```
 
 <a name="addmTwo"></a>
@@ -1914,9 +1916,9 @@ returns an `m` object
 **Example**
 
 ```js
-addmTwo(m(3), m(4)) // {value:7, source:"(3+4)"}
+addmTwo(m(3), m(4)); // {value:7, source:"(3+4)"}
 
-addmTwo(m(1), m(Math.PI, 'pi')) // {value:4.14159..., source:"(1+pi)"}
+addmTwo(m(1), m(Math.PI, "pi")); // {value:4.14159..., source:"(1+pi)"}
 ```
 
 <a name="addm"></a>
@@ -1934,7 +1936,7 @@ arguments
 **Example**
 
 ```js
-addm(m(1), m(2), m(4)) // {value:7, source:"(1+2+4)"}
+addm(m(1), m(2), m(4)); // {value:7, source:"(1+2+4)"}
 ```
 
 <a name="liftmbM"></a>
@@ -1954,11 +1956,11 @@ that acts on `m` objects
 **Example**
 
 ```js
-let addmb = liftmbM(addb, '+')
+let addmb = liftmbM(addb, "+");
 
-addmb(m(3), m(4)) // {value:7, source:"(3+4)"}
+addmb(m(3), m(4)); // {value:7, source:"(3+4)"}
 
-liftmbM(mul, '*')(m(3), m(4)) // {value:12, source:"(3*4)"}
+liftmbM(mul, "*")(m(3), m(4)); // {value:12, source:"(3*4)"}
 ```
 
 <a name="liftmb"></a>
@@ -1978,9 +1980,9 @@ are either numbers or m objects
 **Example**
 
 ```js
-let addmb = liftmb(addb, '+')
+let addmb = liftmb(addb, "+");
 
-addmb(3, 4) // {value:7, source:"(3+4)"}
+addmb(3, 4); // {value:7, source:"(3+4)"}
 ```
 
 <a name="liftm"></a>
@@ -1999,11 +2001,11 @@ arguments
 **Example**
 
 ```js
-let addm = liftm(add, '+')
+let addm = liftm(add, "+");
 
-addm(m(3), m(4)) // {value:7, source:"(3+4)"}
+addm(m(3), m(4)); // {value:7, source:"(3+4)"}
 
-liftm(mul, '*')(m(3), m(4)) // {value:12, source:"(3*4)"}
+liftm(mul, "*")(m(3), m(4)); // {value:12, source:"(3*4)"}
 ```
 
 <a name="exp"></a>
@@ -2021,9 +2023,9 @@ expressions
 **Example**
 
 ```js
-let sae = [mul, 1, 2, 4]
-exp(sae) // 1 * 2 * 4 = 8
-exp(42) // 42
+let sae = [mul, 1, 2, 4];
+exp(sae); // 1 * 2 * 4 = 8
+exp(42); // 42
 ```
 
 <a name="expn"></a>
@@ -2042,9 +2044,9 @@ expressions
 **Example**
 
 ```js
-let nae = [Math.sqrt, [add, [square, 3], [square, 4]]]
+let nae = [Math.sqrt, [add, [square, 3], [square, 4]]];
 
-expn(nae) // sqrt(((3*3)+(4*4))) === 5
+expn(nae); // sqrt(((3*3)+(4*4))) === 5
 ```
 
 <a name="addg"></a>
@@ -2063,11 +2065,11 @@ invocation
 **Example**
 
 ```js
-addg() // undefined
-addg(2)() // 2
-addg(2)(7)() // 9
-addg(3)(0)(4)() // 7
-addg(1)(2)(4)(8)() // 15
+addg(); // undefined
+addg(2)(); // 2
+addg(2)(7)(); // 9
+addg(3)(0)(4)(); // 7
+addg(1)(2)(4)(8)(); // 15
 ```
 
 <a name="liftg"></a>
@@ -2085,10 +2087,10 @@ and apply it to many invocations
 **Example**
 
 ```js
-liftg(mulb)() // undefined
-liftg(mulb)(3)() // 3
-liftg(mulb)(3)(0)(4)() // 0
-liftg(mulb)(1)(2)(4)(8)() // 64
+liftg(mulb)(); // undefined
+liftg(mulb)(3)(); // 3
+liftg(mulb)(3)(0)(4)(); // 0
+liftg(mulb)(1)(2)(4)(8)(); // 64
 ```
 
 <a name="arrayg"></a>
@@ -2106,9 +2108,9 @@ invocations
 **Example**
 
 ```js
-arrayg() // []
-arrayg(3)() // [3]
-arrayg(3)(4)(5)() // [3, 4, 5]
+arrayg(); // []
+arrayg(3)(); // [3]
+arrayg(3)(4)(5)(); // [3, 4, 5]
 ```
 
 <a name="continuizeu"></a>
@@ -2128,8 +2130,8 @@ argument
 **Example**
 
 ```js
-let sqrtc = continuizeu(Math.sqrt)
-sqrtc(console.log, 81) // logs '9'
+let sqrtc = continuizeu(Math.sqrt);
+sqrtc(console.log, 81); // logs '9'
 ```
 
 <a name="continuize"></a>
@@ -2148,8 +2150,8 @@ takes a callback and arguments
 **Example**
 
 ```js
-let mullc = continuize(mul)
-mullc(console.log, 81, 4, 2) // logs '648'
+let mullc = continuize(mul);
+mullc(console.log, 81, 4, 2); // logs '648'
 ```
 
 <a name="vector"></a>
@@ -2165,11 +2167,11 @@ to the private array
 **Example**
 
 ```js
-let v = vector()
-v.append(7)
-v.store(1, 8)
-v.get(0) // 7
-v.get(1) // 8
+let v = vector();
+v.append(7);
+v.store(1, 8);
+v.get(0); // 7
+v.get(1); // 8
 ```
 
 <a name="exploitVector"></a>
@@ -2182,13 +2184,13 @@ something like this:
 
 ```js
 let vector = () => {
-  let array = []
-  return {
-    append: (v) => array.push(v),
-    get: (i) => array[i],
-    store: (i, v) => array[i] = v
-  }
-}
+    let array = [];
+    return {
+        append: (v) => array.push(v),
+        get: (i) => array[i],
+        store: (i, v) => (array[i] = v),
+    };
+};
 ```
 
 Can you spot any security concerns with
@@ -2204,10 +2206,10 @@ method of `vector`?
 **Example**
 
 ```js
-let v = vector()
-v.append(1)
-v.append(2)
-let internalData = exploitVector(v) // [1, 2]
+let v = vector();
+v.append(1);
+v.append(2);
+let internalData = exploitVector(v); // [1, 2]
 ```
 
 <a name="vectorSafe"></a>
@@ -2220,10 +2222,10 @@ with the issue from above?
 **Example**
 
 ```js
-let v = vectorSafe()
-v.append(1)
-v.append(2)
-let internalData = exploitVector(v) // undefined
+let v = vectorSafe();
+v.append(1);
+v.append(2);
+let internalData = exploitVector(v); // undefined
 ```
 
 <a name="pubsub"></a>
@@ -2239,9 +2241,9 @@ in the right order.
 **Example**
 
 ```js
-let ps = pubsub()
-ps.subscribe(console.log)
-ps.publish('It works!') // logs 'It works!'
+let ps = pubsub();
+ps.subscribe(console.log);
+ps.publish("It works!"); // logs 'It works!'
 ```
 
 <a name="mapRecurse"></a>
@@ -2260,7 +2262,7 @@ element of a given array, recursively
 **Example**
 
 ```js
-mapRecurse([1, 2, 3, 4], (x) => x * 2) // [ 2, 4, 6, 8 ]
+mapRecurse([1, 2, 3, 4], (x) => x * 2); // [ 2, 4, 6, 8 ]
 ```
 
 <a name="filterRecurse"></a>
@@ -2281,5 +2283,5 @@ predicate, recursively.
 **Example**
 
 ```js
-filterRecurse([1, 2, 3, 4], (x) => x % 2 === 0) // [ 2, 4 ]
+filterRecurse([1, 2, 3, 4], (x) => x % 2 === 0); // [ 2, 4 ]
 ```

@@ -574,7 +574,7 @@ in the right order.</p>
 performs a transformation for each
 element of a given array, recursively</p>
 </dd>
-<dt><a href="#filterRecurse">filterRecurse(array, predicate)</a> ⇒ <code>array</code></dt>
+<dt><a href="https://avatars.githubusercontent.com/u/133580011?v=4">filterRecurse(array, predicate)</a> ⇒ <code>array</code></dt>
 <dd><p>Make a function <code>filterRecurse</code> that
 takes in an array and a predicate
 function and returns a new array by
@@ -594,6 +594,14 @@ that argument
 | Param | Type             |
 | ----- | ---------------- |
 | x     | <code>any</code> |
+
+```js
+identity(x) // X
+
+function identity(x) {
+  return x;
+}
+
 
 **Example**
 

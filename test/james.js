@@ -44,6 +44,47 @@ function maxb(a, b) {
     return Math.max(a, b);
 }
 
+//OR
+
+//function maxb(a, b) {
+//    return a > b ? a : b;
+//}
+
+// add(1,2,4) = 7
+
+function add(...nums) {
+    return nums.reduce((sum,n) => sum+n,0);
+}
+
+// sub(2,3,5) = 2-3-5 = -6
+
+function sub(...nums) {
+    return nums.slice(1).reduce(
+        (result, n) => result - n,
+        nums[0]
+    );
+}
+
+function mul(...nums){
+    return nums.reduce((product,n) => product*n);
+}
+
+function min(...nums) {
+    return Math.min(...nums);
+}
+
+function max(...nums) {
+    return Math.max(...nums);
+}
+
+function addRecurse(...nums) {
+    if (nums.length == 0) return 0;
+    if (nums.length == 1) return nums[0];
+
+    return nums[0] + addRecurse(...nums.slice(1));
+}
+
+
 module.exports = {
     identity,
     addb,
@@ -51,13 +92,13 @@ module.exports = {
     mulb,
     minb,
     maxb,
-   /* add,
+    add,
     sub,
     mul,
     min,
     max,
     addRecurse,
-    mulRecurse,
+   /*mulRecurse,
     minRecurse,
     maxRecurse,
     not,
@@ -133,3 +174,10 @@ console.log(subb(3,4));
 console.log(mulb(3,4));
 console.log(minb(3,4));
 console.log(maxb(3,4));
+console.log(add(2,5,7,3,4));
+console.log(add(2,5,3));
+console.log(sub(7,3,4,1,2));
+console.log(mul(2,9,11));
+console.log(min(-10,0,13212,-2345));
+console.log(max(2,39,-100,10002,345));
+console.log(addRecurse(1,20,8,-10,-3));

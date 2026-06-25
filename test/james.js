@@ -84,6 +84,32 @@ function addRecurse(...nums) {
     return nums[0] + addRecurse(...nums.slice(1));
 }
 
+function mulRecurse(...nums) {
+    if (nums.length == 0) return 0;
+    if (nums.length == 1) return nums[0];
+
+    return nums[0]* mulRecurse(...nums.slice(1));
+}
+
+function minRecurse(...nums) {
+    if (nums.length == 1) return nums[0];
+    return Math.min(nums[0],
+        minRecurse(...nums.slice(1))
+    );
+}
+
+function maxRecurse(...nums) {
+    if (nums.length == 1) return nums[0];
+    return Math.max(nums[0],
+        maxRecurse(...nums.slice(1))
+    );
+}
+
+function not(fn) {
+    return function (...args) {
+        return !fn(...args);
+    };
+}
 
 module.exports = {
     identity,
@@ -98,11 +124,11 @@ module.exports = {
     min,
     max,
     addRecurse,
-   /*mulRecurse,
+    mulRecurse,
     minRecurse,
     maxRecurse,
     not,
-    acc,
+    /*acc,
     accPartial,
     accRecurse,
     fill,
@@ -181,3 +207,7 @@ console.log(mul(2,9,11));
 console.log(min(-10,0,13212,-2345));
 console.log(max(2,39,-100,10002,345));
 console.log(addRecurse(1,20,8,-10,-3));
+console.log(mulRecurse(2,-4,8,10,5));
+console.log(minRecurse(10,-2,123, -1231,1000));
+console.log(maxRecurse(4,-100,458,3519,-3012));
+console.log(not(max(4,-100,458,3519,-3012)))

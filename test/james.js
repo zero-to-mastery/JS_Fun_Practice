@@ -111,6 +111,21 @@ function not(fn) {
     };
 }
 
+// accumulate using reduce
+
+function acc(...nums) {
+    return nums.reduce((sum, n)=> sum + n,0);
+}
+
+// partial accumulation
+
+function accPartial(...nums) {
+    return function (...moreNums) {
+        return acc (...nums, ...moreNums);
+    };
+}
+
+
 module.exports = {
     identity,
     addb,
@@ -128,9 +143,9 @@ module.exports = {
     minRecurse,
     maxRecurse,
     not,
-    /*acc,
+    acc,
     accPartial,
-    accRecurse,
+    /*accRecurse,
     fill,
     fillRecurse,
     set,
@@ -210,4 +225,6 @@ console.log(addRecurse(1,20,8,-10,-3));
 console.log(mulRecurse(2,-4,8,10,5));
 console.log(minRecurse(10,-2,123, -1231,1000));
 console.log(maxRecurse(4,-100,458,3519,-3012));
-console.log(not(max(4,-100,458,3519,-3012)))
+console.log(not(max(4,-100,458,3519,-3012)));
+console.log(acc(2,3,4));
+console.log(accPartial(1,2)(3,4))
